@@ -75,10 +75,13 @@
 
         /* Content Container */
         .container {
-            z-index: 1;
+            z-index: 10;
+            /* Boost z-index to sit above waves */
             padding: 2rem;
             max-width: 600px;
             animation: fadeIn 2s ease-in-out;
+            margin-top: 50px;
+            /* Push down from top edge */
         }
 
         /* Logo Area - Circular White Container */
@@ -86,7 +89,8 @@
             width: 280px;
             /* Slight increase for better fit */
             height: 280px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 3rem;
+            /* Increased bottom margin */
             background: white;
             /* Matches logo background */
             border-radius: 50%;
@@ -94,17 +98,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+            box-shadow: 0 0 40px rgba(197, 160, 89, 0.4);
             /* Golden glow */
-            padding: 20px;
+            padding: 25px;
             /* Internal padding to prevent cutting text */
             box-sizing: border-box;
             /* Ensures padding doesn't affect total size */
+            overflow: hidden;
+            /* CRITICAL: Clips the square corners of the image */
         }
 
         .logo-img {
-            max-width: 100%;
-            max-height: 100%;
+            width: 100%;
+            /* Force width */
+            height: auto;
+            /* Maintain Aspect Ratio */
             object-fit: contain;
             /* Ensures the whole logo fits inside without cropping */
         }
