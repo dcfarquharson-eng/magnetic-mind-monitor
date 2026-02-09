@@ -87,34 +87,30 @@
         /* Logo Area - Circular White Container */
         .logo-area {
             width: 280px;
-            /* Slight increase for better fit */
             height: 280px;
             margin: 0 auto 3rem;
-            /* Increased bottom margin */
             background: white;
-            /* Matches logo background */
             border-radius: 50%;
-            /* Makes it a perfect circle medallion */
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 0 40px rgba(197, 160, 89, 0.4);
-            /* Golden glow */
-            padding: 25px;
-            /* Internal padding to prevent cutting text */
+            /* REMOVED PADDING to let image grow */
+            padding: 0;
             box-sizing: border-box;
-            /* Ensures padding doesn't affect total size */
             overflow: hidden;
-            /* CRITICAL: Clips the square corners of the image */
+            position: relative;
+            /* For better positioning */
         }
 
         .logo-img {
-            width: 100%;
-            /* Force width */
+            /* Scale up slightly (110%) to remove whitespace */
+            width: 115%;
             height: auto;
-            /* Maintain Aspect Ratio */
-            object-fit: contain;
-            /* Ensures the whole logo fits inside without cropping */
+            object-fit: cover;
+            /* Ensures it covers the area */
+            transform: translateY(5px) scale(0.9);
+            /* Fine tune adjustment */
         }
 
         h1 {
