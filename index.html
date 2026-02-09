@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Magnetic Mind Institute - Coming Soon</title>
+    <style>
+        :root {
+            --primary-navy: #0a192f;
+            --accent-gold: #c5a059;
+            --text-white: #e6f1ff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-navy);
+            color: var(--text-white);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Abstract Background Waves */
+        .waves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            opacity: 0.1;
+        }
+
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            border-radius: 40%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: drift 15s infinite linear;
+        }
+
+        .wave:nth-child(1) {
+            top: -50%;
+            left: -50%;
+            animation-duration: 20s;
+        }
+
+        .wave:nth-child(2) {
+            top: -60%;
+            left: -40%;
+            animation-duration: 25s;
+            opacity: 0.05;
+        }
+
+        @keyframes drift {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Content Container */
+        .container {
+            z-index: 1;
+            padding: 2rem;
+            max-width: 600px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Logo Placeholder */
+        .logo-area {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--accent-gold), #8a6e36);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            color: var(--primary-navy);
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #fff, var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #8892b0;
+        }
+
+        /* Quote Section */
+        .quote {
+            font-style: italic;
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 1rem;
+            margin: 2rem auto;
+            color: #ccd6f6;
+            max-width: 80%;
+        }
+
+        .cta-button {
+            background-color: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-gold);
+            color: var(--primary-navy);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="waves">
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+
+    <div class="container">
+        <div class="logo-area">
+            <!-- You can replace this inner text with an <img src="logo.png"> tag later -->
+            <div class="logo-icon">M</div>
+        </div>
+
+        <h1>The Magnetic Mind<br>Institute</h1>
+
+        <p>Attracting Wisdom. Elevating Consciousness.</p>
+
+        <div class="quote">
+            "Thoughts become things. If you see it in your mind, you will hold it in your hand."
+            <br><span style="font-size: 0.9em; opacity: 0.8;">— Bob Proctor</span>
+        </div>
+
+        <p>We are currently building our online sanctuary.</p>
+
+        <button class="cta-button">Join the Waitlist</button>
+    </div>
+
+</body>
+
+</html>
