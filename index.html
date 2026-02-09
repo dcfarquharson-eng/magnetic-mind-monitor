@@ -7,18 +7,17 @@
     <title>The Magnetic Mind Institute - Coming Soon</title>
     <style>
         :root {
-            /* Swapped to Light Theme to blend with the logo */
-            --bg-color: #ffffff;
-            --text-navy: #0e1b33;
+            /* Restoring the Rich Blue Theme */
+            --primary-navy: #0a192f;
             --accent-gold: #c5a059;
-            --soft-gray: #f4f4f4;
+            --text-white: #e6f1ff;
         }
 
         body {
             margin: 0;
             padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-navy);
+            background-color: var(--primary-navy);
+            color: var(--text-white);
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
@@ -30,17 +29,48 @@
             position: relative;
         }
 
-        /* Subtle Background Pattern */
-        .background-pattern {
+        /* Abstract Background Waves */
+        .waves {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(var(--soft-gray) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.5;
+            overflow: hidden;
             z-index: 0;
+            opacity: 0.1;
+        }
+
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            border-radius: 40%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: drift 15s infinite linear;
+        }
+
+        .wave:nth-child(1) {
+            top: -50%;
+            left: -50%;
+            animation-duration: 20s;
+        }
+
+        .wave:nth-child(2) {
+            top: -60%;
+            left: -40%;
+            animation-duration: 25s;
+            opacity: 0.05;
+        }
+
+        @keyframes drift {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Content Container */
@@ -48,27 +78,35 @@
             z-index: 1;
             padding: 2rem;
             max-width: 600px;
-            animation: fadeIn 1.5s ease-out;
+            animation: fadeIn 2s ease-in-out;
         }
 
-        /* Logo Styling */
-        .logo-container {
-            margin-bottom: 2rem;
+        /* Logo Area - Circular White Container */
+        .logo-area {
+            width: 280px;
+            /* Slight increase for better fit */
+            height: 280px;
+            margin: 0 auto 2rem;
+            background: white;
+            /* Matches logo background */
+            border-radius: 50%;
+            /* Makes it a perfect circle medallion */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+            /* Golden glow */
+            padding: 20px;
+            /* Internal padding to prevent cutting text */
+            box-sizing: border-box;
+            /* Ensures padding doesn't affect total size */
         }
 
         .logo-img {
-            /* 
-               Since the logo has a white background, it will blend perfectly here.
-               We add a slight drop shadow to make it pop just a tiny bit.
-            */
-            width: 250px;
-            /* Adjust size as needed */
-            height: 250px;
-            /* Fixed height to match width for perfect circle */
-            object-fit: cover;
-            /* Ensures image fills circle without stretching */
-            border-radius: 50%;
-            /* Makes it perfectly round */
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            /* Ensures the whole logo fits inside without cropping */
         }
 
         h1 {
@@ -76,47 +114,46 @@
             margin-bottom: 0.5rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--text-navy);
-            font-weight: 700;
+            background: linear-gradient(to right, #fff, var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            color: var(--accent-gold);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #8892b0;
         }
 
         /* Quote Section */
         .quote {
             font-style: italic;
             border-left: 3px solid var(--accent-gold);
-            padding-left: 1.5rem;
+            padding-left: 1rem;
             margin: 2rem auto;
-            color: #555;
+            color: #ccd6f6;
             max-width: 80%;
             text-align: left;
         }
 
         .cta-button {
-            background-color: var(--text-navy);
-            color: #fff;
-            border: 2px solid var(--text-navy);
-            padding: 1rem 2.5rem;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+            background-color: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 2rem;
-            font-weight: bold;
+            margin-top: 1rem;
         }
 
         .cta-button:hover {
-            background-color: transparent;
-            color: var(--text-navy);
+            background-color: var(--accent-gold);
+            color: var(--primary-navy);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
         }
 
         @keyframes fadeIn {
@@ -135,25 +172,32 @@
 
 <body>
 
-    <div class="background-pattern"></div>
+    <div class="waves">
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
 
     <div class="container">
 
-        <div class="logo-container">
-            <!-- MAKE SURE YOUR IMAGE IS NAMED logo.png AND IN THE SAME FOLDER -->
+        <!-- White Circular Medallion for Logo -->
+        <div class="logo-area">
             <img src="logo.png" alt="The Magnetic Mind Institute" class="logo-img">
         </div>
 
         <h1>The Magnetic Mind<br>Institute</h1>
-        <div class="subtitle">Est. 2026</div>
+        <div
+            style="color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; font-weight: bold;">
+            Est. 2026
+        </div>
+
+        <p>Attracting Wisdom. Elevating Consciousness.</p>
 
         <div class="quote">
             "Your purpose is to develop the gifts that you have been given."
-            <br><span style="font-weight: bold; color: var(--text-navy); margin-top: 5px; display:block;">— Bob
-                Proctor</span>
+            <br><span style="font-size: 0.9em; opacity: 0.8; margin-top: 5px; display:block;">— Bob Proctor</span>
         </div>
 
-        <p style="color: #666; margin-top: 2rem;">Our online sanctuary is coming soon.</p>
+        <p>We are currently building our online sanctuary.</p>
 
         <button class="cta-button">Join the Waitlist</button>
     </div>
