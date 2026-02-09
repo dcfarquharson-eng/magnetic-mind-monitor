@@ -7,16 +7,18 @@
     <title>The Magnetic Mind Institute - Coming Soon</title>
     <style>
         :root {
-            --primary-navy: #0a192f;
+            /* Swapped to Light Theme to blend with the logo */
+            --bg-color: #ffffff;
+            --text-navy: #0e1b33;
             --accent-gold: #c5a059;
-            --text-white: #e6f1ff;
+            --soft-gray: #f4f4f4;
         }
 
         body {
             margin: 0;
             padding: 0;
-            background-color: var(--primary-navy);
-            color: var(--text-white);
+            background-color: var(--bg-color);
+            color: var(--text-navy);
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
@@ -28,48 +30,17 @@
             position: relative;
         }
 
-        /* Abstract Background Waves */
-        .waves {
+        /* Subtle Background Pattern */
+        .background-pattern {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            background-image: radial-gradient(var(--soft-gray) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.5;
             z-index: 0;
-            opacity: 0.1;
-        }
-
-        .wave {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            border-radius: 40%;
-            background: rgba(255, 255, 255, 0.1);
-            animation: drift 15s infinite linear;
-        }
-
-        .wave:nth-child(1) {
-            top: -50%;
-            left: -50%;
-            animation-duration: 20s;
-        }
-
-        .wave:nth-child(2) {
-            top: -60%;
-            left: -40%;
-            animation-duration: 25s;
-            opacity: 0.05;
-        }
-
-        @keyframes drift {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
         }
 
         /* Content Container */
@@ -77,26 +48,27 @@
             z-index: 1;
             padding: 2rem;
             max-width: 600px;
-            animation: fadeIn 2s ease-in-out;
+            animation: fadeIn 1.5s ease-out;
         }
 
-        /* Logo Placeholder */
-        .logo-area {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 2rem;
-            background: linear-gradient(135deg, var(--accent-gold), #8a6e36);
+        /* Logo Styling */
+        .logo-container {
+            margin-bottom: 2rem;
+        }
+
+        .logo-img {
+            /* 
+               Since the logo has a white background, it will blend perfectly here.
+               We add a slight drop shadow to make it pop just a tiny bit.
+            */
+            width: 250px;
+            /* Adjust size as needed */
+            height: 250px;
+            /* Fixed height to match width for perfect circle */
+            object-fit: cover;
+            /* Ensures image fills circle without stretching */
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
-        }
-
-        .logo-icon {
-            font-size: 3rem;
-            color: var(--primary-navy);
-            font-weight: bold;
+            /* Makes it perfectly round */
         }
 
         h1 {
@@ -104,45 +76,47 @@
             margin-bottom: 0.5rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            background: linear-gradient(to right, #fff, var(--accent-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-navy);
+            font-weight: 700;
         }
 
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            color: #8892b0;
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Quote Section */
         .quote {
             font-style: italic;
             border-left: 3px solid var(--accent-gold);
-            padding-left: 1rem;
+            padding-left: 1.5rem;
             margin: 2rem auto;
-            color: #ccd6f6;
+            color: #555;
             max-width: 80%;
+            text-align: left;
         }
 
         .cta-button {
-            background-color: transparent;
-            border: 2px solid var(--accent-gold);
-            color: var(--accent-gold);
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            letter-spacing: 1px;
+            background-color: var(--text-navy);
+            color: #fff;
+            border: 2px solid var(--text-navy);
+            padding: 1rem 2.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 1rem;
+            margin-top: 2rem;
+            font-weight: bold;
         }
 
         .cta-button:hover {
-            background-color: var(--accent-gold);
-            color: var(--primary-navy);
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+            background-color: transparent;
+            color: var(--text-navy);
         }
 
         @keyframes fadeIn {
@@ -161,27 +135,25 @@
 
 <body>
 
-    <div class="waves">
-        <div class="wave"></div>
-        <div class="wave"></div>
-    </div>
+    <div class="background-pattern"></div>
 
     <div class="container">
-        <div class="logo-area">
-            <!-- You can replace this inner text with an <img src="logo.png"> tag later -->
-            <div class="logo-icon">M</div>
+
+        <div class="logo-container">
+            <!-- MAKE SURE YOUR IMAGE IS NAMED logo.png AND IN THE SAME FOLDER -->
+            <img src="logo.png" alt="The Magnetic Mind Institute" class="logo-img">
         </div>
 
         <h1>The Magnetic Mind<br>Institute</h1>
-
-        <p>Attracting Wisdom. Elevating Consciousness.</p>
+        <div class="subtitle">Est. 2026</div>
 
         <div class="quote">
-            "Thoughts become things. If you see it in your mind, you will hold it in your hand."
-            <br><span style="font-size: 0.9em; opacity: 0.8;">— Bob Proctor</span>
+            "Your purpose is to develop the gifts that you have been given."
+            <br><span style="font-weight: bold; color: var(--text-navy); margin-top: 5px; display:block;">— Bob
+                Proctor</span>
         </div>
 
-        <p>We are currently building our online sanctuary.</p>
+        <p style="color: #666; margin-top: 2rem;">Our online sanctuary is coming soon.</p>
 
         <button class="cta-button">Join the Waitlist</button>
     </div>
