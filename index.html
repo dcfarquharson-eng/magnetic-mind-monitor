@@ -284,7 +284,7 @@
             potential.<br>
             "Change your paradigm, change your life."</p>
 
-        <a href="philosophy.html" class="cta-button">Enter the Institute</a>
+        <button class="cta-button" onclick="openModal()">Enter the Institute</button>
 
         <div class="quote">
             "If you can see it in your mind, you can hold it in your hand."
@@ -298,6 +298,184 @@
         &copy; 2026 The Magnetic Mind Institute. All Rights Reserved.
     </footer>
 
+    <!-- MODAL FOR INSTITUTE ACCESS -->
+    <style>
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-box {
+            background: #112240;
+            padding: 3rem;
+            border-radius: 10px;
+            border: 1px solid var(--accent-gold);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 0 50px rgba(197, 160, 89, 0.2);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #8892b0;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: rgba(10, 25, 47, 0.5);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .modal-btn {
+            background-color: var(--accent-gold);
+            color: var(--primary-navy);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .modal-btn:hover {
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.5);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error-msg {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+    </style>
+
+    <div id="authModal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+
+            <!-- STEP 1: EMAIL -->
+            <div id="step1">
+                <h2 style="color: var(--accent-gold); margin-bottom: 1rem;">Institute Access</h2>
+                <p>Enter your email to receive your unique access key.</p>
+                <input type="email" id="emailInput" class="modal-input" placeholder="initiate@example.com">
+                <button class="modal-btn" onclick="submitEmail()">Request Access</button>
+                <div id="msg1" class="error-msg"></div>
+            </div>
+
+            <!-- STEP 2: CODE -->
+            <div id="step2" class="hidden">
+                <h2 style="color: var(--accent-gold); margin-bottom: 1rem;">Verify Identity</h2>
+                <p>Enter the access code sent to <span id="displayEmail" style="color: #fff;"></span></p>
+                <input type="text" id="codeInput" class="modal-input" placeholder="XXX-9XX"
+                    style="letter-spacing: 3px; font-weight: bold;">
+                <button class="modal-btn" onclick="verifyCode()">Enter The Institute</button>
+                <div id="msg2" class="error-msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = "http://localhost:8000/api";
+
+        function openModal() {
+            document.getElementById('authModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('authModal').style.display = 'none';
+        }
+
+        async function submitEmail() {
+            const email = document.getElementById('emailInput').value;
+            const msg = document.getElementById('msg1');
+
+            if (!email.includes('@')) {
+                msg.textContent = "Please enter a valid email.";
+                return;
+            }
+
+            msg.textContent = "Sending access code...";
+            msg.style.color = "#bdc6db";
+
+            try {
+                const res = await fetch(`${API_BASE}/institute/join`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                });
+                const data = await res.json();
+
+                if (data.status === 'ok') {
+                    document.getElementById('step1').classList.add('hidden');
+                    document.getElementById('step2').classList.remove('hidden');
+                    document.getElementById('displayEmail').textContent = email;
+                    msg.textContent = "";
+                } else {
+                    msg.textContent = data.message || "Error sending email.";
+                    msg.style.color = "#ff6b6b";
+                }
+            } catch (e) {
+                console.error(e);
+                msg.textContent = "Connection error. Is the backend running?";
+                msg.style.color = "#ff6b6b";
+            }
+        }
+
+        async function verifyCode() {
+            const email = document.getElementById('emailInput').value;
+            const code = document.getElementById('codeInput').value;
+            const msg = document.getElementById('msg2');
+
+            msg.textContent = "Verifying...";
+            msg.style.color = "#bdc6db";
+
+            try {
+                const res = await fetch(`${API_BASE}/institute/verify`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, code: code })
+                });
+                const data = await res.json();
+
+                if (data.status === 'ok') {
+                    // Success! Redirect
+                    window.location.href = "institute_dashboard.html";
+                } else {
+                    msg.textContent = "Invalid Code. Please try again.";
+                    msg.style.color = "#ff6b6b";
+                }
+            } catch (e) {
+                msg.textContent = "Server connection failed.";
+                msg.style.color = "#ff6b6b";
+            }
+        }
+    </script>
 </body>
 
 </html>

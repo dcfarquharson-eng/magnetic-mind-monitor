@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institute Dashboard - The Magnetic Mind</title>
+    <style>
+        :root {
+            --primary-navy: #0a192f;
+            --accent-gold: #c5a059;
+            --text-white: #e6f1ff;
+            --card-bg: #112240;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-navy);
+            color: var(--text-white);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 25, 47, 0.95);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .nav-brand {
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .welcome-text {
+            color: #8892b0;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* PDF DOWNLOAD SECTION */
+        .resource-card {
+            background: var(--card-bg);
+            border: 1px solid var(--accent-gold);
+            padding: 2rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .resource-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-right: 2rem;
+        }
+
+        .resource-content {
+            flex: 1;
+        }
+
+        .resource-title {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-btn {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            font-weight: bold;
+            border-radius: 3px;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: 0.3s;
+        }
+
+        .download-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* LESSONS GRID */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .lesson-card {
+            background: rgba(17, 34, 64, 0.5);
+            padding: 1.5rem;
+            border-radius: 5px;
+            border-top: 3px solid transparent;
+            transition: 0.3s;
+        }
+
+        .lesson-card:hover {
+            background: var(--card-bg);
+            border-top: 3px solid var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        .lesson-title {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-desc {
+            color: #8892b0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="#" class="nav-brand">The Magnetic Mind Institute</a>
+        <a href="index.html" style="color: #8892b0; text-decoration: none; font-size: 0.9rem;">Log Out</a>
+    </nav>
+
+    <div class="container">
+        <h1>Welcome, Initiate.</h1>
+        <p class="welcome-text">You have successfully unlocked the archives. Begin your study below.</p>
+
+        <!-- MAIN RESOURCE -->
+        <div class="resource-card">
+            <div class="resource-icon">📖</div>
+            <div class="resource-content">
+                <div class="resource-title">The Magnetic Mind Manifesto</div>
+                <p style="color: #bdc6db; margin: 0;">
+                    The foundational text on understanding the laws of the universe and unlocking your hidden potential.
+                    (PDF, 12MB)
+                </p>
+                <a href="#" class="download-btn" onclick="alert('Download started (Simulation)')">Download PDF</a>
+            </div>
+        </div>
+
+        <!-- LESSONS -->
+        <h2 style="color: #fff; font-weight: 300; margin-bottom: 1.5rem; font-size: 1.8rem;">Core Lessons</h2>
+        <div class="lessons-grid">
+            <div class="lesson-card">
+                <div class="lesson-title">Lesson I: The Paradigm</div>
+                <p class="lesson-desc">Understanding the mental program that controls your habitual behavior.</p>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-title">Lesson II: The Law of Vibration</div>
+                <p class="lesson-desc">Everything moves, nothing rests. How to tune your frequency for success.</p>
+            </div>
+            <div class="lesson-card">
+                <div class="lesson-title">Lesson III: The Terror Barrier</div>
+                <p class="lesson-desc">How to break through the fear that stops you when you try to grow.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
