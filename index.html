@@ -11,6 +11,7 @@
             --primary-navy: #0a192f;
             --accent-gold: #c5a059;
             --text-white: #e6f1ff;
+            --nav-bg: rgba(10, 25, 47, 0.95);
         }
 
         body {
@@ -22,16 +23,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
+            /* Allow scrolling for full content */
+            min-height: 100vh;
             text-align: center;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
         /* Abstract Background Waves */
         .waves {
-            position: absolute;
+            position: fixed;
+            /* Fixed so they stay while scrolling */
             top: 0;
             left: 0;
             width: 100%;
@@ -39,6 +41,7 @@
             overflow: hidden;
             z-index: 0;
             opacity: 0.1;
+            pointer-events: none;
         }
 
         .wave {
@@ -73,91 +76,165 @@
             }
         }
 
+        /* NAVIGATION BAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--nav-bg);
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-brand {
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-gold);
+            opacity: 1;
+        }
+
         /* Content Container */
         .container {
             z-index: 10;
-            /* Boost z-index to sit above waves */
             padding: 2rem;
-            max-width: 600px;
+            max-width: 800px;
             animation: fadeIn 2s ease-in-out;
-            margin-top: 50px;
-            /* Push down from top edge */
+            margin-top: 120px;
+            /* Clear fixed nav */
+            flex: 1;
+            /* Push footer down */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Logo Area - Circular White Container */
         .logo-area {
-            width: 280px;
-            height: 280px;
-            margin: 0 auto 3rem;
+            width: 220px;
+            /* Slightly smaller for main site */
+            height: 220px;
+            margin: 0 auto 2rem;
             background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 0 40px rgba(197, 160, 89, 0.4);
-            /* REMOVED PADDING to let image grow */
             padding: 0;
             box-sizing: border-box;
             overflow: hidden;
             position: relative;
-            /* For better positioning */
         }
 
         .logo-img {
-            /* Scale up slightly (110%) to remove whitespace */
             width: 115%;
             height: auto;
             object-fit: cover;
-            /* Ensures it covers the area */
             transform: translateY(5px) scale(0.9);
-            /* Fine tune adjustment */
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 0.5rem;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             background: linear-gradient(to right, #fff, var(--accent-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 300;
+            /* More elegant */
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
 
         p {
-            font-size: 1.2rem;
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.8;
             margin-bottom: 2rem;
-            color: #8892b0;
+            color: #bdc6db;
+            max-width: 600px;
         }
 
         /* Quote Section */
         .quote {
             font-style: italic;
             border-left: 3px solid var(--accent-gold);
-            padding-left: 1rem;
-            margin: 2rem auto;
-            color: #ccd6f6;
-            max-width: 80%;
+            padding-left: 1.5rem;
+            margin: 3rem auto;
+            color: #e6f1ff;
+            max-width: 70%;
             text-align: left;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 0 10px 10px 0;
         }
 
         .cta-button {
             background-color: transparent;
             border: 2px solid var(--accent-gold);
             color: var(--accent-gold);
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            letter-spacing: 1px;
+            padding: 1rem 3rem;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 1rem;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .cta-button:hover {
             background-color: var(--accent-gold);
             color: var(--primary-navy);
             box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+        }
+
+        footer {
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            z-index: 10;
+            margin-top: auto;
         }
 
         @keyframes fadeIn {
@@ -176,36 +253,48 @@
 
 <body>
 
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">The Magnetic Mind</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="philosophy.html" class="nav-link">Philosophy</a>
+            <a href="archives.html" class="nav-link">The Archives</a>
+            <a href="fellowship.html" class="nav-link">Fellowship</a>
+        </div>
+    </nav>
+
     <div class="waves">
         <div class="wave"></div>
         <div class="wave"></div>
     </div>
 
     <div class="container">
-
         <!-- White Circular Medallion for Logo -->
         <div class="logo-area">
             <img src="logo.png" alt="The Magnetic Mind Institute" class="logo-img">
         </div>
 
+        <h1>The Institute</h1>
+        <div class="subtitle">Est. 2026</div>
 
-        <div
-            style="color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; font-weight: bold;">
-            Est. 2026
-        </div>
+        <p>Attracting Wisdom. Elevating Consciousness.<br>
+            A sanctuary for those seeking to bridge ancient knowledge with modern understanding.</p>
 
-        <p>Attracting Wisdom. Elevating Consciousness.</p>
+        <a href="philosophy.html" class="cta-button">Enter the Institute</a>
 
         <div class="quote">
             "Your purpose is to develop the gifts that you have been given."
-            <br><span style="font-size: 0.9em; opacity: 0.8; margin-top: 5px; display:block;">— Bob Proctor</span>
+            <br><span style="font-size: 0.9em; color: var(--accent-gold); margin-top: 10px; display:block;">— Bob
+                Proctor</span>
         </div>
 
-        <p>We are currently building our online sanctuary.</p>
-
-        <button class="cta-button">Join the Waitlist</button>
     </div>
+
+    <footer>
+        &copy; 2026 The Magnetic Mind Institute. All Rights Reserved.
+    </footer>
 
 </body>
 
 </html>
+```
