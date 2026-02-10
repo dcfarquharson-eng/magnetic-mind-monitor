@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fellowship - The Magnetic Mind Institute</title>
+    <title>Events - The Magnetic Mind Institute</title>
     <style>
         :root {
             --primary-navy: #0a192f;
@@ -78,7 +78,7 @@
         .page-content {
             margin-top: 100px;
             padding: 4rem 2rem;
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             box-sizing: border-box;
         }
@@ -92,79 +92,85 @@
             font-weight: 300;
         }
 
-        p {
-            line-height: 1.8;
-            font-size: 1.2rem;
-            color: #bdc6db;
-            margin-bottom: 3rem;
-        }
-
-        .membership-card {
+        .event-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(197, 160, 89, 0.2);
-            padding: 3rem 2rem;
+            padding: 2rem;
             border-radius: 10px;
-            margin: 0 auto;
-            max-width: 500px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            text-align: left;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
         }
 
-        .price {
-            font-size: 2.5rem;
+        .event-date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            border-right: 1px solid rgba(197, 160, 89, 0.2);
+            height: 100%;
+            padding-right: 1.5rem;
+        }
+
+        .date-month {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
             font-weight: bold;
-            color: #fff;
-            margin-bottom: 0.5rem;
         }
 
-        .period {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.5);
+        .date-day {
+            font-size: 2.5rem;
+            color: #fff;
+            font-weight: 300;
+        }
+
+        .event-info {
+            width: 100%;
+        }
+
+        .event-type {
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.5rem;
             display: block;
         }
 
-        ul.benefits {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 2rem 0;
-            text-align: left;
-        }
-
-        ul.benefits li {
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-            position: relative;
-            color: #bdc6db;
-        }
-
-        ul.benefits li::before {
-            content: "•";
-            color: var(--accent-gold);
+        .event-title {
             font-size: 1.5rem;
-            position: absolute;
-            left: 0;
-            top: -5px;
+            color: #fff;
+            margin: 0 0 1rem 0;
+            font-weight: 400;
         }
 
-        .cta-button {
-            background-color: var(--accent-gold);
-            border: none;
-            color: var(--primary-navy);
-            padding: 1rem 3rem;
-            font-size: 1rem;
-            letter-spacing: 2px;
+        .event-description {
+            color: #bdc6db;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .rsvp-btn {
+            background-color: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.8rem 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
-            width: 100%;
-            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .cta-button:hover {
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.6);
-            transform: translateY(-2px);
+        .rsvp-btn:hover {
+            background-color: var(--accent-gold);
+            color: var(--primary-navy);
         }
 
         footer {
@@ -188,34 +194,55 @@
             <a href="about.html" class="nav-link">About</a>
             <a href="philosophy.html" class="nav-link">Philosophy</a>
             <a href="archives.html" class="nav-link">Research</a>
-            <a href="events.html" class="nav-link">Events</a>
-            <a href="fellowship.html" class="nav-link active">Fellowship</a>
+            <a href="events.html" class="nav-link active">Events</a>
+            <a href="fellowship.html" class="nav-link">Fellowship</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
     </nav>
 
     <div class="page-content">
-        <h1>Join the Fellowship</h1>
-        <p>
-            Membership in The Magnetic Mind Institute is an invitation to join a dedicated circle of thinkers,
-            researchers, and seekers of truth.
-        </p>
+        <h1>Upcoming Events</h1>
 
-        <div class="membership-card">
-            <h2 style="color:var(--accent-gold); margin-top:0;">Institute Fellow</h2>
-            <div class="price">Open</div>
-            <span class="period">Currently Accepting Applications</span>
+        <div class="event-card">
+            <div class="event-date">
+                <span class="date-month">Mar</span>
+                <span class="date-day">15</span>
+            </div>
+            <div class="event-info">
+                <span class="event-type">Live Seminar</span>
+                <h3 class="event-title">The Paradigm Shift - Live</h3>
+                <p class="event-description">A 3-day immersive experience where you will identify and replace the
+                    limiting beliefs that are holding you back from your C-Type goal.</p>
+                <a href="#" class="rsvp-btn">Get Tickets</a>
+            </div>
+        </div>
 
-            <ul class="benefits">
-                <li>Access to the Full Digital Grimoire</li>
-                <li>Exclusive Monthly Research Briefings</li>
-                <li>Priority Invitation to Institute Lectures</li>
-                <li>Participate in the "Cognitive Resonance" Project</li>
-            </ul>
+        <div class="event-card">
+            <div class="event-date">
+                <span class="date-month">Apr</span>
+                <span class="date-day">02</span>
+            </div>
+            <div class="event-info">
+                <span class="event-type">Workshop</span>
+                <h3 class="event-title">Goal Setting Masterclass</h3>
+                <p class="event-description">Stop trading your time for money. Learn exactly how to set and achieve
+                    worthy goals that demand you grow.</p>
+                <a href="#" class="rsvp-btn">Join Waitlist</a>
+            </div>
+        </div>
 
-            <button class="cta-button">Apply for Fellowship</button>
-            <p style="font-size:0.9rem; margin-top:1rem; margin-bottom:0; opacity:0.6;">Applications are reviewed by the
-                Council.</p>
+        <div class="event-card">
+            <div class="event-date">
+                <span class="date-month">May</span>
+                <span class="date-day">20</span>
+            </div>
+            <div class="event-info">
+                <span class="event-type">Retreat</span>
+                <h3 class="event-title">Born Rich Retreat</h3>
+                <p class="event-description">Unlock the hidden treasures of your mind. A deep dive into the principles
+                    of "You Were Born Rich".</p>
+                <a href="#" class="rsvp-btn">Details Coming Soon</a>
+            </div>
         </div>
 
     </div>

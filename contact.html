@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fellowship - The Magnetic Mind Institute</title>
+    <title>Contact - The Magnetic Mind Institute</title>
     <style>
         :root {
             --primary-navy: #0a192f;
@@ -24,7 +24,6 @@
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
-            text-align: center;
         }
 
         /* NAVIGATION BAR */
@@ -81,6 +80,7 @@
             max-width: 800px;
             width: 100%;
             box-sizing: border-box;
+            text-align: center;
         }
 
         h1 {
@@ -99,56 +99,49 @@
             margin-bottom: 3rem;
         }
 
-        .membership-card {
+        .contact-form {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(197, 160, 89, 0.2);
             padding: 3rem 2rem;
             border-radius: 10px;
             margin: 0 auto;
-            max-width: 500px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-
-        .period {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-            display: block;
-        }
-
-        ul.benefits {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 2rem 0;
             text-align: left;
         }
 
-        ul.benefits li {
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-            position: relative;
-            color: #bdc6db;
+        .form-group {
+            margin-bottom: 1.5rem;
         }
 
-        ul.benefits li::before {
-            content: "•";
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
             color: var(--accent-gold);
-            font-size: 1.5rem;
-            position: absolute;
-            left: 0;
-            top: -5px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .cta-button {
+        input,
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 25, 47, 0.5);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 5px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);
+        }
+
+        .submit-btn {
             background-color: var(--accent-gold);
             border: none;
             color: var(--primary-navy);
@@ -160,11 +153,38 @@
             transition: all 0.3s ease;
             width: 100%;
             font-weight: bold;
+            margin-top: 1rem;
         }
 
-        .cta-button:hover {
+        .submit-btn:hover {
             box-shadow: 0 0 20px rgba(197, 160, 89, 0.6);
             transform: translateY(-2px);
+        }
+
+        .contact-info {
+            margin-top: 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+
+        .info-value {
+            color: #fff;
+            font-size: 1.1rem;
         }
 
         footer {
@@ -189,33 +209,55 @@
             <a href="philosophy.html" class="nav-link">Philosophy</a>
             <a href="archives.html" class="nav-link">Research</a>
             <a href="events.html" class="nav-link">Events</a>
-            <a href="fellowship.html" class="nav-link active">Fellowship</a>
-            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="fellowship.html" class="nav-link">Fellowship</a>
+            <a href="contact.html" class="nav-link active">Contact</a>
         </div>
     </nav>
 
     <div class="page-content">
-        <h1>Join the Fellowship</h1>
+        <h1>Contact The Institute</h1>
         <p>
-            Membership in The Magnetic Mind Institute is an invitation to join a dedicated circle of thinkers,
-            researchers, and seekers of truth.
+            Inquiries regarding research collaborations, fellowship applications, or press.
         </p>
 
-        <div class="membership-card">
-            <h2 style="color:var(--accent-gold); margin-top:0;">Institute Fellow</h2>
-            <div class="price">Open</div>
-            <span class="period">Currently Accepting Applications</span>
+        <div class="contact-form">
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject"
+                        style="width: 100%; padding: 1rem; background: rgba(10, 25, 47, 0.5); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 5px; color: #fff;">
+                        <option>General Inquiry</option>
+                        <option>Research Collaboration</option>
+                        <option>Fellowship Application</option>
+                        <option>Media & Press</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn"
+                    onclick="event.preventDefault(); alert('Inquiry Sent (Simulation)');">Send Inquiry</button>
+            </form>
+        </div>
 
-            <ul class="benefits">
-                <li>Access to the Full Digital Grimoire</li>
-                <li>Exclusive Monthly Research Briefings</li>
-                <li>Priority Invitation to Institute Lectures</li>
-                <li>Participate in the "Cognitive Resonance" Project</li>
-            </ul>
-
-            <button class="cta-button">Apply for Fellowship</button>
-            <p style="font-size:0.9rem; margin-top:1rem; margin-bottom:0; opacity:0.6;">Applications are reviewed by the
-                Council.</p>
+        <div class="contact-info">
+            <div class="info-item">
+                <span class="info-label">Email</span>
+                <span class="info-value">inquire@themagneticmind.institute</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Location</span>
+                <span class="info-value">Trelawny Town, Jamaica (Digital HQ)</span>
+            </div>
         </div>
 
     </div>
