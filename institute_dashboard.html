@@ -144,9 +144,25 @@
 
 <body>
 
+    <script>
+        // AUTH CHECK
+        // If no session token, redirect to login
+        if (!localStorage.getItem('magnetic_session')) {
+            window.location.href = "index.html";
+        }
+
+        function logout() {
+            localStorage.removeItem('magnetic_session');
+            localStorage.removeItem('magnetic_token');
+            localStorage.removeItem('magnetic_email');
+            window.location.href = "index.html";
+        }
+    </script>
+
     <nav class="navbar">
         <a href="#" class="nav-brand">The Magnetic Mind Institute</a>
-        <a href="index.html" style="color: #8892b0; text-decoration: none; font-size: 0.9rem;">Log Out</a>
+        <a href="#" onclick="logout()"
+            style="color: #8892b0; text-decoration: none; font-size: 0.9rem; cursor: pointer;">Log Out</a>
     </nav>
 
     <div class="container">

@@ -169,6 +169,7 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             background: linear-gradient(to right, #fff, var(--accent-gold));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 300;
@@ -263,6 +264,9 @@
             <a href="events.html" class="nav-link">Events</a>
             <a href="fellowship.html" class="nav-link">Fellowship</a>
             <a href="contact.html" class="nav-link">Contact</a>
+            <a href="#" onclick="openLoginModal()" class="nav-link"
+                style="color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 5px 15px; border-radius: 4px;">Log
+                In</a>
         </div>
     </nav>
 
@@ -379,23 +383,35 @@
         <div class="modal-box">
             <span class="close-modal" onclick="closeModal()">&times;</span>
 
-            <!-- STEP 1: EMAIL -->
+            <!-- STEP 1: REQUEST ACCESS (SIGN UP) -->
             <div id="step1">
                 <h2 style="color: var(--accent-gold); margin-bottom: 1rem;">Institute Access</h2>
                 <p>Enter your email to receive your unique access key.</p>
                 <input type="email" id="emailInput" class="modal-input" placeholder="initiate@example.com">
                 <button class="modal-btn" onclick="submitEmail()">Request Access</button>
                 <div id="msg1" class="error-msg"></div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #8892b0;">
+                    Already have a code? <a href="#" onclick="showLogin()" style="color: var(--accent-gold);">Login
+                        here</a>
+                </p>
             </div>
 
-            <!-- STEP 2: CODE -->
+            <!-- STEP 2: VERIFY ACCESS (LOGIN) -->
             <div id="step2" class="hidden">
                 <h2 style="color: var(--accent-gold); margin-bottom: 1rem;">Verify Identity</h2>
-                <p>Enter the access code sent to <span id="displayEmail" style="color: #fff;"></span></p>
+                <p>Enter the access code sent to <span id="displayEmail" style="color: #fff;">your email</span></p>
+
+                <!-- Email input needed if jumping straight to login -->
+                <input type="email" id="loginEmailInput" class="modal-input hidden" placeholder="initiate@example.com">
+
                 <input type="text" id="codeInput" class="modal-input" placeholder="XXX-9XX"
                     style="letter-spacing: 3px; font-weight: bold;">
                 <button class="modal-btn" onclick="verifyCode()">Enter The Institute</button>
                 <div id="msg2" class="error-msg"></div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #8892b0;">
+                    Need a code? <a href="#" onclick="showSignup()" style="color: var(--accent-gold);">Request
+                        Access</a>
+                </p>
             </div>
         </div>
     </div>
@@ -405,10 +421,44 @@
 
         function openModal() {
             document.getElementById('authModal').style.display = 'flex';
+            // Default to Sign Up view
+            showSignup();
+
+            // Check if we have a saved email to pre-fill
+            const savedEmail = localStorage.getItem('magnetic_email');
+            if (savedEmail) {
+                document.getElementById('emailInput').value = savedEmail;
+                document.getElementById('loginEmailInput').value = savedEmail;
+            }
+        }
+
+        function openLoginModal() {
+            openModal();
+            showLogin();
         }
 
         function closeModal() {
             document.getElementById('authModal').style.display = 'none';
+        }
+
+        function showLogin() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+
+            // If they came straight to login, they might need to enter email
+            const email = document.getElementById('emailInput').value;
+            if (email) {
+                document.getElementById('displayEmail').textContent = email;
+                document.getElementById('loginEmailInput').classList.add('hidden');
+            } else {
+                document.getElementById('displayEmail').textContent = "you";
+                document.getElementById('loginEmailInput').classList.remove('hidden');
+            }
+        }
+
+        function showSignup() {
+            document.getElementById('step1').classList.remove('hidden');
+            document.getElementById('step2').classList.add('hidden');
         }
 
         async function submitEmail() {
@@ -435,6 +485,8 @@
                     document.getElementById('step1').classList.add('hidden');
                     document.getElementById('step2').classList.remove('hidden');
                     document.getElementById('displayEmail').textContent = email;
+                    document.getElementById('loginEmailInput').value = email; // Sync inputs
+                    document.getElementById('loginEmailInput').classList.add('hidden'); // We have the email
                     msg.textContent = "";
                 } else {
                     msg.textContent = data.message || "Error sending email.";
@@ -448,9 +500,17 @@
         }
 
         async function verifyCode() {
-            const email = document.getElementById('emailInput').value;
+            // Get email from either step 1 input or step 2 login input
+            let email = document.getElementById('emailInput').value;
+            if (!email) email = document.getElementById('loginEmailInput').value;
+
             const code = document.getElementById('codeInput').value;
             const msg = document.getElementById('msg2');
+
+            if (!email || !email.includes('@')) {
+                msg.textContent = "Please enter your email.";
+                return;
+            }
 
             msg.textContent = "Verifying...";
             msg.style.color = "#bdc6db";
@@ -464,7 +524,12 @@
                 const data = await res.json();
 
                 if (data.status === 'ok') {
-                    // Success! Redirect
+                    // Success! Save credentials
+                    localStorage.setItem('magnetic_email', email);
+                    localStorage.setItem('magnetic_token', code); // Using code as token for now
+                    localStorage.setItem('magnetic_session', data.token);
+
+                    // Redirect
                     window.location.href = "institute_dashboard.html";
                 } else {
                     msg.textContent = "Invalid Code. Please try again.";
