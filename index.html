@@ -411,6 +411,29 @@
                 <p style="margin-top: 1rem; font-size: 0.9rem; color: #8892b0;">
                     Need a code? <a href="#" onclick="showSignup()" style="color: var(--accent-gold);">Request
                         Access</a>
+                    <br>
+                    <a href="#" onclick="showChangeCode()"
+                        style="color: #8892b0; font-size: 0.8rem; text-decoration: underline; margin-top: 5px; display: inline-block;">Change
+                        Access Code</a>
+                </p>
+            </div>
+
+            <!-- STEP 3: CHANGE CODE -->
+            <div id="step3" class="hidden">
+                <h2 style="color: var(--accent-gold); margin-bottom: 1rem;">Change Access Code</h2>
+                <p>Update your credentials securely.</p>
+
+                <input type="email" id="changeEmailInput" class="modal-input" placeholder="Email" readonly
+                    style="background: rgba(0,0,0,0.2); color: #8892b0;">
+                <input type="text" id="currentCodeInput" class="modal-input" placeholder="Current Code">
+                <input type="text" id="newCodeInput" class="modal-input" placeholder="New Custom Code"
+                    style="letter-spacing: 2px; font-weight: bold; color: var(--accent-gold);">
+
+                <button class="modal-btn" onclick="submitChangeCode()">Update Code</button>
+                <div id="msg3" class="error-msg"></div>
+
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #8892b0;">
+                    <a href="#" onclick="showLogin()" style="color: var(--accent-gold);">Back to Login</a>
                 </p>
             </div>
         </div>
@@ -444,6 +467,7 @@
         function showLogin() {
             document.getElementById('step1').classList.add('hidden');
             document.getElementById('step2').classList.remove('hidden');
+            document.getElementById('step3').classList.add('hidden');
 
             // If they came straight to login, they might need to enter email
             const email = document.getElementById('emailInput').value;
@@ -459,6 +483,70 @@
         function showSignup() {
             document.getElementById('step1').classList.remove('hidden');
             document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.add('hidden');
+        }
+
+        function showChangeCode() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+
+            // Populate email
+            let email = document.getElementById('emailInput').value;
+            if (!email) email = document.getElementById('loginEmailInput').value;
+            document.getElementById('changeEmailInput').value = email;
+
+            // Populate current code if they started typing it
+            const currentCode = document.getElementById('codeInput').value;
+            if (currentCode) document.getElementById('currentCodeInput').value = currentCode;
+        }
+
+        async function submitChangeCode() {
+            const email = document.getElementById('changeEmailInput').value;
+            const currentCode = document.getElementById('currentCodeInput').value;
+            const newCode = document.getElementById('newCodeInput').value;
+            const msg = document.getElementById('msg3');
+
+            if (!email || !currentCode || !newCode) {
+                msg.textContent = "Please fill all fields.";
+                return;
+            }
+
+            msg.textContent = "Updating...";
+            msg.style.color = "#bdc6db";
+
+            try {
+                const res = await fetch(`${API_BASE}/institute/update_code`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        current_code: currentCode,
+                        new_code: newCode
+                    })
+                });
+                const data = await res.json();
+
+                if (data.status === 'ok') {
+                    msg.textContent = "Code Updated! Logging you in...";
+                    msg.style.color = "#4caf50"; // Green
+
+                    // Auto-fill login and go
+                    document.getElementById('loginEmailInput').value = email;
+                    document.getElementById('codeInput').value = newCode;
+
+                    setTimeout(() => {
+                        verifyCode(); // Auto-login
+                    }, 1000);
+                } else {
+                    msg.textContent = data.message || "Update Failed.";
+                    msg.style.color = "#ff6b6b";
+                }
+            } catch (e) {
+                console.error(e);
+                msg.textContent = "Server connection error.";
+                msg.style.color = "#ff6b6b";
+            }
         }
 
         async function submitEmail() {
