@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redeem Promo Code - The Magnetic Mind</title>
+    <style>
+        :root {
+            --primary-navy: #0a192f;
+            --accent-gold: #c5a059;
+            --text-white: #e6f1ff;
+            --card-bg: #112240;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-navy);
+            color: var(--text-white);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 25, 47, 0.95);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .nav-brand {
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .resource-card {
+            background: var(--card-bg);
+            border: 1px solid #4a5568;
+            padding: 2rem;
+            border-radius: 5px;
+            margin-top: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        .download-btn {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            font-weight: bold;
+            border-radius: 3px;
+            display: inline-block;
+            margin-top: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .download-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        // AUTH CHECK
+        // If no session token, redirect to login
+        if (!localStorage.getItem('magnetic_session')) {
+            window.location.href = "index.html";
+        }
+
+        function logout() {
+            localStorage.removeItem('magnetic_session');
+            localStorage.removeItem('magnetic_token');
+            localStorage.removeItem('magnetic_email');
+            window.location.href = "index.html";
+        }
+    </script>
+
+    <nav class="navbar">
+        <a href="institute_dashboard.html" class="nav-brand">The Magnetic Mind Institute</a>
+        <div>
+            <a href="institute_dashboard.html" style="color: #c5a059; text-decoration: none; margin-right: 1.5rem; font-size: 0.9rem;">Dashboard</a>
+            <a href="#" onclick="logout()" style="color: #8892b0; text-decoration: none; font-size: 0.9rem; cursor: pointer;">Log Out</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Redeem Code</h1>
+        <p style="color: #8892b0; font-size: 1.1rem;">Unlock premium access to the Magnet App.</p>
+
+        <div class="resource-card">
+            <h2 style="margin-top: 0; color: #fff;">Premium App Access</h2>
+            <p style="color: #bdc6db; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                Enter your promotional code below. Once redeemed, your account will instantly be upgraded to premium across all your devices.
+            </p>
+            
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="promoInput" placeholder="ENTER PROMO CODE" style="flex: 1; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 3px; font-weight: bold; letter-spacing: 1px;">
+                <button onclick="redeemPromo()" class="download-btn" id="promoBtn" style="margin-top: 0;">Redeem</button>
+            </div>
+            <p id="promoMsg" style="font-size: 0.9rem; margin-top: 1rem; display: none; font-weight: bold;"></p>
+        </div>
+    </div>
+
+    <script>
+        async function redeemPromo() {
+            const code = document.getElementById('promoInput').value.trim();
+            const msg = document.getElementById('promoMsg');
+            const btn = document.getElementById('promoBtn');
+            const email = localStorage.getItem('magnetic_email');
+            
+            if (!code) return;
+            
+            btn.textContent = 'Processing...';
+            btn.disabled = true;
+            msg.style.display = 'block';
+            msg.style.color = '#8892b0';
+            msg.textContent = 'Verifying code...';
+
+            try {
+                const res = await fetch('https://backend-deploy-hlq8.onrender.com/api/app/redeem_promo', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, code: code })
+                });
+                const data = await res.json();
+                
+                if (data.status === 'ok') {
+                    msg.style.color = '#4ade80';
+                    msg.textContent = 'Success! Premium access granted. You can now log into the mobile app.';
+                    document.getElementById('promoInput').value = '';
+                } else {
+                    msg.style.color = '#f87171';
+                    msg.textContent = data.message || 'Invalid or expired code.';
+                }
+            } catch (err) {
+                msg.style.color = '#f87171';
+                msg.textContent = 'Connection error. Please try again.';
+            } finally {
+                btn.textContent = 'Redeem';
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
