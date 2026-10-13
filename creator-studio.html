@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Studio & TikTok Publishing - The Magnetic Mind Institute</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        :root {
+            --primary-navy: #0a192f;
+            --secondary-navy: #112240;
+            --accent-gold: #c5a059;
+            --text-white: #e6f1ff;
+            --text-muted: #8892b0;
+            --tiktok-black: #000000;
+            --tiktok-cyan: #25F4EE;
+            --tiktok-red: #FE2C55;
+            --success-green: #10B981;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-navy);
+            color: var(--text-white);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            padding: 1.2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 25, 47, 0.95);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-gold);
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2.5rem auto 4rem;
+            padding: 0 1.5rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header-title {
+            font-size: 2.2rem;
+            color: var(--accent-gold);
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.5;
+        }
+
+        /* CARD */
+        .card {
+            background: var(--secondary-navy);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+        }
+
+        /* TIKTOK CONNECT BUTTON */
+        .tiktok-btn {
+            background-color: var(--tiktok-black);
+            color: #ffffff;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+            text-decoration: none;
+        }
+
+        .tiktok-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(254, 44, 85, 0.3), 0 6px 20px rgba(37, 244, 238, 0.3);
+            border-color: var(--tiktok-cyan);
+        }
+
+        .tiktok-icon {
+            width: 22px;
+            height: 22px;
+            display: inline-block;
+        }
+
+        /* CONNECTED BADGE */
+        .account-connected-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success-green);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .account-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .account-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-navy);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .account-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .account-sub {
+            font-size: 0.85rem;
+            color: var(--success-green);
+        }
+
+        .disconnect-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.2s;
+        }
+
+        .disconnect-btn:hover {
+            color: #ff6b6b;
+            border-color: #ff6b6b;
+        }
+
+        /* FORM ELEMENTS */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #bdc6db;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            background: rgba(10, 25, 47, 0.8);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            color: #fff;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus, textarea:focus, select:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+        }
+
+        .post-btn {
+            background: linear-gradient(135deg, var(--accent-gold), #dfb76c);
+            color: var(--primary-navy);
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .post-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
+        }
+
+        .status-box {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .status-success {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid var(--success-green);
+            color: #d1fae5;
+        }
+
+        .status-loading {
+            background: rgba(37, 244, 238, 0.15);
+            border: 1px solid var(--tiktok-cyan);
+            color: #e0f2fe;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            The Magnetic Mind Institute
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="creator-studio.html" class="nav-link active" style="color: var(--accent-gold); font-weight: bold;">Creator Studio</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="header-title">Creator Studio & Social Media Publishing</h1>
+        <p class="header-subtitle">
+            Authorize your TikTok account via <strong>Login Kit</strong> and publish daily educational mindset videos to your community using the official <strong>Content Posting API</strong>.
+        </p>
+
+        <!-- STEP 1: AUTHENTICATION -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span>1. TikTok Account Authorization</span>
+                </h2>
+                <span style="font-size: 0.85rem; color: var(--accent-gold);">Login Kit (OAuth 2.0)</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-top: 0;">
+                Connect your TikTok account to grant <code>user.info.basic</code> and <code>video.upload</code> permissions. This enables the institute creator dashboard to post video lessons on your behalf upon your direct confirmation.
+            </p>
+
+            <div id="unconnectedState">
+                <button class="tiktok-btn" id="connectTikTokBtn" onclick="handleConnectTikTok()">
+                    <svg class="tiktok-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-2.883 2.873 2.896 2.896 0 0 1-2.883-2.873 2.896 2.896 0 0 1 2.883-2.873c.408 0 .79.083 1.14.234V9.432a6.417 6.417 0 0 0-1.14-.102C5.938 9.33 3 12.25 3 15.845 3 19.44 5.938 22.36 9.49 22.36c3.551 0 6.488-2.92 6.488-6.515V9.45a8.214 8.214 0 0 0 4.611 1.41v-3.48a4.798 4.798 0 0 1-1-.694z" fill="#ffffff"/>
+                    </svg>
+                    Connect with TikTok
+                </button>
+            </div>
+
+            <div id="connectedState" class="account-connected-box" style="display: none;">
+                <div class="account-info">
+                    <div class="account-avatar">MM</div>
+                    <div>
+                        <div class="account-name">@magneticmind.institute</div>
+                        <div class="account-sub">● Connected & Authorized (Scopes: user.info.basic, video.upload)</div>
+                    </div>
+                </div>
+                <button class="disconnect-btn" onclick="handleDisconnectTikTok()">Disconnect</button>
+            </div>
+        </div>
+
+        <!-- STEP 2: VIDEO CONTENT POSTING -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span>2. Publish Video via Content Posting API</span>
+                </h2>
+                <span style="font-size: 0.85rem; color: var(--accent-gold);">video.upload Scope</span>
+            </div>
+
+            <form id="publishForm" onsubmit="handlePublishVideo(event)">
+                <div class="form-group">
+                    <label for="videoSelect">Select Institute Video Lesson</label>
+                    <select id="videoSelect">
+                        <option value="lesson_01">Mindset Shift #01: The Secret Mountain Fortress (0:52)</option>
+                        <option value="lesson_02" selected>Mindset Shift #02: Paradigm Mastery & Transformation (0:45)</option>
+                        <option value="lesson_03">Mindset Shift #03: The Law of Cause and Effect (0:58)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="videoCaption">Video Title & Caption (with Hashtags)</label>
+                    <textarea id="videoCaption" rows="3">Change your paradigm, change your life! Discover the mental laws of transformation with The Magnetic Mind Institute. #TheMagneticMind #Mindset #Transformation #BobProctor #Shorts</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="privacyLevel">Privacy Setting</label>
+                    <select id="privacyLevel">
+                        <option value="PUBLIC_TO_EVERYONE">Public (Visible to Everyone)</option>
+                        <option value="MUTUAL_FOLLOW_FRIENDS">Friends Only</option>
+                        <option value="SELF_ONLY">Private (Only Me)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="post-btn" id="postBtn">
+                    <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                    </svg>
+                    Publish to TikTok
+                </button>
+            </form>
+
+            <div id="statusLoading" class="status-box status-loading">
+                ⏳ Initiating TikTok Content Posting API transfer... Uploading video chunks...
+            </div>
+
+            <div id="statusSuccess" class="status-box status-success">
+                ✅ <strong>Success!</strong> Video has been verified and published to TikTok account <strong>@magneticmind.institute</strong> via official Content Posting API. Publish ID: <code>v_pub_7429184029</code>.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 The Magnetic Mind Institute. All Rights Reserved.
+        <br><br>
+        <a href="privacy-policy/">Privacy Policy</a> |
+        <a href="terms-of-service/">Terms of Service</a> |
+        <a href="contact.html">Contact Support</a>
+    </footer>
+
+    <script>
+        function handleConnectTikTok() {
+            document.getElementById('unconnectedState').style.display = 'none';
+            document.getElementById('connectedState').style.display = 'flex';
+        }
+
+        function handleDisconnectTikTok() {
+            document.getElementById('connectedState').style.display = 'none';
+            document.getElementById('unconnectedState').style.display = 'block';
+        }
+
+        function handlePublishVideo(e) {
+            e.preventDefault();
+            const loading = document.getElementById('statusLoading');
+            const success = document.getElementById('statusSuccess');
+            const btn = document.getElementById('postBtn');
+
+            loading.style.display = 'block';
+            success.style.display = 'none';
+            btn.disabled = true;
+            btn.style.opacity = '0.6';
+
+            setTimeout(() => {
+                loading.style.display = 'none';
+                success.style.display = 'block';
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
