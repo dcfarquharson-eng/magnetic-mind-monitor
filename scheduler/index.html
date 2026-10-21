@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnetic Mind Social Scheduler - Approve once, post everywhere</title>
+    <meta name="description" content="The Magnetic Mind Social Scheduler publishes the images and videos you approve to your YouTube, Facebook, Instagram and TikTok accounts at the times you choose.">
+    <link rel="canonical" href="https://themagneticmind.institute/scheduler/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a192f; --navy-2: #112240; --ink: #e6f1ff; --muted: #a8b2d1;
+            --gold: #c5a059; --gold-2: #e3c77f; --line: rgba(230,241,255,0.10);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; color: var(--ink); font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6;
+            background: radial-gradient(1200px 600px at 80% -10%, rgba(197,160,89,0.18), transparent 60%),
+                        radial-gradient(900px 500px at -10% 30%, rgba(100,140,255,0.10), transparent 60%), var(--navy);
+            min-height: 100vh;
+        }
+        a { color: var(--gold); }
+        header, main, footer { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 0; }
+        nav .brand { font-weight: 700; letter-spacing: 0.3px; color: var(--ink); text-decoration: none; }
+        nav .brand span { color: var(--gold); }
+        nav .links a { margin-left: 1.2rem; color: var(--muted); text-decoration: none; font-size: 0.95rem; transition: color .2s; }
+        nav .links a:hover { color: var(--gold-2); }
+        .hero { padding: 4.5rem 0 3rem; text-align: center; animation: rise .8s ease both; }
+        .pill { display: inline-block; padding: .3rem .9rem; border: 1px solid rgba(197,160,89,.45); border-radius: 999px; color: var(--gold-2); font-size: .85rem; background: rgba(197,160,89,.08); }
+        h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.1; margin: 1.2rem 0 1rem; font-weight: 700; }
+        h1 em { font-style: normal; background: linear-gradient(90deg, var(--gold), var(--gold-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .lead { color: var(--muted); font-size: 1.15rem; max-width: 680px; margin: 0 auto 2rem; }
+        .cta { display: inline-block; padding: .9rem 1.6rem; border-radius: 12px; font-weight: 600; text-decoration: none; color: var(--navy);
+               background: linear-gradient(135deg, var(--gold), var(--gold-2)); box-shadow: 0 10px 30px rgba(197,160,89,.25); transition: transform .2s, box-shadow .2s; }
+        .cta:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(197,160,89,.35); }
+        .cta.ghost { background: transparent; color: var(--gold-2); border: 1px solid rgba(197,160,89,.5); box-shadow: none; margin-left: .6rem; }
+        .platforms { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+        .platforms span { padding: .35rem .8rem; border-radius: 8px; background: rgba(255,255,255,.05); border: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+        h2 { font-size: 1.9rem; margin: 3.5rem 0 1.2rem; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
+        .card { background: linear-gradient(180deg, rgba(17,34,64,.85), rgba(17,34,64,.55)); border: 1px solid var(--line); border-radius: 16px; padding: 1.4rem;
+                backdrop-filter: blur(6px); transition: transform .25s, border-color .25s; animation: rise .8s ease both; }
+        .card:hover { transform: translateY(-4px); border-color: rgba(197,160,89,.45); }
+        .card .n { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; color: var(--navy);
+                   background: linear-gradient(135deg, var(--gold), var(--gold-2)); margin-bottom: .8rem; }
+        .card h3 { margin: 0 0 .4rem; font-size: 1.1rem; }
+        .card p { margin: 0; color: var(--muted); font-size: .97rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: .5rem; background: rgba(17,34,64,.5); border-radius: 12px; overflow: hidden; }
+        th, td { padding: .8rem 1rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; font-size: .97rem; }
+        th { color: var(--gold-2); font-weight: 600; }
+        td code { color: var(--gold-2); }
+        .trust { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: .8rem; margin-top: 1rem; }
+        .trust div { padding: 1rem 1.1rem; border-left: 3px solid var(--gold); background: rgba(197,160,89,.06); border-radius: 0 10px 10px 0; color: var(--muted); }
+        .trust strong { color: var(--ink); }
+        .contact { text-align: center; margin: 3.5rem 0 1rem; color: var(--muted); }
+        footer { border-top: 1px solid var(--line); margin-top: 3rem; padding: 1.6rem 1.5rem 2.5rem; color: var(--muted); font-size: .9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .8rem; }
+        footer a { color: var(--muted); margin-right: 1rem; }
+        footer a:hover { color: var(--gold-2); }
+        @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        @media (max-width: 600px) { nav .links { display: none; } .cta.ghost { margin: .8rem 0 0; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="brand" href="/">The Magnetic Mind <span>Institute</span></a>
+            <div class="links">
+                <a href="#how">How it works</a>
+                <a href="#data">Your data</a>
+                <a href="/scheduler/privacy/">Privacy</a>
+                <a href="/scheduler/terms/">Terms</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <span class="pill">Magnetic Mind Social Scheduler</span>
+            <h1>Approve once.<br><em>Post everywhere, on time.</em></h1>
+            <p class="lead">The Magnetic Mind Social Scheduler publishes the images and short videos <strong>you</strong> create and approve to <strong>your own</strong> YouTube, Facebook, Instagram and TikTok accounts, at the times you choose. Built for small businesses and creators who would rather run their business than post by hand every day.</p>
+            <a class="cta" id="cta-request-access" href="mailto:admin@themagneticmind.institute?subject=Social%20Scheduler%20access">Request early access</a>
+            <a class="cta ghost" id="cta-how-it-works" href="#how">See how it works</a>
+            <div class="platforms"><span>YouTube Shorts</span><span>Facebook Pages</span><span>Instagram</span><span>TikTok</span></div>
+        </section>
+
+        <section id="how">
+            <h2>How it works</h2>
+            <div class="grid">
+                <div class="card"><div class="n">1</div><h3>Connect your accounts</h3><p>Sign in on each platform's own login page and choose the Page, channel or account to post to. We never see your passwords.</p></div>
+                <div class="card"><div class="n">2</div><h3>Drop your content</h3><p>Add your images or short videos and captions to your private folder. We prepare each one as a draft in your next open time slot.</p></div>
+                <div class="card"><div class="n">3</div><h3>Approve your week</h3><p>See every upcoming post with its picture, caption, time and platforms. Approve, edit, reschedule or reject. Nothing posts without your approval.</p></div>
+                <div class="card"><div class="n">4</div><h3>We publish and report</h3><p>Approved posts go out automatically at their scheduled time, with automatic retries. You get one short daily report of what was published.</p></div>
+            </div>
+        </section>
+
+        <section id="data">
+            <h2>What we access, and why</h2>
+            <table>
+                <tr><th>Platform</th><th>Access requested</th><th>Used only to</th></tr>
+                <tr><td>YouTube</td><td><code>youtube.upload</code></td><td>Upload the videos you approved to your channel with the title, description and visibility you chose. We do not read, change or delete anything else on your channel.</td></tr>
+                <tr><td>Facebook</td><td>Your Page list + publish to the selected Page</td><td>Let you pick your Page, then publish your approved posts to it.</td></tr>
+                <tr><td>Instagram</td><td>Basic profile + content publishing (professional account)</td><td>Confirm the connected account and publish your approved images and Reels.</td></tr>
+                <tr><td>TikTok</td><td>Basic profile + video publishing</td><td>Show which account is connected and publish your approved videos with the privacy setting you choose.</td></tr>
+            </table>
+            <div class="trust">
+                <div><strong>Approval first.</strong> Every post needs your approval before it can be published.</div>
+                <div><strong>Never sold.</strong> We never sell your data or use it for advertising or AI training.</div>
+                <div><strong>Encrypted.</strong> Access tokens are stored encrypted and used only to publish your posts.</div>
+                <div><strong>Your choice.</strong> Disconnect any account or <a href="/scheduler/data-deletion/">delete your data</a> at any time.</div>
+            </div>
+            <p style="color:var(--muted);margin-top:1.2rem;font-size:.95rem">The Magnetic Mind Institute's use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements. See our <a href="/scheduler/privacy/">Privacy Policy</a> for details.</p>
+        </section>
+
+        <p class="contact">Questions? Email <a href="mailto:admin@themagneticmind.institute">admin@themagneticmind.institute</a></p>
+    </main>
+
+    <footer>
+        <div>&copy; 2026 The Magnetic Mind Institute</div>
+        <div><a href="/scheduler/privacy/">Privacy Policy</a><a href="/scheduler/terms/">Terms of Service</a><a href="/scheduler/data-deletion/">Data Deletion</a><a href="/">Home</a></div>
+    </footer>
+</body>
+</html>
