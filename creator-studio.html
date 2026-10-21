@@ -4,285 +4,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creator Studio & TikTok Publishing - The Magnetic Mind Institute</title>
+    <title>Creator Studio - Post to TikTok | The Magnetic Mind Institute</title>
+    <meta name="description" content="The Magnetic Mind Institute Creator Studio: connect your TikTok account and publish your own videos directly to your profile, with full control over privacy and interactions.">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-navy: #0a192f;
-            --secondary-navy: #112240;
-            --accent-gold: #c5a059;
-            --text-white: #e6f1ff;
-            --text-muted: #8892b0;
-            --tiktok-black: #000000;
-            --tiktok-cyan: #25F4EE;
-            --tiktok-red: #FE2C55;
-            --success-green: #10B981;
+            --navy: #0a192f;
+            --navy-2: #112240;
+            --navy-3: #1a2f55;
+            --gold: #c5a059;
+            --gold-soft: rgba(197, 160, 89, 0.25);
+            --text: #e6f1ff;
+            --muted: #8892b0;
+            --tt-cyan: #25F4EE;
+            --tt-red: #FE2C55;
+            --ok: #10B981;
+            --warn: #f59e0b;
+            --err: #ef4444;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
-            padding: 0;
-            background-color: var(--primary-navy);
-            color: var(--text-white);
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: radial-gradient(1200px 600px at 80% -10%, rgba(197, 160, 89, 0.10), transparent 60%),
+                        radial-gradient(900px 500px at -10% 30%, rgba(37, 244, 238, 0.05), transparent 60%),
+                        var(--navy);
+            color: var(--text);
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
         }
 
+        a { color: var(--gold); }
+
         .navbar {
-            padding: 1.2rem 2.5rem;
+            padding: 1.1rem 2.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 25, 47, 0.95);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            background: rgba(10, 25, 47, 0.85);
+            border-bottom: 1px solid var(--gold-soft);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 10;
         }
 
         .nav-brand {
-            font-weight: bold;
-            color: var(--accent-gold);
+            font-weight: 700;
+            color: var(--gold);
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 1.05rem;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
+        .nav-links { display: flex; gap: 22px; }
 
         .nav-link {
-            color: var(--text-white);
+            color: var(--text);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             opacity: 0.8;
-            transition: 0.3s;
+            transition: 0.25s;
         }
 
-        .nav-link:hover, .nav-link.active {
-            color: var(--accent-gold);
-            opacity: 1;
-        }
+        .nav-link:hover, .nav-link.active { color: var(--gold); opacity: 1; }
 
         .container {
-            max-width: 900px;
+            max-width: 920px;
+            width: 100%;
             margin: 2.5rem auto 4rem;
             padding: 0 1.5rem;
-            width: 100%;
-            box-sizing: border-box;
         }
 
-        .header-title {
+        h1 {
             font-size: 2.2rem;
-            color: var(--accent-gold);
             font-weight: 300;
-            margin-bottom: 0.5rem;
+            color: var(--gold);
+            margin: 0 0 0.5rem;
         }
 
-        .header-subtitle {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            margin-bottom: 2.5rem;
-            line-height: 1.5;
-        }
+        .subtitle { color: var(--muted); line-height: 1.6; margin: 0 0 2rem; }
 
-        /* CARD */
         .card {
-            background: var(--secondary-navy);
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(180deg, rgba(26, 47, 85, 0.65), rgba(17, 34, 64, 0.85));
+            border: 1px solid var(--gold-soft);
+            border-radius: 14px;
+            padding: 1.8rem;
+            margin-bottom: 1.6rem;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+            animation: rise 0.45s ease both;
         }
 
-        .card-header {
+        @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+        .card h2 {
+            margin: 0 0 1.2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .card-title {
-            font-size: 1.3rem;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 0;
-        }
+        .card h2 small { font-size: 0.75rem; color: var(--gold); font-weight: 500; letter-spacing: 0.5px; }
 
-        /* TIKTOK CONNECT BUTTON */
         .tiktok-btn {
-            background-color: var(--tiktok-black);
-            color: #ffffff;
+            background: #000;
+            color: #fff;
             border: 1px solid #333;
-            border-radius: 6px;
-            padding: 12px 24px;
-            font-size: 1rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-            text-decoration: none;
-        }
-
-        .tiktok-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(254, 44, 85, 0.3), 0 6px 20px rgba(37, 244, 238, 0.3);
-            border-color: var(--tiktok-cyan);
-        }
-
-        .tiktok-icon {
-            width: 22px;
-            height: 22px;
-            display: inline-block;
-        }
-
-        /* CONNECTED BADGE */
-        .account-connected-box {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid var(--success-green);
-            padding: 1rem 1.5rem;
             border-radius: 8px;
-            margin-top: 1rem;
-        }
-
-        .account-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .account-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--primary-navy);
-            border: 2px solid var(--accent-gold);
-        }
-
-        .account-name {
-            font-size: 1.1rem;
+            padding: 12px 22px;
+            font-size: 1rem;
             font-weight: 600;
-            color: #fff;
-        }
-
-        .account-sub {
-            font-size: 0.85rem;
-            color: var(--success-green);
-        }
-
-        .disconnect-btn {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-muted);
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: 0.2s;
-        }
-
-        .disconnect-btn:hover {
-            color: #ff6b6b;
-            border-color: #ff6b6b;
-        }
-
-        /* FORM ELEMENTS */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #bdc6db;
-            font-size: 0.95rem;
-        }
-
-        input[type="text"], textarea, select {
-            width: 100%;
-            background: rgba(10, 25, 47, 0.8);
-            border: 1px solid rgba(197, 160, 89, 0.4);
-            color: #fff;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 1rem;
-            box-sizing: border-box;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        input[type="text"]:focus, textarea:focus, select:focus {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
-        }
-
-        .post-btn {
-            background: linear-gradient(135deg, var(--accent-gold), #dfb76c);
-            color: var(--primary-navy);
-            border: none;
-            padding: 14px 28px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: 0.25s;
+            box-shadow: -2px -2px 0 var(--tt-cyan), 2px 2px 0 var(--tt-red);
         }
 
-        .post-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
+        .tiktok-btn:hover { transform: translateY(-1px); box-shadow: -3px -3px 0 var(--tt-cyan), 3px 3px 0 var(--tt-red); }
+
+        .account {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            border-radius: 10px;
+            padding: 0.9rem 1.1rem;
         }
 
-        .status-box {
-            display: none;
-            margin-top: 1.5rem;
-            padding: 1rem 1.5rem;
-            border-radius: 6px;
+        .account .who { display: flex; align-items: center; gap: 0.9rem; }
+
+        .avatar {
+            width: 46px; height: 46px; border-radius: 50%;
+            object-fit: cover; background: var(--navy-3);
+            border: 2px solid var(--gold);
+        }
+
+        .account .name { font-weight: 600; }
+        .account .sub { font-size: 0.82rem; color: var(--muted); }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 8px;
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-ghost:hover { color: var(--text); border-color: var(--text); }
+
+        .grid { display: grid; grid-template-columns: 260px 1fr; gap: 1.6rem; }
+
+        @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+
+        .preview {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            border-radius: 12px;
+            background: #000;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .preview video { width: 100%; height: 100%; object-fit: contain; }
+
+        .field { margin-bottom: 1.15rem; }
+
+        label.lbl { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.4rem; font-weight: 500; }
+
+        input[type=file], textarea, select {
+            width: 100%;
+            background: rgba(10, 25, 47, 0.8);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font: inherit;
             font-size: 0.95rem;
         }
 
-        .status-success {
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid var(--success-green);
-            color: #d1fae5;
+        textarea { resize: vertical; min-height: 84px; }
+
+        select:focus, textarea:focus { outline: none; border-color: var(--gold); }
+
+        .checks { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+
+        .check { display: inline-flex; align-items: center; gap: 0.45rem; cursor: pointer; }
+        .check.disabled { opacity: 0.4; cursor: not-allowed; }
+        .check input { width: 17px; height: 17px; accent-color: var(--tt-red); }
+
+        .hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.35rem; }
+
+        .toggle-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+
+        .switch { position: relative; width: 46px; height: 26px; flex: none; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; inset: 0; cursor: pointer;
+            background: rgba(255, 255, 255, 0.2); border-radius: 26px; transition: 0.25s;
+        }
+        .slider::before {
+            content: ""; position: absolute; width: 20px; height: 20px; left: 3px; top: 3px;
+            background: #fff; border-radius: 50%; transition: 0.25s;
+        }
+        .switch input:checked + .slider { background: var(--tt-red); }
+        .switch input:checked + .slider::before { transform: translateX(20px); }
+
+        .disclosure {
+            margin-top: 0.9rem;
+            padding: 0.9rem 1rem;
+            border-radius: 10px;
+            background: rgba(10, 25, 47, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: none;
         }
 
-        .status-loading {
-            background: rgba(37, 244, 238, 0.15);
-            border: 1px solid var(--tiktok-cyan);
-            color: #e0f2fe;
+        .label-note {
+            margin-top: 0.7rem;
+            font-size: 0.85rem;
+            color: var(--warn);
+            display: none;
         }
+
+        .declaration { font-size: 0.85rem; color: var(--muted); margin: 1rem 0; line-height: 1.5; }
+
+        .post-btn {
+            width: 100%;
+            background: linear-gradient(90deg, var(--tt-red), #ff5a78);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .post-btn:hover:not(:disabled) { filter: brightness(1.08); transform: translateY(-1px); }
+        .post-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+        .status {
+            margin-top: 1rem;
+            padding: 0.9rem 1rem;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .status.info { display: block; background: rgba(37, 244, 238, 0.07); border: 1px solid rgba(37, 244, 238, 0.35); }
+        .status.ok { display: block; background: rgba(16, 185, 129, 0.10); border: 1px solid rgba(16, 185, 129, 0.45); }
+        .status.err { display: block; background: rgba(239, 68, 68, 0.10); border: 1px solid rgba(239, 68, 68, 0.45); }
+
+        .locked { opacity: 0.45; pointer-events: none; filter: grayscale(0.4); }
 
         footer {
             margin-top: auto;
@@ -293,156 +289,377 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        footer a {
-            color: var(--accent-gold);
-            text-decoration: none;
-            margin: 0 10px;
-        }
+        footer a { text-decoration: none; margin: 0 10px; }
     </style>
 </head>
 
 <body>
-
     <nav class="navbar">
-        <a href="index.html" class="nav-brand">
-            The Magnetic Mind Institute
-        </a>
+        <a href="index.html" class="nav-brand">The Magnetic Mind Institute</a>
         <div class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
             <a href="about.html" class="nav-link">About</a>
-            <a href="creator-studio.html" class="nav-link active" style="color: var(--accent-gold); font-weight: bold;">Creator Studio</a>
+            <a href="creator-studio.html" class="nav-link active">Creator Studio</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
     </nav>
 
-    <div class="container">
-        <h1 class="header-title">Creator Studio & Social Media Publishing</h1>
-        <p class="header-subtitle">
-            Authorize your TikTok account via <strong>Login Kit</strong> and publish daily educational mindset videos to your community using the official <strong>Content Posting API</strong>.
+    <main class="container">
+        <h1>Creator Studio</h1>
+        <p class="subtitle">
+            The Creator Studio helps independent creators publish their own original videos to TikTok.
+            Connect your TikTok account, choose your video, decide who can see it and how people can interact with it,
+            and post it directly to your profile. Nothing is ever posted without your confirmation.
         </p>
 
-        <!-- STEP 1: AUTHENTICATION -->
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">
-                    <span>1. TikTok Account Authorization</span>
-                </h2>
-                <span style="font-size: 0.85rem; color: var(--accent-gold);">Login Kit (OAuth 2.0)</span>
-            </div>
-
-            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-top: 0;">
-                Connect your TikTok account to grant <code>user.info.basic</code> and <code>video.upload</code> permissions. This enables the institute creator dashboard to post video lessons on your behalf upon your direct confirmation.
-            </p>
-
-            <div id="unconnectedState">
-                <button class="tiktok-btn" id="connectTikTokBtn" onclick="handleConnectTikTok()">
-                    <svg class="tiktok-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-2.883 2.873 2.896 2.896 0 0 1-2.883-2.873 2.896 2.896 0 0 1 2.883-2.873c.408 0 .79.083 1.14.234V9.432a6.417 6.417 0 0 0-1.14-.102C5.938 9.33 3 12.25 3 15.845 3 19.44 5.938 22.36 9.49 22.36c3.551 0 6.488-2.92 6.488-6.515V9.45a8.214 8.214 0 0 0 4.611 1.41v-3.48a4.798 4.798 0 0 1-1-.694z" fill="#ffffff"/>
-                    </svg>
+        <!-- STEP 1: CONNECT -->
+        <section class="card" id="connectCard">
+            <h2>1. Connect your TikTok account <small>Login Kit</small></h2>
+            <div id="unconnected">
+                <p class="hint" style="font-size:0.9rem;margin-top:0">
+                    You will be taken to TikTok to log in and approve access. We request permission to read your basic
+                    profile info and to post videos you choose to your account.
+                </p>
+                <button class="tiktok-btn" id="connectTikTokBtn" type="button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-2.883 2.873 2.896 2.896 0 0 1-2.883-2.873 2.896 2.896 0 0 1 2.883-2.873c.408 0 .79.083 1.14.234V9.432a6.417 6.417 0 0 0-1.14-.102C5.938 9.33 3 12.25 3 15.845 3 19.44 5.938 22.36 9.49 22.36c3.551 0 6.488-2.92 6.488-6.515V9.45a8.214 8.214 0 0 0 4.611 1.41v-3.48a4.798 4.798 0 0 1-1-.694z"/></svg>
                     Connect with TikTok
                 </button>
             </div>
-
-            <div id="connectedState" class="account-connected-box" style="display: none;">
-                <div class="account-info">
-                    <div class="account-avatar">MM</div>
+            <div id="connected" class="account" style="display:none">
+                <div class="who">
+                    <img id="creatorAvatar" class="avatar" alt="TikTok profile photo">
                     <div>
-                        <div class="account-name">@magneticmind.institute</div>
-                        <div class="account-sub">● Connected & Authorized (Scopes: user.info.basic, video.upload)</div>
+                        <div class="name" id="creatorNickname">-</div>
+                        <div class="sub" id="creatorUsername">-</div>
                     </div>
                 </div>
-                <button class="disconnect-btn" onclick="handleDisconnectTikTok()">Disconnect</button>
+                <button class="btn-ghost" id="disconnectBtn" type="button">Disconnect</button>
             </div>
-        </div>
+            <div class="status" id="connectStatus"></div>
+        </section>
 
-        <!-- STEP 2: VIDEO CONTENT POSTING -->
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">
-                    <span>2. Publish Video via Content Posting API</span>
-                </h2>
-                <span style="font-size: 0.85rem; color: var(--accent-gold);">video.upload Scope</span>
-            </div>
+        <!-- STEP 2: POST -->
+        <section class="card locked" id="postCard">
+            <h2>2. Post to TikTok <small>Content Posting API</small></h2>
 
-            <form id="publishForm" onsubmit="handlePublishVideo(event)">
-                <div class="form-group">
-                    <label for="videoSelect">Select Institute Video Lesson</label>
-                    <select id="videoSelect">
-                        <option value="lesson_01">Mindset Shift #01: The Secret Mountain Fortress (0:52)</option>
-                        <option value="lesson_02" selected>Mindset Shift #02: Paradigm Mastery & Transformation (0:45)</option>
-                        <option value="lesson_03">Mindset Shift #03: The Law of Cause and Effect (0:58)</option>
-                    </select>
+            <div class="field" id="postingAs" style="display:none">
+                <label class="lbl">Posting to TikTok account</label>
+                <div class="account" style="background:rgba(197,160,89,0.08);border-color:var(--gold-soft)">
+                    <div class="who">
+                        <img id="postAvatar" class="avatar" alt="">
+                        <div>
+                            <div class="name" id="postNickname">-</div>
+                            <div class="sub" id="postUsername">-</div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="videoCaption">Video Title & Caption (with Hashtags)</label>
-                    <textarea id="videoCaption" rows="3">Change your paradigm, change your life! Discover the mental laws of transformation with The Magnetic Mind Institute. #TheMagneticMind #Mindset #Transformation #BobProctor #Shorts</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="privacyLevel">Privacy Setting</label>
-                    <select id="privacyLevel">
-                        <option value="PUBLIC_TO_EVERYONE">Public (Visible to Everyone)</option>
-                        <option value="MUTUAL_FOLLOW_FRIENDS">Friends Only</option>
-                        <option value="SELF_ONLY">Private (Only Me)</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="post-btn" id="postBtn">
-                    <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-                    </svg>
-                    Publish to TikTok
-                </button>
-            </form>
-
-            <div id="statusLoading" class="status-box status-loading">
-                ⏳ Initiating TikTok Content Posting API transfer... Uploading video chunks...
             </div>
 
-            <div id="statusSuccess" class="status-box status-success">
-                ✅ <strong>Success!</strong> Video has been verified and published to TikTok account <strong>@magneticmind.institute</strong> via official Content Posting API. Publish ID: <code>v_pub_7429184029</code>.
+            <div class="grid">
+                <div>
+                    <div class="preview" id="preview">Video preview<br>appears here</div>
+                    <div class="hint" id="durationHint"></div>
+                </div>
+                <form id="postForm" autocomplete="off">
+                    <div class="field">
+                        <label class="lbl" for="videoFile">Video (from your device)</label>
+                        <input type="file" id="videoFile" accept="video/mp4,video/quicktime,video/webm">
+                    </div>
+
+                    <div class="field">
+                        <label class="lbl" for="title">Title</label>
+                        <textarea id="title" maxlength="2200" placeholder="Write a title / caption, including any #hashtags"></textarea>
+                    </div>
+
+                    <div class="field">
+                        <label class="lbl" for="privacy">Who can view this video</label>
+                        <select id="privacy">
+                            <option value="" selected disabled>Select who can view this video</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label class="lbl">Allow users to</label>
+                        <div class="checks">
+                            <label class="check" id="lblComment"><input type="checkbox" id="allowComment"> Comment</label>
+                            <label class="check" id="lblDuet"><input type="checkbox" id="allowDuet"> Duet</label>
+                            <label class="check" id="lblStitch"><input type="checkbox" id="allowStitch"> Stitch</label>
+                        </div>
+                        <div class="hint" id="interactionHint"></div>
+                    </div>
+
+                    <div class="field">
+                        <div class="toggle-row">
+                            <div>
+                                <label class="lbl" style="margin:0;color:var(--text)">Disclose video content</label>
+                                <div class="hint">Turn on to disclose that this video promotes goods or services in exchange for something of value.</div>
+                            </div>
+                            <label class="switch"><input type="checkbox" id="discloseToggle"><span class="slider"></span></label>
+                        </div>
+                        <div class="disclosure" id="disclosureBox">
+                            <div class="checks" style="flex-direction:column;gap:0.6rem">
+                                <label class="check"><input type="checkbox" id="yourBrand">
+                                    <span><strong>Your brand</strong><br><span class="hint" style="margin:0">You are promoting yourself or your own business.</span></span></label>
+                                <label class="check" id="lblBranded"><input type="checkbox" id="brandedContent">
+                                    <span><strong>Branded content</strong><br><span class="hint" style="margin:0">You are promoting another brand or a third party.</span></span></label>
+                            </div>
+                            <div class="label-note" id="labelNote"></div>
+                        </div>
+                    </div>
+
+                    <p class="declaration" id="declaration"></p>
+
+                    <span id="postBtnWrap" style="display:block">
+                        <button type="submit" class="post-btn" id="postBtn" disabled>Post to TikTok</button>
+                    </span>
+                    <div class="status" id="postStatus"></div>
+                </form>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <footer>
-        &copy; 2026 The Magnetic Mind Institute. All Rights Reserved.
-        <br><br>
+        &copy; 2026 The Magnetic Mind Institute. All Rights Reserved.<br><br>
         <a href="privacy-policy/">Privacy Policy</a> |
         <a href="terms-of-service/">Terms of Service</a> |
         <a href="contact.html">Contact Support</a>
     </footer>
 
     <script>
-        function handleConnectTikTok() {
-            document.getElementById('unconnectedState').style.display = 'none';
-            document.getElementById('connectedState').style.display = 'flex';
+        // ---------- configuration ----------
+        const qs = new URLSearchParams(location.search);
+        if (qs.get('api')) localStorage.setItem('studio_api', qs.get('api'));
+        const API = localStorage.getItem('studio_api') || 'https://backend-deploy-hlq8.onrender.com';
+        const SESSION_KEY = 'tt_studio_session';
+        const MUC = '<a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank" rel="noopener">Music Usage Confirmation</a>';
+        const BCP = '<a href="https://www.tiktok.com/legal/page/global/bc-policy/en" target="_blank" rel="noopener">Branded Content Policy</a>';
+        const PRIVACY_LABELS = {
+            PUBLIC_TO_EVERYONE: 'Everyone',
+            MUTUAL_FOLLOW_FRIENDS: 'Friends',
+            FOLLOWER_OF_CREATOR: 'Followers',
+            SELF_ONLY: 'Only me'
+        };
+
+        const $ = id => document.getElementById(id);
+        let creator = null;
+        let videoDuration = null;
+
+        function session() { return localStorage.getItem(SESSION_KEY); }
+
+        async function api(path, opts = {}) {
+            opts.headers = Object.assign({}, opts.headers || {}, { 'X-Studio-Session': session() || '' });
+            const r = await fetch(API + path, opts);
+            let body = {};
+            try { body = await r.json(); } catch (e) { }
+            if (!r.ok) throw Object.assign(new Error(body.detail || ('HTTP ' + r.status)), { status: r.status });
+            return body;
         }
 
-        function handleDisconnectTikTok() {
-            document.getElementById('connectedState').style.display = 'none';
-            document.getElementById('unconnectedState').style.display = 'block';
+        function show(el, cls, html) { el.className = 'status ' + cls; el.innerHTML = html; }
+
+        // ---------- step 1: connect ----------
+        $('connectTikTokBtn').onclick = () => {
+            show($('connectStatus'), 'info', 'Opening TikTok…');
+            location.href = API + '/api/tiktok/login';
+        };
+
+        $('disconnectBtn').onclick = async () => {
+            try { await api('/api/tiktok/logout', { method: 'POST' }); } catch (e) { }
+            localStorage.removeItem(SESSION_KEY);
+            location.href = 'creator-studio.html';
+        };
+
+        async function loadCreator() {
+            if (!session()) return;
+            show($('connectStatus'), 'info', 'Loading your TikTok account…');
+            try {
+                creator = await api('/api/tiktok/creator_info');
+            } catch (e) {
+                if (e.status === 401) localStorage.removeItem(SESSION_KEY);
+                show($('connectStatus'), 'err', e.message);
+                return;
+            }
+            $('connectStatus').className = 'status';
+            $('unconnected').style.display = 'none';
+            $('connected').style.display = 'flex';
+            const nick = creator.creator_nickname || creator.creator_username || 'TikTok account';
+            const user = creator.creator_username ? '@' + creator.creator_username : '';
+            for (const [a, n, u] of [['creatorAvatar', 'creatorNickname', 'creatorUsername'], ['postAvatar', 'postNickname', 'postUsername']]) {
+                if (creator.creator_avatar_url) $(a).src = creator.creator_avatar_url;
+                $(n).textContent = nick;
+                $(u).textContent = user;
+            }
+            $('postingAs').style.display = 'block';
+
+            if (!creator.can_post) {
+                show($('postStatus'), 'err', 'TikTok says this account cannot post more videos right now. Please try again later.');
+                $('postCard').classList.remove('locked');
+                lockForm(true);
+                return;
+            }
+
+            // Privacy options come ONLY from creator_info, with no default selected.
+            const sel = $('privacy');
+            sel.querySelectorAll('option:not([disabled])').forEach(o => o.remove());
+            (creator.privacy_level_options || []).forEach(v => {
+                const o = document.createElement('option');
+                o.value = v; o.textContent = PRIVACY_LABELS[v] || v;
+                sel.appendChild(o);
+            });
+            sel.value = '';
+
+            // Interaction toggles: unchecked by default, greyed out if disabled in the creator's settings.
+            const disabledNotes = [];
+            [['allowComment', 'lblComment', creator.comment_disabled, 'Comment'],
+             ['allowDuet', 'lblDuet', creator.duet_disabled, 'Duet'],
+             ['allowStitch', 'lblStitch', creator.stitch_disabled, 'Stitch']].forEach(([cb, lbl, dis, name]) => {
+                $(cb).checked = false;
+                $(cb).disabled = !!dis;
+                $(lbl).classList.toggle('disabled', !!dis);
+                if (dis) disabledNotes.push(name);
+            });
+            $('interactionHint').textContent = disabledNotes.length
+                ? disabledNotes.join(', ') + ' turned off in your TikTok privacy settings.' : '';
+
+            $('postCard').classList.remove('locked');
+            refresh();
         }
 
-        function handlePublishVideo(e) {
+        function lockForm(lock) {
+            $('postForm').querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = lock);
+        }
+
+        // ---------- step 2: compose ----------
+        $('videoFile').onchange = () => {
+            const f = $('videoFile').files[0];
+            videoDuration = null;
+            $('durationHint').textContent = '';
+            if (!f) { $('preview').innerHTML = 'Video preview<br>appears here'; refresh(); return; }
+            const v = document.createElement('video');
+            v.src = URL.createObjectURL(f);
+            v.controls = true; v.playsInline = true;
+            v.onloadedmetadata = () => {
+                videoDuration = v.duration;
+                const max = creator && creator.max_video_post_duration_sec;
+                $('durationHint').textContent = `Length: ${Math.round(videoDuration)}s` + (max ? ` (max allowed for your account: ${max}s)` : '');
+                refresh();
+            };
+            $('preview').innerHTML = '';
+            $('preview').appendChild(v);
+        };
+
+        $('discloseToggle').onchange = () => {
+            $('disclosureBox').style.display = $('discloseToggle').checked ? 'block' : 'none';
+            if (!$('discloseToggle').checked) { $('yourBrand').checked = false; $('brandedContent').checked = false; }
+            refresh();
+        };
+
+        ['yourBrand', 'brandedContent', 'privacy', 'title'].forEach(id => $(id).addEventListener('input', refresh));
+        ['yourBrand', 'brandedContent', 'privacy'].forEach(id => $(id).addEventListener('change', refresh));
+
+        function refresh() {
+            const disclose = $('discloseToggle').checked;
+            const yb = $('yourBrand').checked;
+            const bc = $('brandedContent').checked;
+            const priv = $('privacy').value;
+
+            // Branded content cannot be private.
+            const onlyMe = $('privacy').querySelector('option[value="SELF_ONLY"]');
+            if (onlyMe) {
+                onlyMe.disabled = disclose && bc;
+                onlyMe.title = onlyMe.disabled ? 'Branded content visibility cannot be set to private.' : '';
+                onlyMe.textContent = onlyMe.disabled ? 'Only me (not available for branded content)' : PRIVACY_LABELS.SELF_ONLY;
+            }
+            const brandedBlocked = priv === 'SELF_ONLY';
+            $('brandedContent').disabled = brandedBlocked;
+            $('lblBranded').classList.toggle('disabled', brandedBlocked);
+            $('lblBranded').title = brandedBlocked ? 'Branded content visibility cannot be set to private.' : '';
+            if (brandedBlocked && bc) $('brandedContent').checked = false;
+
+            // Label prompt
+            const note = $('labelNote');
+            if (disclose && (yb || bc)) {
+                note.style.display = 'block';
+                note.textContent = bc ? "Your photo/video will be labeled as 'Paid partnership'"
+                                      : "Your photo/video will be labeled as 'Promotional content'";
+            } else note.style.display = 'none';
+
+            // Declaration
+            $('declaration').innerHTML = (disclose && $('brandedContent').checked)
+                ? `By posting, you agree to TikTok's ${BCP} and ${MUC}.`
+                : `By posting, you agree to TikTok's ${MUC}.`;
+
+            // Post button rules
+            let reason = '';
+            const max = creator && creator.max_video_post_duration_sec;
+            if (!creator) reason = 'Connect your TikTok account first.';
+            else if (!$('videoFile').files[0]) reason = 'Choose a video to post.';
+            else if (videoDuration === null) reason = 'Reading video…';
+            else if (max && videoDuration > max) reason = `This video is longer than the ${max}s your account allows.`;
+            else if (!priv) reason = 'Select who can view this video.';
+            else if (disclose && !yb && !$('brandedContent').checked) reason = 'You need to indicate if your content promotes yourself, a third party, or both.';
+            $('postBtn').disabled = !!reason;
+            $('postBtnWrap').title = reason;
+        }
+
+        // ---------- step 3: publish (only after the user presses Post) ----------
+        $('postForm').onsubmit = async (e) => {
             e.preventDefault();
-            const loading = document.getElementById('statusLoading');
-            const success = document.getElementById('statusSuccess');
-            const btn = document.getElementById('postBtn');
+            refresh();
+            if ($('postBtn').disabled) return;
+            const fd = new FormData();
+            fd.append('video', $('videoFile').files[0]);
+            fd.append('title', $('title').value);
+            fd.append('privacy_level', $('privacy').value);
+            fd.append('allow_comment', $('allowComment').checked);
+            fd.append('allow_duet', $('allowDuet').checked);
+            fd.append('allow_stitch', $('allowStitch').checked);
+            fd.append('brand_organic', $('discloseToggle').checked && $('yourBrand').checked);
+            fd.append('branded_content', $('discloseToggle').checked && $('brandedContent').checked);
+            fd.append('consent', true);
 
-            loading.style.display = 'block';
-            success.style.display = 'none';
-            btn.disabled = true;
-            btn.style.opacity = '0.6';
+            lockForm(true);
+            show($('postStatus'), 'info', '⏳ Sending your video to TikTok…');
+            try {
+                const { publish_id } = await api('/api/tiktok/publish', { method: 'POST', body: fd });
+                show($('postStatus'), 'info',
+                    '✅ Your video was sent to TikTok. <strong>It may take a few minutes for it to process and appear on your profile.</strong><br>Status: <span id="liveStatus">processing…</span>');
+                pollStatus(publish_id, 0);
+            } catch (err) {
+                show($('postStatus'), 'err', '❌ ' + err.message);
+                lockForm(false); loadCreator();
+            }
+        };
 
-            setTimeout(() => {
-                loading.style.display = 'none';
-                success.style.display = 'block';
-                btn.disabled = false;
-                btn.style.opacity = '1';
-            }, 2500);
+        const STATUS_TEXT = {
+            PROCESSING_UPLOAD: 'TikTok is receiving your video…',
+            PROCESSING_DOWNLOAD: 'TikTok is receiving your video…',
+            SEND_TO_USER_INBOX: 'Sent to your TikTok inbox.',
+            PUBLISH_COMPLETE: 'Published to your TikTok profile.',
+            FAILED: 'Failed'
+        };
+
+        async function pollStatus(id, n) {
+            try {
+                const s = await api('/api/tiktok/status?publish_id=' + encodeURIComponent(id));
+                const txt = STATUS_TEXT[s.status] || s.status || 'processing…';
+                if ($('liveStatus')) $('liveStatus').textContent = txt + (s.fail_reason ? ' (' + s.fail_reason + ')' : '');
+                if (s.status === 'PUBLISH_COMPLETE') {
+                    $('postStatus').className = 'status ok';
+                    lockForm(false); return;
+                }
+                if (s.status === 'FAILED') {
+                    $('postStatus').className = 'status err';
+                    lockForm(false); return;
+                }
+            } catch (e) { /* keep polling */ }
+            if (n < 60) setTimeout(() => pollStatus(id, n + 1), 5000);
+            else lockForm(false);
         }
+
+        refresh();
+        loadCreator();
     </script>
 </body>
+
 </html>
