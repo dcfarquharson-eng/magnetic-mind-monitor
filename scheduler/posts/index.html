@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your posts - Magnetic Mind Social Scheduler</title>
+    <meta name="description" content="Review, edit and approve your scheduled social media posts. Nothing is published without your approval.">
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="https://themagneticmind.institute/scheduler/posts/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a192f; --navy-2: #112240; --ink: #e6f1ff; --muted: #a8b2d1;
+            --gold: #c5a059; --gold-2: #e3c77f; --line: rgba(230,241,255,0.10);
+            --ok: #5fd3a0; --warn: #f2b45a; --bad: #ff7b7b; --blue: #7aa7ff;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; color: var(--ink); font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif; line-height: 1.55;
+            background: radial-gradient(1200px 600px at 80% -10%, rgba(197,160,89,0.18), transparent 60%),
+                        radial-gradient(900px 500px at -10% 30%, rgba(100,140,255,0.10), transparent 60%), var(--navy);
+            min-height: 100vh;
+        }
+        a { color: var(--gold); }
+        header, main, footer { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 0; flex-wrap: wrap; gap: .6rem; }
+        nav .brand { font-weight: 700; color: var(--ink); text-decoration: none; }
+        nav .brand span { color: var(--gold); }
+        nav .links a, nav .links button { margin-left: 1.2rem; color: var(--muted); text-decoration: none; font-size: .95rem; background: none; border: 0; font-family: inherit; cursor: pointer; transition: color .2s; }
+        nav .links a:hover, nav .links button:hover, nav .links a.active { color: var(--gold-2); }
+        .hero { padding: 2rem 0 1rem; text-align: center; animation: rise .7s ease both; }
+        .pill { display: inline-block; padding: .3rem .9rem; border: 1px solid rgba(197,160,89,.45); border-radius: 999px; color: var(--gold-2); font-size: .85rem; background: rgba(197,160,89,.08); }
+        h1 { font-size: clamp(2rem, 4.5vw, 2.8rem); line-height: 1.15; margin: 1rem 0 .5rem; }
+        h1 em { font-style: normal; background: linear-gradient(90deg, var(--gold), var(--gold-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .lead { color: var(--muted); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+        .panel { background: linear-gradient(180deg, rgba(17,34,64,.88), rgba(17,34,64,.6)); border: 1px solid var(--line); border-radius: 18px; padding: 1.3rem; backdrop-filter: blur(6px); }
+        .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 1.4rem 0 1rem; }
+        .tabs { display: flex; gap: .4rem; flex-wrap: wrap; }
+        .tab { padding: .45rem .95rem; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); font-family: inherit; font-size: .9rem; cursor: pointer; transition: all .2s; }
+        .tab:hover { color: var(--ink); border-color: rgba(197,160,89,.4); }
+        .tab.on { color: var(--navy); background: linear-gradient(135deg, var(--gold), var(--gold-2)); border-color: transparent; font-weight: 600; }
+        .tab .n { opacity: .75; margin-left: .25rem; }
+        .day { margin: 1.6rem 0 .7rem; color: var(--gold-2); font-weight: 600; letter-spacing: .02em; }
+        .posts { display: grid; gap: 1rem; }
+        .post { display: grid; grid-template-columns: 150px 1fr; gap: 1.1rem; animation: rise .5s ease both; transition: border-color .25s, transform .25s; }
+        .post:hover { border-color: rgba(197,160,89,.35); transform: translateY(-2px); }
+        .thumb { width: 150px; aspect-ratio: 4 / 5; border-radius: 12px; object-fit: cover; background: rgba(255,255,255,.04); border: 1px solid var(--line); display: grid; place-items: center; color: var(--muted); font-size: .8rem; }
+        .meta { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; }
+        .when { font-weight: 600; font-size: 1.05rem; }
+        .badge { font-size: .78rem; padding: .2rem .65rem; border-radius: 999px; border: 1px solid var(--line); text-transform: uppercase; letter-spacing: .04em; }
+        .b-draft { color: var(--warn); border-color: rgba(242,180,90,.45); background: rgba(242,180,90,.08); }
+        .b-approved { color: var(--blue); border-color: rgba(122,167,255,.45); background: rgba(122,167,255,.08); }
+        .b-posting { color: var(--gold-2); border-color: rgba(197,160,89,.5); }
+        .b-posted { color: var(--ok); border-color: rgba(95,211,160,.45); background: rgba(95,211,160,.08); }
+        .b-partial, .b-failed, .b-missed { color: var(--bad); border-color: rgba(255,123,123,.45); background: rgba(255,123,123,.07); }
+        .b-rejected { color: var(--muted); }
+        .chips { display: flex; gap: .35rem; flex-wrap: wrap; }
+        .chip { font-size: .78rem; padding: .15rem .55rem; border-radius: 8px; background: rgba(255,255,255,.06); color: var(--muted); text-decoration: none; }
+        .chip.done { color: var(--ok); background: rgba(95,211,160,.10); }
+        textarea { width: 100%; min-height: 84px; margin-top: .6rem; padding: .7rem .85rem; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,.04); color: var(--ink); font-family: inherit; font-size: .95rem; resize: vertical; }
+        textarea:focus, input[type=datetime-local]:focus { outline: none; border-color: var(--gold); }
+        textarea[readonly] { opacity: .8; }
+        .count { font-size: .78rem; color: var(--muted); text-align: right; }
+        .row { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; margin-top: .6rem; }
+        input[type=datetime-local] { padding: .5rem .7rem; border-radius: 10px; border: 1px solid var(--line); background: rgba(255,255,255,.04); color: var(--ink); font-family: inherit; color-scheme: dark; }
+        .btn { display: inline-block; padding: .6rem 1.05rem; border-radius: 12px; font-weight: 600; font-family: inherit; font-size: .92rem; cursor: pointer; border: 0;
+               text-decoration: none; color: var(--navy); background: linear-gradient(135deg, var(--gold), var(--gold-2)); box-shadow: 0 8px 24px rgba(197,160,89,.2); transition: transform .2s, box-shadow .2s, opacity .2s; white-space: nowrap; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(197,160,89,.3); }
+        .btn:disabled { opacity: .5; cursor: wait; transform: none; }
+        .btn.ghost { background: transparent; color: var(--gold-2); border: 1px solid rgba(197,160,89,.5); box-shadow: none; }
+        .btn.quiet { background: transparent; color: var(--muted); border: 1px solid var(--line); box-shadow: none; font-weight: 400; }
+        .btn.quiet:hover { color: var(--bad); border-color: var(--bad); }
+        .pending { margin-top: .55rem; font-size: .88rem; color: var(--gold-2); }
+        .answer { margin-top: .55rem; font-size: .88rem; color: var(--muted); }
+        .err { margin-top: .5rem; font-size: .85rem; color: var(--bad); }
+        .empty { text-align: center; padding: 2.4rem 1.4rem; color: var(--muted); }
+        .empty h2 { color: var(--ink); margin: .2rem 0 .5rem; }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .8rem; margin-top: 1.2rem; text-align: left; }
+        .step { padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.03); }
+        .step b { color: var(--gold-2); display: block; margin-bottom: .2rem; }
+        .msg { position: fixed; left: 50%; bottom: 1.4rem; transform: translateX(-50%); max-width: 92vw; padding: .85rem 1.2rem; border-radius: 12px; border: 1px solid var(--line); background: var(--navy-2); display: none; z-index: 10; box-shadow: 0 12px 40px rgba(0,0,0,.4); }
+        .msg.ok { display: block; color: var(--ok); border-color: rgba(95,211,160,.4); }
+        .msg.bad { display: block; color: var(--bad); border-color: rgba(255,123,123,.4); }
+        .msg.info { display: block; color: var(--muted); }
+        .note { color: var(--muted); font-size: .9rem; text-align: center; margin-top: 1.4rem; }
+        .spinner { width: 34px; height: 34px; border: 3px solid var(--line); border-top-color: var(--gold); border-radius: 50%; margin: 2rem auto 1rem; animation: spin 1s linear infinite; }
+        .hidden { display: none !important; }
+        footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 2.5rem 1.5rem; margin-top: 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+        footer a { color: var(--muted); margin-left: 1rem; text-decoration: none; } footer a:hover { color: var(--gold-2); }
+        @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 640px) { .post { grid-template-columns: 1fr; } .thumb { width: 100%; max-width: 320px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="brand" href="/scheduler/" id="nav-home">Magnetic Mind <span>Social Scheduler</span></a>
+            <div class="links">
+                <a href="/scheduler/posts/" class="active" id="nav-posts">Your posts</a>
+                <a href="/scheduler/connect/" id="nav-connect">Accounts</a>
+                <a href="/scheduler/privacy/" id="nav-privacy">Privacy</a>
+                <button type="button" id="btn-signout" class="hidden">Sign out</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <span class="pill">Client portal</span>
+            <h1>Your <em>posts</em></h1>
+            <p class="lead">Check each post, fix the caption or time if you like, then press <strong>Approve</strong>. Nothing is ever published without your approval.</p>
+        </section>
+
+        <section id="view-loading" aria-live="polite">
+            <div class="spinner"></div>
+            <p class="note" id="loading-text">Loading your posts...</p>
+        </section>
+
+        <section id="view-signin" class="panel empty hidden">
+            <h2>Please sign in</h2>
+            <p>Use the sign-in link from your email, or request a new one on the accounts page.</p>
+            <a class="btn" href="/scheduler/connect/" id="btn-goto-signin">Go to sign in</a>
+        </section>
+
+        <section id="view-posts" class="hidden">
+            <p class="note" id="welcome" style="margin-top:0"></p>
+            <div class="toolbar">
+                <div class="tabs" role="tablist" id="tabs">
+                    <button class="tab on" data-f="todo" id="tab-todo" type="button">To approve<span class="n" id="n-todo"></span></button>
+                    <button class="tab" data-f="upcoming" id="tab-upcoming" type="button">Scheduled<span class="n" id="n-upcoming"></span></button>
+                    <button class="tab" data-f="done" id="tab-done" type="button">Posted<span class="n" id="n-done"></span></button>
+                    <button class="tab" data-f="all" id="tab-all" type="button">All</button>
+                </div>
+                <div class="row" style="margin:0">
+                    <button class="btn ghost" type="button" id="btn-refresh">Refresh</button>
+                    <button class="btn" type="button" id="btn-approve-all">Approve all drafts</button>
+                </div>
+            </div>
+            <div id="list"></div>
+            <p class="note">Times are US Eastern. Changes are confirmed by the scheduler within about 5 minutes.</p>
+        </section>
+    </main>
+
+    <div class="msg" id="msg" role="status"></div>
+
+    <footer>
+        <div>&copy; 2026 The Magnetic Mind Institute</div>
+        <div><a href="/scheduler/privacy/">Privacy Policy</a><a href="/scheduler/terms/">Terms of Service</a><a href="/scheduler/data-deletion/">Data Deletion</a><a href="mailto:admin@themagneticmind.institute">Contact</a></div>
+    </footer>
+
+    <script>
+    (function () {
+        var API = "https://backend-deploy-hlq8.onrender.com/api/sched";
+        var KEY = "sched_session";
+        var $ = function (id) { return document.getElementById(id); };
+        var session = localStorage.getItem(KEY);
+        var posts = [], filter = "todo", msgTimer = null;
+        var LABEL = { draft: "Needs approval", approved: "Approved", posting: "Posting now", posted: "Posted",
+                      partial: "Partly posted", failed: "Failed", missed: "Missed", rejected: "Rejected" };
+        var PLAT = { instagram: "Instagram", facebook: "Facebook", youtube: "YouTube", tiktok: "TikTok" };
+
+        function show(view) {
+            ["view-loading", "view-signin", "view-posts"].forEach(function (v) { $(v).classList.toggle("hidden", v !== view); });
+            $("btn-signout").classList.toggle("hidden", view !== "view-posts");
+        }
+        function msg(text, kind) {
+            var m = $("msg"); m.className = "msg " + (kind || "info"); m.textContent = text;
+            clearTimeout(msgTimer); msgTimer = setTimeout(function () { m.className = "msg"; }, 5000);
+        }
+        function api(path, opts) {
+            opts = opts || {};
+            var headers = { "Content-Type": "application/json" };
+            if (session) headers["X-Sched-Session"] = session;
+            var slow = setTimeout(function () { $("loading-text").textContent = "Waking up the server, this can take up to a minute..."; }, 4000);
+            return fetch(API + path, { method: opts.method || "GET", headers: headers, body: opts.body ? JSON.stringify(opts.body) : undefined })
+                .then(function (r) {
+                    clearTimeout(slow);
+                    return r.json().catch(function () { return {}; }).then(function (d) {
+                        if (!r.ok) { var e = new Error(d.detail || ("Error " + r.status)); e.status = r.status; throw e; }
+                        return d;
+                    });
+                }, function () { clearTimeout(slow); throw new Error("Could not reach the server. Please try again in a minute."); });
+        }
+        function fmtWhen(iso) {
+            if (!iso) return "No time set";
+            var p = iso.split(/[-T:]/), d = new Date(+p[0], +p[1] - 1, +p[2], +p[3], +p[4]);
+            return d.toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+        }
+        function dayOf(iso) {
+            if (!iso) return "";
+            var p = iso.split(/[-T:]/), d = new Date(+p[0], +p[1] - 1, +p[2]);
+            return d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+        }
+        function bucket(p) {
+            var st = p.pending && p.pending.action === "approve" ? "approved" : p.status;
+            if (st === "draft") return "todo";
+            if (st === "approved" || st === "posting") return "upcoming";
+            return "done";
+        }
+        function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+        function act(ids, action, extra, btn) {
+            if (btn) btn.disabled = true;
+            var body = { ids: ids, action: action };
+            if (extra) for (var k in extra) body[k] = extra[k];
+            return api("/posts/action", { method: "POST", body: body })
+                .then(function (d) { msg(d.message, "ok"); return load(true); })
+                .catch(function (e) { msg(e.message, "bad"); })
+                .then(function () { if (btn) btn.disabled = false; });
+        }
+
+        function card(p) {
+            var c = el("article", "panel post"); c.id = "post-" + p.id;
+            var img;
+            if (p.thumb) { img = el("img", "thumb"); img.src = p.thumb; img.alt = "Post image"; img.loading = "lazy"; }
+            else img = el("div", "thumb", "Preview coming");
+            c.appendChild(img);
+            var body = el("div");
+            var meta = el("div", "meta");
+            meta.appendChild(el("span", "when", fmtWhen(p.pending && p.pending.publish_at || p.publish_at)));
+            meta.appendChild(el("span", "badge b-" + p.status, LABEL[p.status] || p.status));
+            var chips = el("div", "chips");
+            (p.platforms || []).forEach(function (pl) {
+                var link = p.results && p.results[pl], ch;
+                if (typeof link === "string") { ch = el("a", "chip done", "\u2713 " + (PLAT[pl] || pl)); ch.href = link; ch.target = "_blank"; ch.rel = "noopener"; }
+                else ch = el("span", "chip" + (link ? " done" : ""), (link ? "\u2713 " : "") + (PLAT[pl] || pl));
+                chips.appendChild(ch);
+            });
+            meta.appendChild(chips);
+            body.appendChild(meta);
+
+            var editable = p.status === "draft" || p.status === "approved";
+            var ta = el("textarea"); ta.id = "caption-" + p.id; ta.maxLength = 2200; ta.setAttribute("aria-label", "Caption");
+            ta.value = p.pending && p.pending.caption != null ? p.pending.caption : (p.caption || "");
+            ta.placeholder = editable ? "Write a caption (optional)" : ""; ta.readOnly = !editable;
+            var count = el("div", "count", ta.value.length + " / 2200");
+            ta.oninput = function () { count.textContent = ta.value.length + " / 2200"; };
+            body.appendChild(ta); body.appendChild(count);
+
+            if (p.note) body.appendChild(el("div", "answer", p.note));
+            if (p.error && p.status !== "posted") body.appendChild(el("div", "err", "Problem: " + p.error));
+            if (p.pending) {
+                var what = { approve: "Approval", reject: "Rejection", unapprove: "Change", edit: "Your change" }[p.pending.action] || "Change";
+                body.appendChild(el("div", "pending", "\u23F3 " + what + " saved - waiting for the scheduler to confirm (about 5 minutes)."));
+            } else if (p.server_answer) {
+                body.appendChild(el("div", "answer", "\u2713 " + p.server_answer));
+            }
+
+            if (editable) {
+                var row = el("div", "row");
+                var dt = el("input"); dt.type = "datetime-local"; dt.id = "time-" + p.id; dt.value = (p.pending && p.pending.publish_at) || p.publish_at || "";
+                dt.setAttribute("aria-label", "Post time");
+                var save = el("button", "btn ghost", "Save changes"); save.type = "button"; save.id = "btn-save-" + p.id;
+                save.onclick = function () {
+                    var extra = {}, cur = p.pending && p.pending.caption != null ? p.pending.caption : (p.caption || "");
+                    if (ta.value !== cur) extra.caption = ta.value;
+                    if (dt.value && dt.value !== ((p.pending && p.pending.publish_at) || p.publish_at)) extra.publish_at = dt.value;
+                    if (!Object.keys(extra).length) { msg("Nothing changed.", "info"); return; }
+                    act([p.id], "edit", extra, save);
+                };
+                row.appendChild(dt); row.appendChild(save);
+                var approved = p.status === "approved" || (p.pending && p.pending.action === "approve");
+                if (!approved) {
+                    var ap = el("button", "btn", "Approve"); ap.type = "button"; ap.id = "btn-approve-" + p.id;
+                    ap.onclick = function () {
+                        var extra = {}, cur = p.pending && p.pending.caption != null ? p.pending.caption : (p.caption || "");
+                        var chain = ta.value !== cur ? act([p.id], "edit", { caption: ta.value }) : Promise.resolve();
+                        chain.then(function () { act([p.id], "approve", null, ap); });
+                    };
+                    row.appendChild(ap);
+                } else {
+                    var un = el("button", "btn quiet", "Undo approval"); un.type = "button"; un.id = "btn-unapprove-" + p.id;
+                    un.onclick = function () { act([p.id], "unapprove", null, un); };
+                    row.appendChild(un);
+                }
+                var rj = el("button", "btn quiet", "Don't post"); rj.type = "button"; rj.id = "btn-reject-" + p.id;
+                rj.onclick = function () { if (confirm("Don't post this one? It will not be published.")) act([p.id], "reject", null, rj); };
+                row.appendChild(rj);
+                body.appendChild(row);
+            }
+            c.appendChild(body);
+            return c;
+        }
+
+        function render() {
+            var counts = { todo: 0, upcoming: 0, done: 0 };
+            posts.forEach(function (p) { counts[bucket(p)]++; });
+            ["todo", "upcoming", "done"].forEach(function (k) { $("n-" + k).textContent = counts[k] ? " (" + counts[k] + ")" : ""; });
+            var drafts = posts.filter(function (p) { return p.status === "draft" && !(p.pending && p.pending.action === "approve"); });
+            $("btn-approve-all").classList.toggle("hidden", !drafts.length);
+            var list = $("list"); list.innerHTML = "";
+            var shown = posts.filter(function (p) { return filter === "all" || bucket(p) === filter; });
+            if (filter === "done") shown.reverse();
+            if (!shown.length) {
+                var e = el("div", "panel empty");
+                if (!posts.length) {
+                    e.appendChild(el("h2", null, "No posts yet"));
+                    e.appendChild(el("p", null, "Here is how it works:"));
+                    var steps = el("div", "steps");
+                    [["1. Drop", "Put your finished images in your shared Google Drive folder. Add a .txt with the same name for the caption."],
+                     ["2. Review", "Within about 10 minutes each image appears here as a draft on your next free time slot."],
+                     ["3. Approve", "Fix the caption or time if you like and press Approve. Only approved posts are published."]]
+                        .forEach(function (s) { var d = el("div", "step"); d.appendChild(el("b", null, s[0])); d.appendChild(document.createTextNode(s[1])); steps.appendChild(d); });
+                    e.appendChild(steps);
+                } else {
+                    e.appendChild(el("h2", null, filter === "todo" ? "All caught up" : "Nothing here"));
+                    e.appendChild(el("p", null, filter === "todo" ? "There are no drafts waiting for your approval." : "No posts in this list."));
+                }
+                list.appendChild(e); return;
+            }
+            var lastDay = null, grid = null;
+            shown.forEach(function (p) {
+                var d = dayOf(p.publish_at);
+                if (d !== lastDay) { list.appendChild(el("div", "day", d)); grid = el("div", "posts"); list.appendChild(grid); lastDay = d; }
+                grid.appendChild(card(p));
+            });
+        }
+
+        function load(quiet) {
+            return api("/posts").then(function (d) {
+                posts = d.posts || [];
+                render(); show("view-posts");
+            }).catch(function (e) {
+                if (e.status === 401 || e.status === 403) { localStorage.removeItem(KEY); session = null; show("view-signin"); }
+                else if (!quiet) { show("view-signin"); msg(e.message, "bad"); } else msg(e.message, "bad");
+            });
+        }
+
+        Array.prototype.forEach.call(document.querySelectorAll(".tab"), function (t) {
+            t.onclick = function () {
+                filter = t.getAttribute("data-f");
+                Array.prototype.forEach.call(document.querySelectorAll(".tab"), function (x) { x.classList.toggle("on", x === t); });
+                render();
+            };
+        });
+        $("btn-refresh").onclick = function () { var b = this; b.disabled = true; load(true).then(function () { b.disabled = false; }); };
+        $("btn-approve-all").onclick = function () {
+            var ids = posts.filter(function (p) { return p.status === "draft" && !(p.pending && p.pending.action === "approve"); }).map(function (p) { return p.id; });
+            if (!ids.length) return;
+            if (confirm("Approve all " + ids.length + " drafts? They will be published at their scheduled times.")) act(ids, "approve", null, this);
+        };
+        $("btn-signout").onclick = function () {
+            api("/logout", { method: "POST" }).catch(function () {}).then(function () { localStorage.removeItem(KEY); session = null; show("view-signin"); });
+        };
+
+        if (session) {
+            api("/me").then(function (d) { $("welcome").textContent = "Signed in as " + d.client.name; }).catch(function () {});
+            load();
+            setInterval(function () { if (!document.hidden) load(true); }, 60000);
+        } else show("view-signin");
+    })();
+    </script>
+</body>
+</html>
