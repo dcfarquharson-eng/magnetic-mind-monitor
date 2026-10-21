@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect your accounts - Magnetic Mind Social Scheduler</title>
+    <meta name="description" content="Connect your YouTube channel, Facebook Page and Instagram account to the Magnetic Mind Social Scheduler. Invite-only client portal.">
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="https://themagneticmind.institute/scheduler/connect/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a192f; --navy-2: #112240; --ink: #e6f1ff; --muted: #a8b2d1;
+            --gold: #c5a059; --gold-2: #e3c77f; --line: rgba(230,241,255,0.10);
+            --ok: #5fd3a0; --warn: #f2b45a; --bad: #ff7b7b;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; color: var(--ink); font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6;
+            background: radial-gradient(1200px 600px at 80% -10%, rgba(197,160,89,0.18), transparent 60%),
+                        radial-gradient(900px 500px at -10% 30%, rgba(100,140,255,0.10), transparent 60%), var(--navy);
+            min-height: 100vh;
+        }
+        a { color: var(--gold); }
+        header, main, footer { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 0; }
+        nav .brand { font-weight: 700; color: var(--ink); text-decoration: none; }
+        nav .brand span { color: var(--gold); }
+        nav .links a, nav .links button { margin-left: 1.2rem; color: var(--muted); text-decoration: none; font-size: .95rem; background: none; border: 0; font-family: inherit; cursor: pointer; transition: color .2s; }
+        nav .links a:hover, nav .links button:hover { color: var(--gold-2); }
+        .hero { padding: 2.5rem 0 1.5rem; text-align: center; animation: rise .7s ease both; }
+        .pill { display: inline-block; padding: .3rem .9rem; border: 1px solid rgba(197,160,89,.45); border-radius: 999px; color: var(--gold-2); font-size: .85rem; background: rgba(197,160,89,.08); }
+        h1 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.15; margin: 1rem 0 .6rem; }
+        h1 em { font-style: normal; background: linear-gradient(90deg, var(--gold), var(--gold-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .lead { color: var(--muted); font-size: 1.08rem; max-width: 620px; margin: 0 auto; }
+        .panel { background: linear-gradient(180deg, rgba(17,34,64,.88), rgba(17,34,64,.6)); border: 1px solid var(--line); border-radius: 18px;
+                 padding: 1.6rem; backdrop-filter: blur(6px); animation: rise .7s ease both; }
+        .grid { display: grid; gap: 1rem; margin-top: 1.6rem; }
+        .acct { display: grid; grid-template-columns: 52px 1fr auto; gap: 1rem; align-items: center; transition: border-color .25s, transform .25s; }
+        .acct:hover { border-color: rgba(197,160,89,.4); transform: translateY(-2px); }
+        .logo { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; font-weight: 700; font-size: 1.05rem; color: #fff; }
+        .logo.yt { background: linear-gradient(135deg, #ff3d3d, #c4161c); }
+        .logo.meta { background: linear-gradient(135deg, #1877f2, #c13584); }
+        .logo.tt { background: linear-gradient(135deg, #25f4ee, #fe2c55); color: #0a0a0a; }
+        .acct h3 { margin: 0; font-size: 1.12rem; }
+        .acct p { margin: .15rem 0 0; color: var(--muted); font-size: .94rem; }
+        .status { display: inline-flex; align-items: center; gap: .4rem; font-size: .86rem; margin-top: .35rem; }
+        .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); }
+        .status.ok .dot { background: var(--ok); box-shadow: 0 0 10px var(--ok); } .status.ok { color: var(--ok); }
+        .status.warn .dot { background: var(--warn); } .status.warn { color: var(--warn); }
+        .btn { display: inline-block; padding: .7rem 1.2rem; border-radius: 12px; font-weight: 600; font-family: inherit; font-size: .95rem; cursor: pointer; border: 0;
+               text-decoration: none; color: var(--navy); background: linear-gradient(135deg, var(--gold), var(--gold-2));
+               box-shadow: 0 8px 24px rgba(197,160,89,.22); transition: transform .2s, box-shadow .2s, opacity .2s; white-space: nowrap; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(197,160,89,.32); }
+        .btn:disabled { opacity: .5; cursor: wait; transform: none; }
+        .btn.ghost { background: transparent; color: var(--gold-2); border: 1px solid rgba(197,160,89,.5); box-shadow: none; }
+        .btn.danger { background: transparent; color: var(--muted); border: 1px solid var(--line); box-shadow: none; font-weight: 400; }
+        .btn.danger:hover { color: var(--bad); border-color: var(--bad); }
+        .pages { grid-column: 1 / -1; display: grid; gap: .5rem; margin-top: .4rem; }
+        .page-opt { display: flex; justify-content: space-between; align-items: center; padding: .7rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.03); }
+        .page-opt small { color: var(--muted); display: block; }
+        .msg { margin-top: 1.2rem; padding: .9rem 1.1rem; border-radius: 12px; border: 1px solid var(--line); display: none; animation: rise .4s ease both; }
+        .msg.ok { display: block; border-color: rgba(95,211,160,.4); background: rgba(95,211,160,.08); color: var(--ok); }
+        .msg.bad { display: block; border-color: rgba(255,123,123,.4); background: rgba(255,123,123,.08); color: var(--bad); }
+        .msg.info { display: block; color: var(--muted); }
+        .signin { max-width: 480px; margin: 1.6rem auto 0; text-align: center; }
+        .signin form { display: flex; gap: .6rem; margin-top: 1rem; flex-wrap: wrap; }
+        .signin input { flex: 1; min-width: 200px; padding: .75rem 1rem; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,.05); color: var(--ink); font-family: inherit; font-size: 1rem; }
+        .signin input:focus { outline: none; border-color: var(--gold); }
+        .note { color: var(--muted); font-size: .9rem; margin-top: 1.4rem; text-align: center; }
+        .spinner { width: 34px; height: 34px; border: 3px solid var(--line); border-top-color: var(--gold); border-radius: 50%; margin: 2rem auto 1rem; animation: spin 1s linear infinite; }
+        .hidden { display: none !important; }
+        footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 2.5rem 1.5rem; margin-top: 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+        footer a { color: var(--muted); margin-left: 1rem; text-decoration: none; } footer a:hover { color: var(--gold-2); }
+        @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 620px) { .acct { grid-template-columns: 44px 1fr; } .acct .actions { grid-column: 1 / -1; } .logo { width: 44px; height: 44px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="brand" href="/scheduler/" id="nav-home">Magnetic Mind <span>Social Scheduler</span></a>
+            <div class="links">
+                <a href="/scheduler/privacy/" id="nav-privacy">Privacy</a>
+                <button type="button" id="btn-signout" class="hidden">Sign out</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <span class="pill">Client portal</span>
+            <h1 id="title">Connect <em>your accounts</em></h1>
+            <p class="lead" id="lead">Sign in on each platform's own page and choose where your approved posts should go. We never see your passwords, and you can disconnect at any time.</p>
+        </section>
+
+        <!-- Loading -->
+        <section id="view-loading" aria-live="polite">
+            <div class="spinner"></div>
+            <p class="note" id="loading-text">Loading your portal...</p>
+        </section>
+
+        <!-- Signed out -->
+        <section id="view-signin" class="panel signin hidden">
+            <h2 style="margin:0">Sign in</h2>
+            <p style="color:var(--muted);margin:.4rem 0 0">The Social Scheduler is invite-only. Enter the email you were invited with and we'll send you a sign-in link.</p>
+            <form id="form-login-link">
+                <input type="email" id="input-email" required placeholder="you@yourbusiness.com" autocomplete="email" aria-label="Email address">
+                <button class="btn" type="submit" id="btn-send-link">Email me a link</button>
+            </form>
+            <p class="note">No invite yet? <a href="mailto:admin@themagneticmind.institute?subject=Social%20Scheduler%20access" id="link-request-access">Request access</a></p>
+        </section>
+
+        <!-- Signed in -->
+        <section id="view-portal" class="hidden">
+            <p class="note" id="welcome" style="margin-top:0"></p>
+            <div class="grid">
+                <div class="panel acct" id="card-google">
+                    <div class="logo yt" aria-hidden="true">YT</div>
+                    <div>
+                        <h3>YouTube</h3>
+                        <p>Upload your approved Shorts to your channel.</p>
+                        <div class="status" id="status-google"><span class="dot"></span><span>Not connected</span></div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn" type="button" id="btn-connect-google">Connect YouTube</button>
+                        <button class="btn danger hidden" type="button" id="btn-disconnect-google">Disconnect</button>
+                    </div>
+                </div>
+
+                <div class="panel acct" id="card-meta">
+                    <div class="logo meta" aria-hidden="true">f&middot;ig</div>
+                    <div>
+                        <h3>Facebook Page &amp; Instagram</h3>
+                        <p>Publish to your Facebook Page and the Instagram professional account linked to it.</p>
+                        <div class="status" id="status-meta"><span class="dot"></span><span>Not connected</span></div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn" type="button" id="btn-connect-meta">Connect Facebook &amp; Instagram</button>
+                        <button class="btn danger hidden" type="button" id="btn-disconnect-meta">Disconnect</button>
+                    </div>
+                    <div class="pages hidden" id="meta-pages"></div>
+                </div>
+
+                <div class="panel acct" id="card-tiktok">
+                    <div class="logo tt" aria-hidden="true">TT</div>
+                    <div>
+                        <h3>TikTok</h3>
+                        <p>A one-time, 5-minute setup with Devon. You sign in yourself; we never see your password.</p>
+                        <div class="status warn" id="status-tiktok"><span class="dot"></span><span>Set up together</span></div>
+                    </div>
+                    <div class="actions">
+                        <a class="btn ghost" id="btn-tiktok-setup" href="mailto:admin@themagneticmind.institute?subject=TikTok%20setup%20for%20Social%20Scheduler">Book setup</a>
+                    </div>
+                </div>
+            </div>
+            <p class="note">Instagram must be a Business or Creator account linked to your Facebook Page. <a href="https://help.instagram.com/570895513091465" target="_blank" rel="noopener" id="link-ig-help">How to link</a></p>
+        </section>
+
+        <div class="msg" id="msg" role="status"></div>
+    </main>
+
+    <footer>
+        <div>&copy; 2026 The Magnetic Mind Institute</div>
+        <div><a href="/scheduler/privacy/">Privacy Policy</a><a href="/scheduler/terms/">Terms of Service</a><a href="/scheduler/data-deletion/">Data Deletion</a><a href="mailto:admin@themagneticmind.institute">Contact</a></div>
+    </footer>
+
+    <script>
+    (function () {
+        var API = "https://backend-deploy-hlq8.onrender.com/api/sched";
+        var KEY = "sched_session";
+        var $ = function (id) { return document.getElementById(id); };
+        var session = localStorage.getItem(KEY);
+
+        function show(view) {
+            ["view-loading", "view-signin", "view-portal"].forEach(function (v) { $(v).classList.toggle("hidden", v !== view); });
+            $("btn-signout").classList.toggle("hidden", view !== "view-portal");
+        }
+        function msg(text, kind) { var m = $("msg"); m.className = "msg " + (kind || "info"); m.textContent = text || ""; if (!text) m.className = "msg"; }
+
+        // Render's free tier sleeps; the first call can take ~30-60 s.
+        function api(path, opts) {
+            opts = opts || {};
+            var headers = { "Content-Type": "application/json" };
+            if (session) headers["X-Sched-Session"] = session;
+            var slow = setTimeout(function () { $("loading-text").textContent = "Waking up the server, this can take up to a minute..."; }, 4000);
+            return fetch(API + path, { method: opts.method || "GET", headers: headers, body: opts.body ? JSON.stringify(opts.body) : undefined })
+                .then(function (r) {
+                    clearTimeout(slow);
+                    return r.json().catch(function () { return {}; }).then(function (d) {
+                        if (!r.ok) { var e = new Error(d.detail || ("Error " + r.status)); e.status = r.status; throw e; }
+                        return d;
+                    });
+                }, function (e) { clearTimeout(slow); throw new Error("Could not reach the server. Please try again in a minute."); });
+        }
+
+        function setStatus(p, info) {
+            var el = $("status-" + p), label = el.querySelector("span:last-child");
+            var connected = info.status === "connected", pending = info.status === "pending_page";
+            el.className = "status" + (connected ? " ok" : pending ? " warn" : "");
+            label.textContent = connected ? "Connected: " + info.account : pending ? "Choose which Page to use" : "Not connected";
+            $("btn-connect-" + p).textContent = connected ? "Reconnect" : (p === "google" ? "Connect YouTube" : "Connect Facebook & Instagram");
+            $("btn-connect-" + p).className = connected ? "btn ghost" : "btn";
+            $("btn-disconnect-" + p).classList.toggle("hidden", !connected && !pending);
+        }
+
+        function renderPages(pages) {
+            var box = $("meta-pages");
+            box.innerHTML = "";
+            box.classList.toggle("hidden", !pages || !pages.length);
+            (pages || []).forEach(function (pg, i) {
+                var row = document.createElement("div"); row.className = "page-opt";
+                var txt = document.createElement("div");
+                var b = document.createElement("strong"); b.textContent = pg.name; txt.appendChild(b);
+                var s = document.createElement("small"); s.textContent = pg.instagram ? "Instagram @" + pg.instagram : "No Instagram linked to this Page"; txt.appendChild(s);
+                var btn = document.createElement("button"); btn.className = "btn"; btn.type = "button"; btn.id = "btn-select-page-" + i; btn.textContent = "Use this Page";
+                btn.onclick = function () {
+                    btn.disabled = true;
+                    api("/connect/meta/select", { method: "POST", body: { page_id: pg.id } })
+                        .then(function (d) { msg("Connected: " + d.account, "ok"); load(); })
+                        .catch(function (e) { btn.disabled = false; msg(e.message, "bad"); });
+                };
+                row.appendChild(txt); row.appendChild(btn); box.appendChild(row);
+            });
+        }
+
+        function load() {
+            return api("/me").then(function (d) {
+                $("welcome").textContent = "Signed in as " + d.client.name + " (" + d.client.email + ")";
+                setStatus("google", d.connections.google);
+                setStatus("meta", d.connections.meta);
+                renderPages(d.connections.meta.pages);
+                show("view-portal");
+            }).catch(function (e) {
+                if (e.status === 401 || e.status === 403) { localStorage.removeItem(KEY); session = null; show("view-signin"); if (e.status === 403) msg(e.message, "bad"); }
+                else { show("view-signin"); msg(e.message, "bad"); }
+            });
+        }
+
+        ["google", "meta"].forEach(function (p) {
+            $("btn-connect-" + p).onclick = function () {
+                var b = this; b.disabled = true; msg("Opening the sign-in page...", "info");
+                api("/connect/" + p + "/start").then(function (d) { window.location.href = d.auth_url; })
+                    .catch(function (e) { b.disabled = false; msg(e.message, "bad"); });
+            };
+            $("btn-disconnect-" + p).onclick = function () {
+                if (!confirm("Disconnect this account? Scheduled posts will stop publishing to it.")) return;
+                var b = this; b.disabled = true;
+                api("/disconnect/" + p, { method: "POST" }).then(function () { b.disabled = false; msg("Disconnected.", "ok"); load(); })
+                    .catch(function (e) { b.disabled = false; msg(e.message, "bad"); });
+            };
+        });
+
+        $("form-login-link").onsubmit = function (ev) {
+            ev.preventDefault();
+            var b = $("btn-send-link"); b.disabled = true;
+            api("/login-link", { method: "POST", body: { email: $("input-email").value } })
+                .then(function (d) { msg(d.message, "ok"); })
+                .catch(function (e) { msg(e.message, "bad"); })
+                .then(function () { b.disabled = false; });
+        };
+
+        $("btn-signout").onclick = function () {
+            api("/logout", { method: "POST" }).catch(function () {}).then(function () {
+                localStorage.removeItem(KEY); session = null; msg("You are signed out.", "info"); show("view-signin");
+            });
+        };
+
+        // Entry: ?invite=CODE (first visit), ?login=TOKEN (emailed link), ?done=provider / ?err=text (back from callback)
+        var q = new URLSearchParams(location.search);
+        var invite = q.get("invite"), login = q.get("login"), done = q.get("done"), err = q.get("err");
+        if (invite || login || done || err) history.replaceState(null, "", location.pathname);
+        if (done === "google") msg("YouTube connected.", "ok");
+        if (done === "meta") msg("Facebook connected. If you manage more than one Page, choose one below.", "ok");
+        if (err) msg(err, "bad");
+
+        if (invite || login) {
+            api(invite ? "/redeem" : "/login", { method: "POST", body: { code: invite || login } })
+                .then(function (d) { session = d.session; localStorage.setItem(KEY, session); return load(); })
+                .catch(function (e) {
+                    msg(e.message + (session ? "" : " You can request a new sign-in link below."), "bad");
+                    return session ? load() : show("view-signin");
+                });
+        } else if (session) {
+            load();
+        } else {
+            show("view-signin");
+        }
+    })();
+    </script>
+</body>
+</html>
