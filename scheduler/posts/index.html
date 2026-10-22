@@ -56,6 +56,18 @@
         .b-posted { color: var(--ok); border-color: rgba(95,211,160,.45); background: rgba(95,211,160,.08); }
         .b-partial, .b-failed, .b-missed { color: var(--bad); border-color: rgba(255,123,123,.45); background: rgba(255,123,123,.07); }
         .b-rejected { color: var(--muted); }
+        .b-script { color: var(--warn); border-color: rgba(242,180,90,.45); background: rgba(242,180,90,.08); }
+        .b-making { color: var(--gold-2); border-color: rgba(197,160,89,.5); background: rgba(197,160,89,.08); }
+        .thumb.vid { aspect-ratio: 9 / 16; }
+        video.thumb { background: #000; }
+        .thumb.ph { font-size: 2rem; text-align: center; line-height: 1.3; padding: .5rem; }
+        .thumb.ph small { display: block; font-size: .75rem; color: var(--muted); }
+        .hint { font-size: .82rem; color: var(--muted); margin-top: .6rem; }
+        .lbl { font-size: .8rem; color: var(--gold-2); margin-top: .7rem; letter-spacing: .03em; text-transform: uppercase; }
+        .lbl + textarea { margin-top: .3rem; }
+        textarea.script { min-height: 150px; line-height: 1.5; }
+        .toggle { display: inline-flex; align-items: center; gap: .45rem; font-size: .9rem; color: var(--ink); cursor: pointer; }
+        .toggle input { width: 1.05rem; height: 1.05rem; accent-color: var(--gold); }
         .chips { display: flex; gap: .35rem; flex-wrap: wrap; }
         .chip { font-size: .78rem; padding: .15rem .55rem; border-radius: 8px; background: rgba(255,255,255,.06); color: var(--muted); text-decoration: none; }
         .chip.done { color: var(--ok); background: rgba(95,211,160,.10); }
@@ -159,7 +171,8 @@
         var session = localStorage.getItem(KEY);
         var posts = [], filter = "todo", msgTimer = null;
         var LABEL = { draft: "Needs approval", approved: "Approved", posting: "Posting now", posted: "Posted",
-                      partial: "Partly posted", failed: "Failed", missed: "Missed", rejected: "Rejected" };
+                      partial: "Partly posted", failed: "Failed", missed: "Missed", rejected: "Rejected",
+                      script: "Script to approve", making: "Making video" };
         var PLAT = { instagram: "Instagram", facebook: "Facebook", youtube: "YouTube", tiktok: "TikTok" };
 
         function show(view) {
@@ -195,9 +208,9 @@
             return d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
         }
         function bucket(p) {
-            var st = p.pending && p.pending.action === "approve" ? "approved" : p.status;
-            if (st === "draft") return "todo";
-            if (st === "approved" || st === "posting") return "upcoming";
+            var st = p.pending && p.pending.action === "approve" ? (p.status === "script" ? "making" : "approved") : p.status;
+            if (st === "draft" || st === "script") return "todo";
+            if (st === "approved" || st === "posting" || st === "making") return "upcoming";
             return "done";
         }
         function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
@@ -214,14 +227,24 @@
 
         function card(p) {
             var c = el("article", "panel post"); c.id = "post-" + p.id;
-            var img;
-            if (p.thumb) { img = el("img", "thumb"); img.src = p.thumb; img.alt = "Post image"; img.loading = "lazy"; }
-            else img = el("div", "thumb", "Preview coming");
+            var video = p.kind === "video", img;
+            if (video && p.status === "script") {
+                img = el("div", "thumb vid ph"); img.appendChild(document.createTextNode("\uD83D\uDCDD")); img.appendChild(el("small", null, "Video script"));
+            } else if (video && p.status === "making") {
+                img = el("div", "thumb vid ph"); img.appendChild(document.createTextNode("\uD83C\uDFAC")); img.appendChild(el("small", null, "Making your video\u2026"));
+            } else if (video && p.has_preview) {
+                img = el("video", "thumb vid"); img.controls = true; img.preload = "none"; img.playsInline = true;
+                if (p.thumb) img.poster = p.thumb;
+                img.src = API + "/posts/" + encodeURIComponent(p.id) + "/preview?s=" + encodeURIComponent(session);
+                img.id = "video-" + p.id;
+            } else if (p.thumb) { img = el("img", "thumb" + (video ? " vid" : "")); img.src = p.thumb; img.alt = "Post image"; img.loading = "lazy"; }
+            else img = el("div", "thumb" + (video ? " vid" : ""), "Preview coming");
             c.appendChild(img);
             var body = el("div");
             var meta = el("div", "meta");
             meta.appendChild(el("span", "when", fmtWhen(p.pending && p.pending.publish_at || p.publish_at)));
-            meta.appendChild(el("span", "badge b-" + p.status, LABEL[p.status] || p.status));
+            var label = video && p.status === "draft" ? "Video to approve" : (LABEL[p.status] || p.status);
+            meta.appendChild(el("span", "badge b-" + p.status, label));
             var chips = el("div", "chips");
             (p.platforms || []).forEach(function (pl) {
                 var link = p.results && p.results[pl], ch;
@@ -232,13 +255,38 @@
             meta.appendChild(chips);
             body.appendChild(meta);
 
-            var editable = p.status === "draft" || p.status === "approved";
+            // video: the spoken words (editable only before the video is made)
+            var sta = null;
+            if (video) {
+                var scriptEditable = p.status === "script";
+                body.appendChild(el("div", "lbl", "Spoken words"));
+                sta = el("textarea", "script"); sta.id = "script-" + p.id; sta.maxLength = 1500; sta.readOnly = !scriptEditable;
+                sta.setAttribute("aria-label", "Spoken words");
+                sta.value = p.pending && p.pending.script != null ? p.pending.script : (p.script || "");
+                body.appendChild(sta);
+                if (scriptEditable) body.appendChild(el("div", "hint", "We polished your script into about 50 seconds of narration. Change any words you like, then press Approve script \u2013 the images and your voice are made after that."));
+                body.appendChild(el("div", "lbl", "Post caption"));
+            }
+
+            var editable = p.status === "draft" || p.status === "approved" || p.status === "script";
             var ta = el("textarea"); ta.id = "caption-" + p.id; ta.maxLength = 2200; ta.setAttribute("aria-label", "Caption");
             ta.value = p.pending && p.pending.caption != null ? p.pending.caption : (p.caption || "");
             ta.placeholder = editable ? "Write a caption (optional)" : ""; ta.readOnly = !editable;
             var count = el("div", "count", ta.value.length + " / 2200");
             ta.oninput = function () { count.textContent = ta.value.length + " / 2200"; };
             body.appendChild(ta); body.appendChild(count);
+
+            if (video && p.status === "draft") {     // captions on/off -> the video is remade (about a minute)
+                var tg = el("label", "toggle"), cb = el("input"); cb.type = "checkbox"; cb.id = "captions-" + p.id;
+                var want = p.pending && p.pending.captions != null ? p.pending.captions : p.captions;
+                cb.checked = !!want;
+                cb.onchange = function () {
+                    if (!confirm("Remake the video with captions " + (cb.checked ? "ON" : "OFF") + "? It takes a few minutes.")) { cb.checked = !cb.checked; return; }
+                    act([p.id], "remake", { captions: cb.checked }, cb);
+                };
+                tg.appendChild(cb); tg.appendChild(document.createTextNode("Show captions on the video"));
+                var tr = el("div", "row"); tr.appendChild(tg); body.appendChild(tr);
+            }
 
             if (p.note) body.appendChild(el("div", "answer", p.note));
             if (p.error && p.status !== "posted") body.appendChild(el("div", "err", "Problem: " + p.error));
@@ -250,13 +298,20 @@
             }
 
             if (editable) {
+                var curScript = function () { return p.pending && p.pending.script != null ? p.pending.script : (p.script || ""); };
+                var curCap = function () { return p.pending && p.pending.caption != null ? p.pending.caption : (p.caption || ""); };
+                var changes = function () {
+                    var extra = {};
+                    if (ta.value !== curCap()) extra.caption = ta.value;
+                    if (sta && p.status === "script" && sta.value.trim() !== curScript().trim()) extra.script = sta.value;
+                    return extra;
+                };
                 var row = el("div", "row");
                 var dt = el("input"); dt.type = "datetime-local"; dt.id = "time-" + p.id; dt.value = (p.pending && p.pending.publish_at) || p.publish_at || "";
                 dt.setAttribute("aria-label", "Post time");
                 var save = el("button", "btn ghost", "Save changes"); save.type = "button"; save.id = "btn-save-" + p.id;
                 save.onclick = function () {
-                    var extra = {}, cur = p.pending && p.pending.caption != null ? p.pending.caption : (p.caption || "");
-                    if (ta.value !== cur) extra.caption = ta.value;
+                    var extra = changes();
                     if (dt.value && dt.value !== ((p.pending && p.pending.publish_at) || p.publish_at)) extra.publish_at = dt.value;
                     if (!Object.keys(extra).length) { msg("Nothing changed.", "info"); return; }
                     act([p.id], "edit", extra, save);
@@ -264,20 +319,21 @@
                 row.appendChild(dt); row.appendChild(save);
                 var approved = p.status === "approved" || (p.pending && p.pending.action === "approve");
                 if (!approved) {
-                    var ap = el("button", "btn", "Approve"); ap.type = "button"; ap.id = "btn-approve-" + p.id;
+                    var apText = p.status === "script" ? "Approve script" : (video ? "Approve video" : "Approve");
+                    var ap = el("button", "btn", apText); ap.type = "button"; ap.id = "btn-approve-" + p.id;
                     ap.onclick = function () {
-                        var extra = {}, cur = p.pending && p.pending.caption != null ? p.pending.caption : (p.caption || "");
-                        var chain = ta.value !== cur ? act([p.id], "edit", { caption: ta.value }) : Promise.resolve();
+                        var extra = changes();
+                        var chain = Object.keys(extra).length ? act([p.id], "edit", extra) : Promise.resolve();
                         chain.then(function () { act([p.id], "approve", null, ap); });
                     };
                     row.appendChild(ap);
-                } else {
+                } else if (p.status !== "script") {
                     var un = el("button", "btn quiet", "Undo approval"); un.type = "button"; un.id = "btn-unapprove-" + p.id;
                     un.onclick = function () { act([p.id], "unapprove", null, un); };
                     row.appendChild(un);
                 }
-                var rj = el("button", "btn quiet", "Don't post"); rj.type = "button"; rj.id = "btn-reject-" + p.id;
-                rj.onclick = function () { if (confirm("Don't post this one? It will not be published.")) act([p.id], "reject", null, rj); };
+                var rj = el("button", "btn quiet", p.status === "script" ? "Don't make this" : "Don't post"); rj.type = "button"; rj.id = "btn-reject-" + p.id;
+                rj.onclick = function () { if (confirm(p.status === "script" ? "Don't make this video? Nothing will be made or posted." : "Don't post this one? It will not be published.")) act([p.id], "reject", null, rj); };
                 row.appendChild(rj);
                 body.appendChild(row);
             }
@@ -300,8 +356,8 @@
                     e.appendChild(el("h2", null, "No posts yet"));
                     e.appendChild(el("p", null, "Here is how it works:"));
                     var steps = el("div", "steps");
-                    [["1. Drop", "Put your finished images in your shared Google Drive folder. Add a .txt with the same name for the caption."],
-                     ["2. Review", "Within about 10 minutes each image appears here as a draft on your next free time slot."],
+                    [["1. Drop", "Put a script (.txt) in your shared Google Drive folder. We polish it, then make a short video with images and your voice. Finished images work too."],
+                     ["2. Review", "Within about 10 minutes the polished script appears here. Approve it, then watch the finished video."],
                      ["3. Approve", "Fix the caption or time if you like and press Approve. Only approved posts are published."]]
                         .forEach(function (s) { var d = el("div", "step"); d.appendChild(el("b", null, s[0])); d.appendChild(document.createTextNode(s[1])); steps.appendChild(d); });
                     e.appendChild(steps);
