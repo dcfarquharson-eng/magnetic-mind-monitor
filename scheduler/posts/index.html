@@ -233,6 +233,7 @@
             if (pa === "remake" && p.status === "audio") return ["New take requested", "A fresh recording starts within about 5 minutes. This card updates by itself."];
             if (pa === "remake" && p.status === "draft") return ["Remaking your video", "Starts within about 5 minutes, then takes a few minutes. This card updates by itself."];
             if (pa === "rewrite") return ["Opening the words again", "In about 5 minutes you can edit the script and approve it again."];
+            if (pa === "shorten") return ["Shortening your script", "Our AI is tightening the words so it fits under 60 seconds and still flows (about 5 minutes). Then just read it and press Approve script."];
             if (p.status === "voicing") return ["Making your audio now", "We are recording your script in your voice (usually 5\u201310 minutes). The player appears here when it is ready \u2013 no need to refresh."];
             if (p.status === "making") return ["Making your video now", "We are adding the images to your approved audio (usually 10\u201315 minutes). The video appears here when it is ready \u2013 no need to refresh."];
             return null;
@@ -334,12 +335,16 @@
                 sta.setAttribute("aria-label", "Spoken words");
                 sta.value = p.pending && p.pending.script != null ? p.pending.script : (p.script || "");
                 body.appendChild(sta);
+                var tooLong = false, shortBtn = null, apBtn = null;
                 if (scriptEditable) {                       // live length check: ~2.3 spoken words per second, Shorts < 60 s
                     var wc = el("div", "count"); wc.id = "words-" + p.id;
                     var upd = function () {
                         var n = (sta.value.trim().match(/\S+/g) || []).length, sec = Math.round(n / 2.3);
-                        wc.textContent = n + " words \u2248 " + sec + " seconds" + (n > 128 ? " \u2013 too long, please cut to 128 words or fewer" : "");
-                        wc.style.color = n > 128 ? "var(--bad)" : "";
+                        tooLong = n > 128;
+                        wc.textContent = n + " words \u2248 " + sec + " seconds" + (tooLong ? " \u2013 too long for a short video. Press \u2728 Shorten it for me." : "");
+                        wc.style.color = tooLong ? "var(--bad)" : "";
+                        if (shortBtn) shortBtn.classList.toggle("hidden", !tooLong);
+                        if (apBtn) { apBtn.disabled = tooLong; apBtn.title = tooLong ? "Shorten the script first" : ""; }
                     };
                     sta.addEventListener("input", upd); upd(); body.appendChild(wc);
                 }
@@ -419,6 +424,17 @@
                         chain.then(function () { act([p.id], "approve", null, ap); });
                     };
                     row.appendChild(ap);
+                    if (p.status === "script" && sta) {
+                        apBtn = ap;
+                        shortBtn = el("button", "btn ghost", "\u2728 Shorten it for me"); shortBtn.type = "button"; shortBtn.id = "btn-shorten-" + p.id;
+                        shortBtn.onclick = function () {
+                            var extra = changes();                // keep any words she already changed, then shorten those
+                            var chain = Object.keys(extra).length ? act([p.id], "edit", extra) : Promise.resolve();
+                            chain.then(function () { act([p.id], "shorten", null, shortBtn); });
+                        };
+                        row.appendChild(shortBtn);
+                        sta.dispatchEvent(new Event("input"));    // set button states from the current word count
+                    }
                 } else if (p.status !== "script" && p.status !== "audio") {
                     var un = el("button", "btn quiet", "Undo approval"); un.type = "button"; un.id = "btn-unapprove-" + p.id;
                     un.onclick = function () { act([p.id], "unapprove", null, un); };
