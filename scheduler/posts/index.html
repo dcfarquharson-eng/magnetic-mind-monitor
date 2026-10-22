@@ -334,6 +334,15 @@
                 sta.setAttribute("aria-label", "Spoken words");
                 sta.value = p.pending && p.pending.script != null ? p.pending.script : (p.script || "");
                 body.appendChild(sta);
+                if (scriptEditable) {                       // live length check: ~2.3 spoken words per second, Shorts < 60 s
+                    var wc = el("div", "count"); wc.id = "words-" + p.id;
+                    var upd = function () {
+                        var n = (sta.value.trim().match(/\S+/g) || []).length, sec = Math.round(n / 2.3);
+                        wc.textContent = n + " words \u2248 " + sec + " seconds" + (n > 128 ? " \u2013 too long, please cut to 128 words or fewer" : "");
+                        wc.style.color = n > 128 ? "var(--bad)" : "";
+                    };
+                    sta.addEventListener("input", upd); upd(); body.appendChild(wc);
+                }
                 if (scriptEditable) body.appendChild(el("div", "hint", "We polished your script into about 50 seconds of narration. Change any words you like, then press Approve script \u2013 next you will hear it in your voice before any images are made."));
                 body.appendChild(el("div", "lbl", "Post caption"));
             }
