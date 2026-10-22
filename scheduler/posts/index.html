@@ -56,8 +56,15 @@
         .b-posted { color: var(--ok); border-color: rgba(95,211,160,.45); background: rgba(95,211,160,.08); }
         .b-partial, .b-failed, .b-missed { color: var(--bad); border-color: rgba(255,123,123,.45); background: rgba(255,123,123,.07); }
         .b-rejected { color: var(--muted); }
-        .b-script { color: var(--warn); border-color: rgba(242,180,90,.45); background: rgba(242,180,90,.08); }
-        .b-making { color: var(--gold-2); border-color: rgba(197,160,89,.5); background: rgba(197,160,89,.08); }
+        .b-script, .b-audio { color: var(--warn); border-color: rgba(242,180,90,.45); background: rgba(242,180,90,.08); }
+        .b-making, .b-voicing { color: var(--gold-2); border-color: rgba(197,160,89,.5); background: rgba(197,160,89,.08); }
+        .stages { display: flex; gap: .35rem; align-items: center; margin-top: .65rem; flex-wrap: wrap; font-size: .8rem; }
+        .stage { padding: .18rem .6rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+        .stage.done { color: var(--ok); border-color: rgba(95,211,160,.4); background: rgba(95,211,160,.08); }
+        .stage.now { color: var(--navy); background: linear-gradient(135deg, var(--gold), var(--gold-2)); border-color: transparent; font-weight: 600; }
+        .stage-sep { color: var(--muted); opacity: .5; }
+        .listen { margin-top: .7rem; padding: .8rem .9rem; border-radius: 14px; border: 1px solid rgba(197,160,89,.35); background: rgba(197,160,89,.06); }
+        .listen audio { width: 100%; margin-top: .4rem; color-scheme: dark; }
         .thumb.vid { aspect-ratio: 9 / 16; }
         video.thumb { background: #000; }
         .thumb.ph { font-size: 2rem; text-align: center; line-height: 1.3; padding: .5rem; }
@@ -172,7 +179,8 @@
         var posts = [], filter = "todo", msgTimer = null;
         var LABEL = { draft: "Needs approval", approved: "Approved", posting: "Posting now", posted: "Posted",
                       partial: "Partly posted", failed: "Failed", missed: "Missed", rejected: "Rejected",
-                      script: "Script to approve", making: "Making video" };
+                      script: "Script to approve", voicing: "Making audio", audio: "Audio to approve",
+                      making: "Making video" };
         var PLAT = { instagram: "Instagram", facebook: "Facebook", youtube: "YouTube", tiktok: "TikTok" };
 
         function show(view) {
@@ -207,11 +215,25 @@
             var p = iso.split(/[-T:]/), d = new Date(+p[0], +p[1] - 1, +p[2]);
             return d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
         }
+        var NEXT = { script: "voicing", audio: "making" };     // what an approval turns a video step into
         function bucket(p) {
-            var st = p.pending && p.pending.action === "approve" ? (p.status === "script" ? "making" : "approved") : p.status;
-            if (st === "draft" || st === "script") return "todo";
-            if (st === "approved" || st === "posting" || st === "making") return "upcoming";
+            var st = p.pending && p.pending.action === "approve" ? (NEXT[p.status] || "approved") : p.status;
+            if (st === "draft" || st === "script" || st === "audio") return "todo";
+            if (st === "approved" || st === "posting" || st === "making" || st === "voicing") return "upcoming";
             return "done";
+        }
+        function stages(p) {                                     // 1 Script -> 2 Audio -> 3 Video progress bar
+            var at = { script: 0, voicing: 1, audio: 1, making: 2, draft: 2 }[p.status];
+            if (at == null) return null;
+            var s = el("div", "stages");
+            ["1 Script", "2 Audio", "3 Video"].forEach(function (name, i) {
+                if (i) s.appendChild(el("span", "stage-sep", "\u2192"));
+                s.appendChild(el("span", "stage" + (i < at ? " done" : i === at ? " now" : ""), (i < at ? "\u2713 " : "") + name));
+            });
+            return s;
+        }
+        function previewUrl(p) {
+            return API + "/posts/" + encodeURIComponent(p.id) + "/preview?s=" + encodeURIComponent(session) + "&v=" + (p.preview_v || 0);
         }
         function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 
@@ -230,12 +252,16 @@
             var video = p.kind === "video", img;
             if (video && p.status === "script") {
                 img = el("div", "thumb vid ph"); img.appendChild(document.createTextNode("\uD83D\uDCDD")); img.appendChild(el("small", null, "Video script"));
+            } else if (video && p.status === "voicing") {
+                img = el("div", "thumb vid ph"); img.appendChild(document.createTextNode("\uD83C\uDF99\uFE0F")); img.appendChild(el("small", null, "Making your audio\u2026"));
+            } else if (video && p.status === "audio") {
+                img = el("div", "thumb vid ph"); img.appendChild(document.createTextNode("\uD83C\uDFA7")); img.appendChild(el("small", null, "Listen to your audio"));
             } else if (video && p.status === "making") {
                 img = el("div", "thumb vid ph"); img.appendChild(document.createTextNode("\uD83C\uDFAC")); img.appendChild(el("small", null, "Making your video\u2026"));
             } else if (video && p.has_preview) {
                 img = el("video", "thumb vid"); img.controls = true; img.preload = "none"; img.playsInline = true;
                 if (p.thumb) img.poster = p.thumb;
-                img.src = API + "/posts/" + encodeURIComponent(p.id) + "/preview?s=" + encodeURIComponent(session);
+                img.src = previewUrl(p);
                 img.id = "video-" + p.id;
             } else if (p.thumb) { img = el("img", "thumb" + (video ? " vid" : "")); img.src = p.thumb; img.alt = "Post image"; img.loading = "lazy"; }
             else img = el("div", "thumb" + (video ? " vid" : ""), "Preview coming");
@@ -254,6 +280,19 @@
             });
             meta.appendChild(chips);
             body.appendChild(meta);
+            if (video) { var stg = stages(p); if (stg) body.appendChild(stg); }
+
+            // audio step: listen before any images are made
+            if (video && p.status === "audio") {
+                var ls = el("div", "listen");
+                ls.appendChild(el("div", "lbl", "Your audio"));
+                if (p.has_preview) {
+                    var au = el("audio"); au.controls = true; au.preload = "none"; au.id = "audio-" + p.id;
+                    au.src = previewUrl(p); ls.appendChild(au);
+                } else ls.appendChild(el("div", "hint", "The audio is on its way \u2013 press Refresh in a minute."));
+                ls.appendChild(el("div", "hint", "Happy with the voice? Press Approve audio and we add the images to make your video. Not quite right? Remake audio for a new take, or Change the words."));
+                body.appendChild(ls);
+            }
 
             // video: the spoken words (editable only before the video is made)
             var sta = null;
@@ -264,11 +303,11 @@
                 sta.setAttribute("aria-label", "Spoken words");
                 sta.value = p.pending && p.pending.script != null ? p.pending.script : (p.script || "");
                 body.appendChild(sta);
-                if (scriptEditable) body.appendChild(el("div", "hint", "We polished your script into about 50 seconds of narration. Change any words you like, then press Approve script \u2013 the images and your voice are made after that."));
+                if (scriptEditable) body.appendChild(el("div", "hint", "We polished your script into about 50 seconds of narration. Change any words you like, then press Approve script \u2013 next you will hear it in your voice before any images are made."));
                 body.appendChild(el("div", "lbl", "Post caption"));
             }
 
-            var editable = p.status === "draft" || p.status === "approved" || p.status === "script";
+            var editable = p.status === "draft" || p.status === "approved" || p.status === "script" || p.status === "audio";
             var ta = el("textarea"); ta.id = "caption-" + p.id; ta.maxLength = 2200; ta.setAttribute("aria-label", "Caption");
             ta.value = p.pending && p.pending.caption != null ? p.pending.caption : (p.caption || "");
             ta.placeholder = editable ? "Write a caption (optional)" : ""; ta.readOnly = !editable;
@@ -291,7 +330,8 @@
             if (p.note) body.appendChild(el("div", "answer", p.note));
             if (p.error && p.status !== "posted") body.appendChild(el("div", "err", "Problem: " + p.error));
             if (p.pending) {
-                var what = { approve: "Approval", reject: "Rejection", unapprove: "Change", edit: "Your change" }[p.pending.action] || "Change";
+                var what = { approve: "Approval", reject: "Rejection", unapprove: "Change", edit: "Your change",
+                             remake: "Remake", rewrite: "Change" }[p.pending.action] || "Change";
                 body.appendChild(el("div", "pending", "\u23F3 " + what + " saved - waiting for the scheduler to confirm (about 5 minutes)."));
             } else if (p.server_answer) {
                 body.appendChild(el("div", "answer", "\u2713 " + p.server_answer));
@@ -318,8 +358,9 @@
                 };
                 row.appendChild(dt); row.appendChild(save);
                 var approved = p.status === "approved" || (p.pending && p.pending.action === "approve");
+                var pendingAny = !!(p.pending && p.pending.action !== "edit");
                 if (!approved) {
-                    var apText = p.status === "script" ? "Approve script" : (video ? "Approve video" : "Approve");
+                    var apText = p.status === "script" ? "Approve script" : p.status === "audio" ? "Approve audio" : (video ? "Approve video" : "Approve");
                     var ap = el("button", "btn", apText); ap.type = "button"; ap.id = "btn-approve-" + p.id;
                     ap.onclick = function () {
                         var extra = changes();
@@ -327,13 +368,22 @@
                         chain.then(function () { act([p.id], "approve", null, ap); });
                     };
                     row.appendChild(ap);
-                } else if (p.status !== "script") {
+                } else if (p.status !== "script" && p.status !== "audio") {
                     var un = el("button", "btn quiet", "Undo approval"); un.type = "button"; un.id = "btn-unapprove-" + p.id;
                     un.onclick = function () { act([p.id], "unapprove", null, un); };
                     row.appendChild(un);
                 }
-                var rj = el("button", "btn quiet", p.status === "script" ? "Don't make this" : "Don't post"); rj.type = "button"; rj.id = "btn-reject-" + p.id;
-                rj.onclick = function () { if (confirm(p.status === "script" ? "Don't make this video? Nothing will be made or posted." : "Don't post this one? It will not be published.")) act([p.id], "reject", null, rj); };
+                if (video && p.status === "audio" && !pendingAny) {
+                    var rm = el("button", "btn ghost", "Remake audio"); rm.type = "button"; rm.id = "btn-remake-audio-" + p.id;
+                    rm.onclick = function () { if (confirm("Make a new take of the audio? It takes a few minutes.")) act([p.id], "remake", null, rm); };
+                    row.appendChild(rm);
+                    var rw = el("button", "btn ghost", "Change the words"); rw.type = "button"; rw.id = "btn-rewrite-" + p.id;
+                    rw.onclick = function () { act([p.id], "rewrite", null, rw); };
+                    row.appendChild(rw);
+                }
+                var early = p.status === "script" || p.status === "audio";
+                var rj = el("button", "btn quiet", early ? "Don't make this" : "Don't post"); rj.type = "button"; rj.id = "btn-reject-" + p.id;
+                rj.onclick = function () { if (confirm(early ? "Don't make this video? Nothing will be made or posted." : "Don't post this one? It will not be published.")) act([p.id], "reject", null, rj); };
                 row.appendChild(rj);
                 body.appendChild(row);
             }
@@ -357,7 +407,7 @@
                     e.appendChild(el("p", null, "Here is how it works:"));
                     var steps = el("div", "steps");
                     [["1. Drop", "Put a script (.txt) in your shared Google Drive folder. We polish it, then make a short video with images and your voice. Finished images work too."],
-                     ["2. Review", "Within about 10 minutes the polished script appears here. Approve it, then watch the finished video."],
+                     ["2. Review", "Approve the polished script, then listen to it in your voice and approve the audio, then watch the finished video."],
                      ["3. Approve", "Fix the caption or time if you like and press Approve. Only approved posts are published."]]
                         .forEach(function (s) { var d = el("div", "step"); d.appendChild(el("b", null, s[0])); d.appendChild(document.createTextNode(s[1])); steps.appendChild(d); });
                     e.appendChild(steps);
@@ -405,7 +455,11 @@
         if (session) {
             api("/me").then(function (d) { $("welcome").textContent = "Signed in as " + d.client.name; }).catch(function () {});
             load();
-            setInterval(function () { if (!document.hidden) load(true); }, 60000);
+            setInterval(function () {               // never cut off audio/video the client is playing
+                var playing = Array.prototype.some.call(document.querySelectorAll("audio, video"), function (m) { return !m.paused && !m.ended; });
+                var typing = document.activeElement && /^(TEXTAREA|INPUT)$/.test(document.activeElement.tagName);
+                if (!document.hidden && !playing && !typing) load(true);
+            }, 60000);
         } else show("view-signin");
     })();
     </script>
