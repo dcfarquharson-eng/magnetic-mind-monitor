@@ -65,6 +65,14 @@
         .stage-sep { color: var(--muted); opacity: .5; }
         .listen { margin-top: .7rem; padding: .8rem .9rem; border-radius: 14px; border: 1px solid rgba(197,160,89,.35); background: rgba(197,160,89,.06); }
         .listen audio { width: 100%; margin-top: .4rem; color-scheme: dark; }
+        .working { display: flex; gap: .8rem; align-items: center; margin-top: .75rem; padding: .85rem 1rem; border-radius: 14px;
+                   border: 1px solid rgba(197,160,89,.45); background: linear-gradient(90deg, rgba(197,160,89,.14), rgba(197,160,89,.04));
+                   background-size: 200% 100%; animation: shimmer 2.4s ease-in-out infinite; }
+        .working .dot { flex: 0 0 22px; width: 22px; height: 22px; border: 3px solid var(--line); border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; }
+        .working b { color: var(--gold-2); display: block; }
+        .working span { color: var(--muted); font-size: .88rem; }
+        .busy textarea, .busy input { opacity: .55; pointer-events: none; }
+        @keyframes shimmer { 0%, 100% { background-position: 0% 0; } 50% { background-position: 100% 0; } }
         .thumb.vid { aspect-ratio: 9 / 16; }
         video.thumb { background: #000; }
         .thumb.ph { font-size: 2rem; text-align: center; line-height: 1.3; padding: .5rem; }
@@ -216,7 +224,21 @@
             return d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
         }
         var NEXT = { script: "voicing", audio: "making" };     // what an approval turns a video step into
+        // What the client sees while a video step is in progress (null = nothing in progress)
+        function working(p) {
+            if (p.kind !== "video") return null;
+            var pa = p.pending && p.pending.action;
+            if (pa === "approve" && p.status === "script") return ["Script approved \u2013 sending it to the studio", "Your audio starts within about 5 minutes, then takes about 5\u201310 minutes. You can leave this page; this card updates by itself."];
+            if (pa === "approve" && p.status === "audio") return ["Audio approved \u2013 sending it to the studio", "Your video starts within about 5 minutes, then takes about 10\u201315 minutes. This card updates by itself."];
+            if (pa === "remake" && p.status === "audio") return ["New take requested", "A fresh recording starts within about 5 minutes. This card updates by itself."];
+            if (pa === "remake" && p.status === "draft") return ["Remaking your video", "Starts within about 5 minutes, then takes a few minutes. This card updates by itself."];
+            if (pa === "rewrite") return ["Opening the words again", "In about 5 minutes you can edit the script and approve it again."];
+            if (p.status === "voicing") return ["Making your audio now", "We are recording your script in your voice (usually 5\u201310 minutes). The player appears here when it is ready \u2013 no need to refresh."];
+            if (p.status === "making") return ["Making your video now", "We are adding the images to your approved audio (usually 10\u201315 minutes). The video appears here when it is ready \u2013 no need to refresh."];
+            return null;
+        }
         function bucket(p) {
+            if (working(p)) return "todo";                       // in-progress videos stay where the client is looking
             var st = p.pending && p.pending.action === "approve" ? (NEXT[p.status] || "approved") : p.status;
             if (st === "draft" || st === "script" || st === "audio") return "todo";
             if (st === "approved" || st === "posting" || st === "making" || st === "voicing") return "upcoming";
@@ -225,6 +247,7 @@
         function stages(p) {                                     // 1 Script -> 2 Audio -> 3 Video progress bar
             var at = { script: 0, voicing: 1, audio: 1, making: 2, draft: 2 }[p.status];
             if (at == null) return null;
+            if (p.pending && p.pending.action === "approve" && (p.status === "script" || p.status === "audio")) at += 1;
             var s = el("div", "stages");
             ["1 Script", "2 Audio", "3 Video"].forEach(function (name, i) {
                 if (i) s.appendChild(el("span", "stage-sep", "\u2192"));
@@ -281,6 +304,14 @@
             meta.appendChild(chips);
             body.appendChild(meta);
             if (video) { var stg = stages(p); if (stg) body.appendChild(stg); }
+            var wk = working(p), busy = !!wk;
+            if (busy) {
+                c.classList.add("busy");
+                var wb = el("div", "working"); wb.id = "working-" + p.id; wb.setAttribute("role", "status");
+                wb.appendChild(el("div", "dot"));
+                var wt = el("div"); wt.appendChild(el("b", null, wk[0])); wt.appendChild(el("span", null, wk[1]));
+                wb.appendChild(wt); body.appendChild(wb);
+            }
 
             // audio step: listen before any images are made
             if (video && p.status === "audio") {
@@ -297,7 +328,7 @@
             // video: the spoken words (editable only before the video is made)
             var sta = null;
             if (video) {
-                var scriptEditable = p.status === "script";
+                var scriptEditable = p.status === "script" && !busy;
                 body.appendChild(el("div", "lbl", "Spoken words"));
                 sta = el("textarea", "script"); sta.id = "script-" + p.id; sta.maxLength = 1500; sta.readOnly = !scriptEditable;
                 sta.setAttribute("aria-label", "Spoken words");
@@ -307,7 +338,7 @@
                 body.appendChild(el("div", "lbl", "Post caption"));
             }
 
-            var editable = p.status === "draft" || p.status === "approved" || p.status === "script" || p.status === "audio";
+            var editable = !busy && (p.status === "draft" || p.status === "approved" || p.status === "script" || p.status === "audio");
             var ta = el("textarea"); ta.id = "caption-" + p.id; ta.maxLength = 2200; ta.setAttribute("aria-label", "Caption");
             ta.value = p.pending && p.pending.caption != null ? p.pending.caption : (p.caption || "");
             ta.placeholder = editable ? "Write a caption (optional)" : ""; ta.readOnly = !editable;
@@ -329,12 +360,23 @@
 
             if (p.note) body.appendChild(el("div", "answer", p.note));
             if (p.error && p.status !== "posted") body.appendChild(el("div", "err", "Problem: " + p.error));
-            if (p.pending) {
+            if (p.pending && !busy) {
                 var what = { approve: "Approval", reject: "Rejection", unapprove: "Change", edit: "Your change",
                              remake: "Remake", rewrite: "Change" }[p.pending.action] || "Change";
                 body.appendChild(el("div", "pending", "\u23F3 " + what + " saved - waiting for the scheduler to confirm (about 5 minutes)."));
-            } else if (p.server_answer) {
+            } else if (p.server_answer && !busy) {
                 body.appendChild(el("div", "answer", "\u2713 " + p.server_answer));
+            }
+
+            if (busy) {                                    // greyed-out buttons: what comes next, not clickable yet
+                var nextStep = { voicing: "Approve audio", making: "Approve video" }[p.status] ||
+                               (p.pending && p.pending.action === "approve" ? (p.status === "script" ? "Approve audio" : "Approve video")
+                                : p.status === "audio" ? "Approve audio" : p.status === "draft" ? "Approve video" : "Approve script");
+                var brow = el("div", "row");
+                [["btn ghost", "Save changes"], ["btn", nextStep + " (when ready)"]].forEach(function (b) {
+                    var x = el("button", b[0], b[1]); x.type = "button"; x.disabled = true; x.style.cursor = "not-allowed"; brow.appendChild(x);
+                });
+                body.appendChild(brow);
             }
 
             if (editable) {
@@ -427,8 +469,14 @@
 
         function load(quiet) {
             return api("/posts").then(function (d) {
+                var before = {}; posts.forEach(function (p) { before[p.id] = p.status; });
                 posts = d.posts || [];
                 render(); show("view-posts");
+                posts.forEach(function (p) {                       // tell her when a step finished while she waited
+                    if (before[p.id] === "voicing" && p.status === "audio") msg("\uD83C\uDFA7 Your audio is ready \u2013 press play, then Approve audio.", "ok");
+                    else if (before[p.id] === "making" && p.status === "draft") msg("\uD83C\uDFAC Your video is ready \u2013 watch it, then Approve video.", "ok");
+                    else if ((before[p.id] === "voicing" || before[p.id] === "making") && (p.status === "script" || p.status === "audio") && p.note) msg(p.note, "bad");
+                });
             }).catch(function (e) {
                 if (e.status === 401 || e.status === 403) { localStorage.removeItem(KEY); session = null; show("view-signin"); }
                 else if (!quiet) { show("view-signin"); msg(e.message, "bad"); } else msg(e.message, "bad");
@@ -455,11 +503,15 @@
         if (session) {
             api("/me").then(function (d) { $("welcome").textContent = "Signed in as " + d.client.name; }).catch(function () {});
             load();
+            var tick = 0;
             setInterval(function () {               // never cut off audio/video the client is playing
+                tick++;
+                var inProgress = posts.some(function (p) { return !!working(p); });   // every 20 s while something is being made
+                if (!inProgress && tick % 3) return;                                   // otherwise every 60 s
                 var playing = Array.prototype.some.call(document.querySelectorAll("audio, video"), function (m) { return !m.paused && !m.ended; });
                 var typing = document.activeElement && /^(TEXTAREA|INPUT)$/.test(document.activeElement.tagName);
                 if (!document.hidden && !playing && !typing) load(true);
-            }, 60000);
+            }, 20000);
         } else show("view-signin");
     })();
     </script>
