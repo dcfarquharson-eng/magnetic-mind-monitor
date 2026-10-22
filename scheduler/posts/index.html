@@ -313,6 +313,7 @@
                 var wt = el("div"); wt.appendChild(el("b", null, wk[0])); wt.appendChild(el("span", null, wk[1]));
                 wb.appendChild(wt); body.appendChild(wb);
             }
+            var topSlot = el("div", "top-actions"); body.appendChild(topSlot);   // buttons go here, above the long text
 
             // audio step: listen before any images are made
             if (video && p.status === "audio") {
@@ -372,14 +373,14 @@
                 var tr = el("div", "row"); tr.appendChild(tg); body.appendChild(tr);
             }
 
-            if (p.note) body.appendChild(el("div", "answer", p.note));
-            if (p.error && p.status !== "posted") body.appendChild(el("div", "err", "Problem: " + p.error));
+            if (p.note) topSlot.appendChild(el("div", "answer", p.note));
+            if (p.error && p.status !== "posted") topSlot.appendChild(el("div", "err", "Problem: " + p.error));
             if (p.pending && !busy) {
                 var what = { approve: "Approval", reject: "Rejection", unapprove: "Change", edit: "Your change",
                              remake: "Remake", rewrite: "Change" }[p.pending.action] || "Change";
-                body.appendChild(el("div", "pending", "\u23F3 " + what + " saved - waiting for the scheduler to confirm (about 5 minutes)."));
+                topSlot.appendChild(el("div", "pending", "\u23F3 " + what + " saved - waiting for the scheduler to confirm (about 5 minutes)."));
             } else if (p.server_answer && !busy) {
-                body.appendChild(el("div", "answer", "\u2713 " + p.server_answer));
+                topSlot.appendChild(el("div", "answer", "\u2713 " + p.server_answer));
             }
 
             if (busy) {                                    // greyed-out buttons: what comes next, not clickable yet
@@ -390,7 +391,7 @@
                 [["btn ghost", "Save changes"], ["btn", nextStep + " (when ready)"]].forEach(function (b) {
                     var x = el("button", b[0], b[1]); x.type = "button"; x.disabled = true; x.style.cursor = "not-allowed"; brow.appendChild(x);
                 });
-                body.appendChild(brow);
+                topSlot.appendChild(brow);
             }
 
             if (editable) {
@@ -452,7 +453,7 @@
                 var rj = el("button", "btn quiet", early ? "Don't make this" : "Don't post"); rj.type = "button"; rj.id = "btn-reject-" + p.id;
                 rj.onclick = function () { if (confirm(early ? "Don't make this video? Nothing will be made or posted." : "Don't post this one? It will not be published.")) act([p.id], "reject", null, rj); };
                 row.appendChild(rj);
-                body.appendChild(row);
+                topSlot.appendChild(row);
             }
             c.appendChild(body);
             return c;
