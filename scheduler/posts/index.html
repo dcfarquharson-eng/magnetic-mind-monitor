@@ -167,7 +167,7 @@
                 </div>
             </div>
             <div id="list"></div>
-            <p class="note">Times are US Eastern. Changes are confirmed by the scheduler within about 5 minutes.</p>
+            <p class="note">Times are US Eastern. Changes are confirmed by the scheduler within about a minute.</p>
         </section>
     </main>
 
@@ -228,14 +228,14 @@
         function working(p) {
             if (p.kind !== "video") return null;
             var pa = p.pending && p.pending.action;
-            if (pa === "approve" && p.status === "script") return ["Script approved \u2013 sending it to the studio", "Your audio starts within about 5 minutes, then takes about 5\u201310 minutes. You can leave this page; this card updates by itself."];
-            if (pa === "approve" && p.status === "audio") return ["Audio approved \u2013 sending it to the studio", "Your video starts within about 5 minutes, then takes about 10\u201315 minutes. This card updates by itself."];
-            if (pa === "remake" && p.status === "audio") return ["New take requested", "A fresh recording starts within about 5 minutes. This card updates by itself."];
-            if (pa === "remake" && p.status === "draft") return ["Remaking your video", "Starts within about 5 minutes, then takes a few minutes. This card updates by itself."];
-            if (pa === "rewrite") return ["Opening the words again", "In about 5 minutes you can edit the script and approve it again."];
-            if (pa === "shorten") return ["Shortening your script", "Our AI is tightening the words so it fits under 60 seconds and still flows (about 5 minutes). Then just read it and press Approve script."];
-            if (p.status === "voicing") return ["Making your audio now", "We are recording your script in your voice (usually 5\u201310 minutes). The player appears here when it is ready \u2013 no need to refresh."];
-            if (p.status === "making") return ["Making your video now", "We are adding the images to your approved audio (usually 10\u201315 minutes). The video appears here when it is ready \u2013 no need to refresh."];
+            if (pa === "approve" && p.status === "script") return ["Script approved \u2013 sending it to the studio", "Your audio starts within a minute or two, then takes about 2\u20135 minutes. You can leave this page; this card updates by itself."];
+            if (pa === "approve" && p.status === "audio") return ["Audio approved \u2013 sending it to the studio", "Your video starts within a minute or two, then takes about 5\u201315 minutes. This card updates by itself."];
+            if (pa === "remake" && p.status === "audio") return ["New take requested", "A fresh recording starts within a minute or two, then takes about 2\u20135 minutes. This card updates by itself."];
+            if (pa === "remake" && p.status === "draft") return ["Remaking your video", "Starts within a minute or two, then takes a few minutes. This card updates by itself."];
+            if (pa === "rewrite") return ["Opening the words again", "In about a minute you can edit the script and approve it again."];
+            if (pa === "shorten") return ["Shortening your script", "Our AI is tightening the words so it fits under 60 seconds and still flows (about a minute). Then just read it and press Approve script."];
+            if (p.status === "voicing") return ["Making your audio now", "We are recording your script in your voice (usually 2\u20135 minutes). The player appears here when it is ready \u2013 no need to refresh."];
+            if (p.status === "making") return ["Making your video now", "We are adding the images to your approved audio (usually 5\u201315 minutes). The video appears here when it is ready \u2013 no need to refresh."];
             return null;
         }
         function bucket(p) {
@@ -378,7 +378,7 @@
             if (p.pending && !busy) {
                 var what = { approve: "Approval", reject: "Rejection", unapprove: "Change", edit: "Your change",
                              remake: "Remake", rewrite: "Change" }[p.pending.action] || "Change";
-                topSlot.appendChild(el("div", "pending", "\u23F3 " + what + " saved - waiting for the scheduler to confirm (about 5 minutes)."));
+                topSlot.appendChild(el("div", "pending", "\u23F3 " + what + " saved - waiting for the scheduler to confirm (about a minute)."));
             } else if (p.server_answer && !busy) {
                 topSlot.appendChild(el("div", "answer", "\u2713 " + p.server_answer));
             }
