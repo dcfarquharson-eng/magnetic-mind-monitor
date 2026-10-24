@@ -29,7 +29,7 @@
         nav .brand { font-weight: 700; color: var(--ink); text-decoration: none; }
         nav .brand span { color: var(--gold); }
         nav .links a, nav .links button { margin-left: 1.2rem; color: var(--muted); text-decoration: none; font-size: .95rem; background: none; border: 0; font-family: inherit; cursor: pointer; transition: color .2s; }
-        nav .links a:hover, nav .links button:hover { color: var(--gold-2); }
+        nav .links a:hover, nav .links button:hover, nav .links a.active { color: var(--gold-2); }
         .hero { padding: 2.5rem 0 1.5rem; text-align: center; animation: rise .7s ease both; }
         .pill { display: inline-block; padding: .3rem .9rem; border: 1px solid rgba(197,160,89,.45); border-radius: 999px; color: var(--gold-2); font-size: .85rem; background: rgba(197,160,89,.08); }
         h1 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.15; margin: 1rem 0 .6rem; }
@@ -87,6 +87,7 @@
             <div class="links">
                 <a href="https://win22-lab.tail2e2060.ts.net/" id="nav-studio">Studio</a>
                 <a href="/scheduler/posts/" id="nav-posts">Your posts</a>
+                <a href="/scheduler/connect/" class="active" id="nav-connect">Accounts</a>
                 <a href="/scheduler/privacy/" id="nav-privacy">Privacy</a>
                 <button type="button" id="btn-signout" class="hidden">Sign out</button>
             </div>
