@@ -240,6 +240,29 @@
             margin-top: auto;
         }
 
+        /* Legal links: must be clearly visible from the homepage (TikTok app review, 2026-10-27) */
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px 28px;
+            margin-bottom: 1rem;
+        }
+
+        .legal-links a {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .legal-links a:hover {
+            color: var(--text-white);
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -267,6 +290,8 @@
             <a href="fellowship.html" class="nav-link">Fellowship</a>
             <a href="contact.html" class="nav-link">Contact</a>
             <a href="creator-studio.html" class="nav-link" style="color: #25F4EE; font-weight: bold;">Creator Studio</a>
+            <a id="nav-terms-link" href="https://themagneticmind.institute/terms-of-service/" class="nav-link">Terms of Service</a>
+            <a id="nav-privacy-link" href="https://themagneticmind.institute/privacy-policy/" class="nav-link">Privacy Policy</a>
             <a href="#" onclick="openLoginModal()" class="nav-link"
                 style="color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 5px 15px; border-radius: 4px;">Log
                 In</a>
@@ -305,6 +330,10 @@
     </div>
 
     <footer>
+        <nav class="legal-links" aria-label="Legal">
+            <a id="footer-terms-link" href="https://themagneticmind.institute/terms-of-service/">Terms of Service</a>
+            <a id="footer-privacy-link" href="https://themagneticmind.institute/privacy-policy/">Privacy Policy</a>
+        </nav>
         &copy; 2026 The Magnetic Mind Institute. All Rights Reserved.
     </footer>
 
@@ -636,5 +665,4 @@
     </script>
 </body>
 
-</html>
-```
+</html>
