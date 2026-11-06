@@ -106,7 +106,7 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 18px; align-items: center; flex-wrap: wrap;
         }
 
         .nav-link {
@@ -279,7 +279,7 @@
 
 <body>
 
-    <nav class="navbar">
+        <nav class="navbar">
         <a href="index.html" class="nav-brand">The Magnetic Mind Institute</a>
         <div class="nav-links">
             <a href="index.html" class="nav-link active">Home</a>
@@ -292,9 +292,7 @@
             <a href="creator-studio.html" class="nav-link" style="color: #25F4EE; font-weight: bold;">Creator Studio</a>
             <a id="nav-terms-link" href="https://themagneticmind.institute/terms-of-service/" class="nav-link">Terms of Service</a>
             <a id="nav-privacy-link" href="https://themagneticmind.institute/privacy-policy/" class="nav-link">Privacy Policy</a>
-            <a href="#" onclick="openLoginModal()" class="nav-link"
-                style="color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 5px 15px; border-radius: 4px;">Log
-                In</a>
+            <a href="#" onclick="openLoginModal()" class="nav-link" style="color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 5px 15px; border-radius: 4px;">Log In</a>
         </div>
     </nav>
 
@@ -663,6 +661,13 @@
             }
         }
     </script>
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+    if (window.location.hash === "#login" || window.location.search.indexOf("login") !== -1) {
+        setTimeout(function() { if (typeof openLoginModal === "function") openLoginModal(); }, 300);
+    }
+});
+</script>
 </body>
 
-</html>
+</html>
