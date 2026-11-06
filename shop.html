@@ -43,7 +43,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 1rem 2rem;
+            padding: 0.9rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -60,12 +60,12 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 18px;
+            gap: 16px;
             align-items: center;
             flex-wrap: wrap;
         }
@@ -73,7 +73,7 @@
         .nav-link {
             color: var(--text-white);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: color 0.3s ease;
@@ -86,10 +86,10 @@
             opacity: 1;
         }
 
-        /* HERO SECTION */
+        /* COMPACT HERO HEADER */
         .hero-section {
-            margin-top: 120px;
-            padding: 3rem 2rem 2rem;
+            margin-top: 85px;
+            padding: 1.5rem 1.5rem 0.8rem;
             max-width: 1100px;
             width: 100%;
             text-align: center;
@@ -97,40 +97,41 @@
 
         .pill-badge {
             display: inline-block;
-            padding: 0.4rem 1.2rem;
+            padding: 0.3rem 1rem;
             border: 1px solid var(--card-border);
             border-radius: 999px;
             color: var(--accent-gold-light);
-            font-size: 0.85rem;
-            letter-spacing: 2px;
+            font-size: 0.78rem;
+            letter-spacing: 1.8px;
             text-transform: uppercase;
             background: rgba(197, 160, 89, 0.08);
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.6rem;
         }
 
         h1 {
-            font-size: clamp(2.3rem, 5vw, 3.8rem);
+            font-size: clamp(1.6rem, 3.2vw, 2.3rem);
             color: var(--accent-gold);
-            margin: 0 0 1rem;
+            margin: 0 0 0.5rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             font-weight: 300;
+            line-height: 1.25;
         }
 
         .hero-lead {
-            font-size: 1.18rem;
-            line-height: 1.8;
+            font-size: 0.98rem;
+            line-height: 1.6;
             color: var(--muted-text);
             max-width: 780px;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 1.2rem;
         }
 
         /* CATEGORY TABS */
         .category-nav {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 3.5rem;
+            gap: 1rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
         }
 
@@ -138,12 +139,12 @@
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--card-border);
             color: var(--text-white);
-            padding: 0.85rem 2rem;
-            border-radius: 30px;
+            padding: 0.6rem 1.6rem;
+            border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
             letter-spacing: 1px;
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             transition: all 0.3s ease;
         }
 
@@ -151,181 +152,207 @@
             background: var(--accent-gold);
             color: var(--primary-navy);
             border-color: var(--accent-gold);
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.35);
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.35);
         }
 
         /* SECTION STYLING */
         .shop-container {
             max-width: 1140px;
             width: 100%;
-            padding: 0 2rem 5rem;
+            padding: 0 1.5rem 4rem;
         }
 
         .section-title-wrap {
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.6rem;
             border-bottom: 1px solid var(--card-border);
-            padding-bottom: 1rem;
+            padding-bottom: 0.6rem;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 1.6rem;
             color: var(--accent-gold);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 0 0 0.4rem;
+            letter-spacing: 1.8px;
+            margin: 0 0 0.3rem;
             font-weight: 400;
         }
 
         .section-sub {
             color: var(--muted-text);
             margin: 0;
-            font-size: 1.05rem;
+            font-size: 0.94rem;
+            line-height: 1.5;
         }
 
-        /* ELITE PROGRAMS SHOWCASE CARDS */
+        /* 1. ELITE PROGRAMS - SIDE BY SIDE GRID */
         .elite-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 3.5rem;
-            margin-bottom: 5rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
         }
 
         .elite-card {
-            background: linear-gradient(180deg, rgba(17, 34, 64, 0.88), rgba(17, 34, 64, 0.55));
+            background: linear-gradient(180deg, rgba(17, 34, 64, 0.9), rgba(17, 34, 64, 0.6));
             border: 1px solid var(--card-border);
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
-            display: grid;
-            grid-template-columns: 440px 1fr;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .elite-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(197, 160, 89, 0.6);
+            border-color: var(--accent-gold);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
         }
 
-        .elite-media {
+        .elite-media-wrap {
             background: #06101e;
+            height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
-            border-right: 1px solid var(--card-border);
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--card-border);
+            overflow: hidden;
         }
 
-        .elite-media img {
-            width: 100%;
-            height: auto;
-            max-height: 480px;
+        .elite-media-wrap img {
+            max-width: 100%;
+            max-height: 225px;
             object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transition: transform 0.35s ease;
         }
 
-        .elite-content {
-            padding: 2.5rem 3rem;
+        .elite-card:hover .elite-media-wrap img {
+            transform: scale(1.03);
+        }
+
+        .elite-body {
+            padding: 1.6rem 1.6rem 1.4rem;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
-        .elite-tag {
+        .elite-badge {
+            display: inline-block;
+            align-self: flex-start;
             color: var(--accent-gold-light);
-            font-size: 0.82rem;
+            font-size: 0.74rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            background: rgba(197, 160, 89, 0.12);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 4px;
+            padding: 0.25rem 0.6rem;
+            margin-bottom: 0.6rem;
         }
 
         .elite-title {
-            font-size: 2.1rem;
+            font-size: 1.45rem;
             color: #fff;
-            margin: 0 0 1rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            line-height: 1.25;
+            margin: 0 0 0.35rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
         }
 
-        .elite-desc {
+        .elite-author {
+            color: var(--accent-gold-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.9rem;
+        }
+
+        .elite-snippet {
             color: #cbd5e1;
-            line-height: 1.75;
-            font-size: 1.02rem;
-            margin-bottom: 1.3rem;
+            line-height: 1.65;
+            font-size: 0.94rem;
+            margin: 0 0 1.4rem;
+            flex-grow: 1;
         }
 
-        .elite-features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 1.8rem;
+        .elite-card-actions {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: auto;
         }
 
-        .elite-features li {
-            position: relative;
-            padding-left: 1.8rem;
-            margin-bottom: 0.75rem;
-            color: #e2e8f0;
-            font-size: 0.98rem;
-            line-height: 1.5;
-        }
-
-        .elite-features li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent-gold);
-            font-weight: bold;
-        }
-
-        .btn-action {
+        .btn-view-details {
+            flex: 1;
             display: inline-block;
-            align-self: flex-start;
+            text-align: center;
             background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
             color: var(--primary-navy);
-            padding: 1rem 2.4rem;
-            border-radius: 8px;
+            padding: 0.75rem 1.2rem;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: all 0.3s ease;
+            letter-spacing: 1.2px;
+            transition: all 0.25s ease;
             cursor: pointer;
             border: none;
         }
 
-        .btn-action:hover {
-            box-shadow: 0 0 25px rgba(197, 160, 89, 0.5);
+        .btn-view-details:hover {
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.45);
             transform: translateY(-2px);
         }
 
-        /* SELF-STUDY SHOWCASE SECTION (CLEAN CARD GRID) */
+        .btn-quick-inquire {
+            background: transparent;
+            border: 1.5px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.84rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-quick-inquire:hover {
+            background: rgba(197, 160, 89, 0.15);
+            color: #fff;
+        }
+
+        /* 2. SELF-STUDY SHOWCASE SECTION */
         .self-study-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.4rem;
         }
 
         .course-card {
             background: linear-gradient(180deg, rgba(17, 34, 64, 0.85), rgba(17, 34, 64, 0.5));
             border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 2rem 1.6rem;
+            border-radius: 12px;
+            padding: 1.6rem 1.4rem;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             text-align: left;
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
         .course-card:hover {
             border-color: var(--accent-gold);
             transform: translateY(-4px);
-            box-shadow: 0 14px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.5);
         }
 
         .course-badge {
@@ -333,36 +360,36 @@
             align-self: flex-start;
             font-size: 0.72rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.4px;
             color: var(--accent-gold);
             background: rgba(197, 160, 89, 0.1);
             border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 4px;
             padding: 0.2rem 0.55rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
             font-weight: 600;
         }
 
         .course-card h4 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #fff;
-            margin: 0 0 0.5rem;
+            margin: 0 0 0.35rem;
             letter-spacing: 0.5px;
             line-height: 1.3;
         }
 
         .course-sub {
             color: var(--accent-gold-light);
-            font-size: 0.88rem;
+            font-size: 0.84rem;
             font-weight: 500;
-            margin: 0 0 0.9rem;
+            margin: 0 0 0.75rem;
         }
 
         .course-card p {
             color: var(--muted-text);
-            font-size: 0.94rem;
-            line-height: 1.6;
-            margin: 0 0 1.6rem;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            margin: 0 0 1.4rem;
             flex-grow: 1;
         }
 
@@ -371,10 +398,10 @@
             text-align: center;
             border: 1.5px solid var(--accent-gold);
             color: var(--accent-gold);
-            padding: 0.75rem 1.4rem;
+            padding: 0.65rem 1.2rem;
             border-radius: 6px;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             text-transform: uppercase;
             letter-spacing: 1.2px;
             font-weight: 600;
@@ -390,7 +417,7 @@
             box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
         }
 
-        /* MODAL */
+        /* DETAILS POP-UP MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -403,20 +430,38 @@
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(8px);
+            padding: 1.5rem;
+            overflow-y: auto;
         }
 
-        .modal-box {
+        .details-modal-box {
             background: #0d1e38;
             border: 1px solid var(--accent-gold);
             border-radius: 14px;
-            padding: 2.5rem;
-            max-width: 520px;
-            width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            max-width: 780px;
+            width: 100%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.75);
             position: relative;
+            overflow: hidden;
+            animation: modalFadeIn 0.25s ease;
         }
 
-        .modal-close {
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .details-modal-header {
+            padding: 1.6rem 2rem 1.2rem;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            position: relative;
+            background: rgba(10, 25, 47, 0.6);
+        }
+
+        .details-modal-close-icon {
             position: absolute;
             top: 1rem;
             right: 1.2rem;
@@ -425,71 +470,214 @@
             cursor: pointer;
             border: none;
             background: none;
+            line-height: 1;
+            padding: 0;
         }
 
-        .modal-close:hover { color: #fff; }
+        .details-modal-close-icon:hover { color: #fff; }
 
-        .modal-box h3 {
-            color: var(--accent-gold);
-            margin: 0 0 0.5rem;
-            font-size: 1.6rem;
+        .details-badge {
+            display: inline-block;
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-gold-light);
+            background: rgba(197, 160, 89, 0.12);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 4px;
+            padding: 0.2rem 0.6rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
-        .modal-box p {
-            color: var(--muted-text);
+        .details-modal-title {
+            color: #fff;
+            margin: 0 0 0.3rem;
+            font-size: 1.65rem;
+            letter-spacing: 0.5px;
+        }
+
+        .details-modal-sub {
+            color: var(--accent-gold-light);
             font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+            margin: 0;
+            font-weight: 500;
         }
 
-        .modal-box .form-group {
-            margin-bottom: 1.2rem;
+        .details-modal-body {
+            padding: 1.8rem 2rem;
+            overflow-y: auto;
+            color: #cbd5e1;
+            line-height: 1.75;
+            font-size: 0.98rem;
         }
 
-        .modal-box label {
+        .details-modal-body p {
+            margin: 0 0 1.2rem;
+        }
+
+        .details-media-preview {
+            text-align: center;
+            background: #06101e;
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin-bottom: 1.4rem;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .details-media-preview img {
+            max-width: 100%;
+            max-height: 220px;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+
+        .details-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.4rem;
+        }
+
+        .details-features-list li {
+            position: relative;
+            padding-left: 1.6rem;
+            margin-bottom: 0.75rem;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+
+        .details-features-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        .details-modal-footer {
+            padding: 1.2rem 2rem;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+            background: rgba(10, 25, 47, 0.6);
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-modal-close {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--muted-text);
+            padding: 0.75rem 1.8rem;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-modal-close:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        .btn-modal-purchase {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+            color: var(--primary-navy);
+            border: none;
+            padding: 0.75rem 2.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-modal-purchase:hover {
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.5);
+            transform: translateY(-1px);
+        }
+
+        /* PURCHASE / INQUIRY INTAKE MODAL */
+        .intake-modal-box {
+            background: #0d1e38;
+            border: 1px solid var(--accent-gold);
+            border-radius: 14px;
+            padding: 2.2rem;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            position: relative;
+            animation: modalFadeIn 0.25s ease;
+        }
+
+        .intake-modal-box h3 {
+            color: var(--accent-gold);
+            margin: 0 0 0.4rem;
+            font-size: 1.5rem;
+        }
+
+        .intake-modal-box p {
+            color: var(--muted-text);
+            font-size: 0.92rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.1rem;
+        }
+
+        .form-group label {
             display: block;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--accent-gold-light);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
         }
 
-        .modal-box input, .modal-box textarea {
+        .form-group input, .form-group textarea {
             width: 100%;
-            padding: 0.85rem 1rem;
+            padding: 0.8rem 0.95rem;
             background: rgba(10, 25, 47, 0.7);
             border: 1px solid rgba(197, 160, 89, 0.3);
-            border-radius: 8px;
+            border-radius: 6px;
             color: #fff;
             font-family: inherit;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
         }
 
-        .modal-box input:focus, .modal-box textarea:focus {
+        .form-group input:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--accent-gold);
         }
 
         footer {
             margin-top: auto;
-            padding: 2.5rem 2rem;
+            padding: 2.2rem 2rem;
             text-align: center;
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.35);
             font-size: 0.85rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             width: 100%;
         }
 
-        @media (max-width: 900px) {
-            .elite-card { grid-template-columns: 1fr; }
-            .elite-media { border-right: none; border-bottom: 1px solid var(--card-border); padding: 2rem 1rem; }
-            .elite-content { padding: 2rem 1.5rem; }
+        @media (max-width: 850px) {
+            .elite-grid { grid-template-columns: 1fr; }
+            .hero-section { margin-top: 110px; }
+            .details-modal-box { max-height: 95vh; }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- NAVBAR -->
     <nav class="navbar">
         <a href="index.html" class="nav-brand">The Magnetic Mind Institute</a>
         <div class="nav-links">
@@ -503,15 +691,16 @@
             <a href="creator-studio.html" class="nav-link" style="color: #25F4EE; font-weight: bold;">Creator Studio</a>
             <a id="nav-terms-link" href="https://themagneticmind.institute/terms-of-service/" class="nav-link">Terms of Service</a>
             <a id="nav-privacy-link" href="https://themagneticmind.institute/privacy-policy/" class="nav-link">Privacy Policy</a>
-            <a href="index.html#login" class="nav-link" style="color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 5px 15px; border-radius: 4px;">Log In</a>
+            <a href="index.html#login" class="nav-link" style="color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 4px 12px; border-radius: 4px;">Log In</a>
         </div>
     </nav>
 
+    <!-- COMPACT HERO HEADER (Programs immediately visible) -->
     <div class="hero-section">
         <span class="pill-badge">Institute Programs &amp; Curriculum</span>
-        <h1>Transform Your Mind.<br><span style="color:#fff;">Multiply Your Results.</span></h1>
+        <h1>Transform Your Mind. <span style="color:#fff;">Multiply Your Results.</span></h1>
         <p class="hero-lead">
-            Whether you are stepping into premier executive mentorship with world-renowned consultants or mastering the fundamental laws of human achievement through self-study, our programs provide the exact blueprint for lasting transformation.
+            Select from our premier executive mentorship programs or self-study audio curricula below to master the mental laws of achievement.
         </p>
 
         <div class="category-nav">
@@ -521,8 +710,8 @@
     </div>
 
     <main class="shop-container">
-        <!-- 1. ELITE PROGRAMS -->
-        <section id="elite" style="margin-bottom: 5rem;">
+        <!-- 1. ELITE PROGRAMS (SIDE BY SIDE 2-COLUMN GRID) -->
+        <section id="elite">
             <div class="section-title-wrap">
                 <h2 class="section-title">Elite Programs</h2>
                 <p class="section-sub">Comprehensive, high-touch transformational mentorship for visionary leaders, entrepreneurs, and teams.</p>
@@ -531,57 +720,43 @@
             <div class="elite-grid">
                 <!-- PROGRAM 1: Thinking Into Results -->
                 <div class="elite-card">
-                    <div class="elite-media">
+                    <div class="elite-media-wrap">
                         <img src="shop/images/thinking-into-results.png" alt="Thinking Into Results - Bob Proctor &amp; Sandy Gallagher">
                     </div>
-                    <div class="elite-content">
-                        <span class="elite-tag">Flagship Executive Mentorship</span>
-                        <h3 class="elite-title">Thinking Into Results</h3>
-                        <p class="elite-desc">
-                            Created by legendary human-potential pioneer <strong>Bob Proctor</strong> and corporate attorney <strong>Sandy Gallagher</strong>, <em>Thinking Into Results</em> is a game-changing 12-lesson blueprint engineered to take your personal and professional results to extraordinary heights.
-                        </p>
-                        <p class="elite-desc" style="margin-top: -0.5rem;">
-                            At the heart of the program is the undeniable law that <strong>our thoughts shape our reality</strong>. While traditional education focuses only on surface behaviors, this program challenges individuals to think bigger, expand their vision of what is possible, and directly reprogram the subconscious paradigm that controls 95% of daily habits.
-                        </p>
-                        <ul class="elite-features">
-                            <li><strong>12 Progressive Mastery Lessons:</strong> Layered sequentially to take you from crystal-clear goal crystallization and conquering the terror barrier, to unlocking your higher mental faculties.</li>
-                            <li><strong>Practical Action Over Theory:</strong> Packed with concrete exercises, daily repetition rituals, and application tools to permanently turn understanding into habit.</li>
-                            <li><strong>Proven for Individuals &amp; Organizations:</strong> Utilized by Fortune 500 companies, corporate teams, and entrepreneurs worldwide to elevate productivity, skyrocket sales, and ignite team dynamics.</li>
-                        </ul>
-                        <button class="btn-action" onclick="openProgramModal('Thinking Into Results')">Inquire &amp; Enroll</button>
+                    <div class="elite-body">
+                        <div>
+                            <span class="elite-badge">Flagship Executive Mentorship</span>
+                            <h3 class="elite-title">Thinking Into Results</h3>
+                            <div class="elite-author">Bob Proctor &amp; Sandy Gallagher</div>
+                            <p class="elite-snippet">
+                                A game-changing 12-lesson blueprint engineered to take your personal and professional results to extraordinary heights by directly reprogramming the subconscious paradigm.
+                            </p>
+                        </div>
+                        <div class="elite-card-actions">
+                            <button class="btn-view-details" onclick="openProgramDetails('thinking-into-results')">View Details</button>
+                            <button class="btn-quick-inquire" onclick="openPurchaseModal('Thinking Into Results')">Purchase / Enroll</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- PROGRAM 2: The Audition -->
                 <div class="elite-card">
-                    <div class="elite-media">
+                    <div class="elite-media-wrap">
                         <img src="shop/images/the-audition.png" alt="The Audition - Melva Slythe Farquharson">
                     </div>
-                    <div class="elite-content">
-                        <span class="elite-tag">Elite Identity &amp; Purpose Mentorship</span>
-                        <h3 class="elite-title">The Audition</h3>
-                        <p class="elite-desc" style="font-weight: 600; color: var(--accent-gold-light);">
-                            Manifesting Your Vision by Living as Your Future Self &mdash; by Melva Slythe Farquharson
-                        </p>
-                        <p class="elite-desc" style="font-style: italic; color: #e2e8f0;">
-                            What if the life you’ve always dreamed of isn’t something you achieve someday, but something you become today?
-                        </p>
-                        <p class="elite-desc">
-                            In <em>The Audition</em>, you’ll discover a transformative framework for manifesting your vision by stepping into the role of your future self—the version of you who already has the success, confidence, and fulfillment you desire. Through powerful insights, actionable strategies, and inspiring stories, this program will guide you to rehearse your vision, align your actions with your purpose, and embody the mindset and habits of the person you’re destined to be.
-                        </p>
-                        <ul class="elite-features">
-                            <li>Break free from limiting beliefs and self-doubt that hold you back.</li>
-                            <li>Align your daily habits and decisions with your highest potential.</li>
-                            <li>Recognize the signs of your manifestation unfolding in real time.</li>
-                            <li>Step into the spotlight of your life with confidence and clarity.</li>
-                        </ul>
-                        <p class="elite-desc" style="font-size: 0.96rem; color: var(--muted-text);">
-                            Whether you’re pursuing a personal goal, a professional dream, or a deeper sense of purpose, <em>The Audition</em> will empower you to live as the star of your own story. The stage is set, the spotlight is waiting—are you ready to claim your role and bring your vision to life?
-                        </p>
-                        <p class="elite-desc" style="font-weight: 600; color: var(--accent-gold-light); margin-top: -0.3rem;">
-                            It’s time to stop waiting for your dream life to arrive. Step into the audition, and start living it now.
-                        </p>
-                        <button class="btn-action" onclick="openProgramModal('The Audition')">Inquire &amp; Enroll</button>
+                    <div class="elite-body">
+                        <div>
+                            <span class="elite-badge">Elite Identity Mentorship</span>
+                            <h3 class="elite-title">The Audition</h3>
+                            <div class="elite-author">Melva Slythe Farquharson</div>
+                            <p class="elite-snippet">
+                                What if the life you’ve always dreamed of isn’t something you achieve someday, but something you become today? Step into the audition, rehearse your vision, and live as your future self.
+                            </p>
+                        </div>
+                        <div class="elite-card-actions">
+                            <button class="btn-view-details" onclick="openProgramDetails('the-audition')">View Details</button>
+                            <button class="btn-quick-inquire" onclick="openPurchaseModal('The Audition')">Purchase / Enroll</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -603,7 +778,7 @@
                         <div class="course-sub">Wallace D. Wattles &amp; Bob Proctor</div>
                         <p>Discover the exact, scientific mental laws that govern financial abundance. Learn how to think and act in the 'Certain Way' to attract perpetual supply.</p>
                     </div>
-                    <button class="btn-outline" onclick="openProgramModal('The Science of Getting Rich')">View Details</button>
+                    <button class="btn-outline" onclick="openProgramDetails('science-of-getting-rich')">View Details</button>
                 </div>
 
                 <!-- Course 2 -->
@@ -614,7 +789,7 @@
                         <div class="course-sub">Earl Nightingale &amp; Bob Proctor</div>
                         <p>The definitive personal leadership curriculum. Learn how attitude, expectation, value creation, and service directly determine your earning power.</p>
                     </div>
-                    <button class="btn-outline" onclick="openProgramModal('Lead The Field')">View Details</button>
+                    <button class="btn-outline" onclick="openProgramDetails('lead-the-field')">View Details</button>
                 </div>
 
                 <!-- Course 3 -->
@@ -625,7 +800,7 @@
                         <div class="course-sub">Raymond Holliwell &amp; Bob Proctor</div>
                         <p>An in-depth exploration of the 11 Universal Laws of the Mind. Stop struggling against reality and align your vibration with effortless manifestation.</p>
                     </div>
-                    <button class="btn-outline" onclick="openProgramModal('Working With The Law')">View Details</button>
+                    <button class="btn-outline" onclick="openProgramDetails('working-with-the-law')">View Details</button>
                 </div>
 
                 <!-- Course 4 -->
@@ -636,7 +811,7 @@
                         <div class="course-sub">Daily Subconscious Video Coaching</div>
                         <p>Bite-sized daily video insights delivered every morning to train your subconscious mind for steady, relentless progression every single day.</p>
                     </div>
-                    <button class="btn-outline" onclick="openProgramModal('Six Minutes to Success')">View Details</button>
+                    <button class="btn-outline" onclick="openProgramDetails('six-minutes-to-success')">View Details</button>
                 </div>
 
                 <!-- Course 5 -->
@@ -647,7 +822,7 @@
                         <div class="course-sub">Psychology of Persuasion &amp; Service</div>
                         <p>Shift from high-pressure selling to high-trust advisory. Understand the psychology of the buyer, overcome objections, and close with conviction.</p>
                     </div>
-                    <button class="btn-outline" onclick="openProgramModal('The Art of Professional Selling')">View Details</button>
+                    <button class="btn-outline" onclick="openProgramDetails('art-of-selling')">View Details</button>
                 </div>
 
                 <!-- Course 6 -->
@@ -658,7 +833,7 @@
                         <div class="course-sub">Attracting Wealth &amp; Opportunity</div>
                         <p>Proven frameworks to eliminate scarcity programming and install a permanent prosperity consciousness that magnetizes wealth.</p>
                     </div>
-                    <button class="btn-outline" onclick="openProgramModal('Principles of Prosperity')">View Details</button>
+                    <button class="btn-outline" onclick="openProgramDetails('principles-of-prosperity')">View Details</button>
                 </div>
 
                 <!-- Course 7 -->
@@ -669,7 +844,7 @@
                         <div class="course-sub">Rewiring Your Internal Self-Image</div>
                         <p>You can never consistently outperform your internal picture of who you are. Upgrade your self-image mechanism to match your highest ambitions.</p>
                     </div>
-                    <button class="btn-outline" onclick="openProgramModal('The Winner\'s Image')">View Details</button>
+                    <button class="btn-outline" onclick="openProgramDetails('winners-image')">View Details</button>
                 </div>
 
                 <!-- Course 8 -->
@@ -680,19 +855,38 @@
                         <div class="course-sub">Designing What You Truly Desire</div>
                         <p>Stop settling for what you know you can achieve (A goals) or think you can achieve (B goals). Learn how to set fantasy C-type goals that pull you forward.</p>
                     </div>
-                    <button class="btn-outline" onclick="openProgramModal('The C-Type Goal')">View Details</button>
+                    <button class="btn-outline" onclick="openProgramDetails('c-type-goal')">View Details</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- INQUIRY MODAL -->
-    <div class="modal" id="programModal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeProgramModal()">&times;</button>
-            <h3>Program Inquiry</h3>
-            <p id="modalSub">Connect with our admissions team to learn more about enrollment and schedules.</p>
-            <form id="inquiryForm">
+    <!-- DETAILS POP-UP MODAL (Shows full details + Purchase Button + Close Button) -->
+    <div class="modal" id="detailsModal">
+        <div class="details-modal-box">
+            <div class="details-modal-header">
+                <button class="details-modal-close-icon" onclick="closeDetailsModal()">&times;</button>
+                <span class="details-badge" id="popupBadge">Program</span>
+                <h3 class="details-modal-title" id="popupTitle">Program Title</h3>
+                <div class="details-modal-sub" id="popupSub">Subtitle / Authors</div>
+            </div>
+            <div class="details-modal-body" id="popupBody">
+                <!-- Dynamically populated -->
+            </div>
+            <div class="details-modal-footer">
+                <button class="btn-modal-close" onclick="closeDetailsModal()">Close</button>
+                <button class="btn-modal-purchase" id="popupPurchaseBtn" onclick="triggerPurchaseFromDetails()">Purchase / Enroll Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PURCHASE / ENROLLMENT INTAKE MODAL -->
+    <div class="modal" id="purchaseModal">
+        <div class="intake-modal-box">
+            <button class="details-modal-close-icon" onclick="closePurchaseModal()">&times;</button>
+            <h3>Program Purchase &amp; Enrollment</h3>
+            <p id="purchaseModalSub">Complete your details below and our admissions team will contact you to finalize your enrollment.</p>
+            <form id="purchaseForm">
                 <input type="hidden" id="selectedProgram" name="program">
                 <div class="form-group">
                     <label for="clientName">Full Name *</label>
@@ -707,10 +901,13 @@
                     <input type="text" id="clientPhone" placeholder="+1 (555) 000-0000">
                 </div>
                 <div class="form-group">
-                    <label for="clientNotes">Questions / Goals</label>
-                    <textarea id="clientNotes" rows="3" placeholder="Tell us about your objectives..."></textarea>
+                    <label for="clientNotes">Questions / Objectives</label>
+                    <textarea id="clientNotes" rows="3" placeholder="Tell us about your transformation goals..."></textarea>
                 </div>
-                <button type="submit" class="btn-action" style="width:100%; text-align:center;" id="modalSubmitBtn">Submit Inquiry</button>
+                <div style="display:flex; gap:0.8rem; margin-top:1.2rem;">
+                    <button type="button" class="btn-modal-close" style="flex:1;" onclick="closePurchaseModal()">Close</button>
+                    <button type="submit" class="btn-modal-purchase" style="flex:2; text-align:center;" id="modalSubmitBtn">Submit Order &amp; Enroll</button>
+                </div>
             </form>
             <div id="modalStatus" style="margin-top:1rem; text-align:center; font-weight:bold; color:var(--accent-gold);"></div>
         </div>
@@ -726,29 +923,220 @@
     </footer>
 
     <script>
-        function openProgramModal(programTitle) {
-            document.getElementById('selectedProgram').value = programTitle;
-            document.getElementById('modalSub').textContent = 'Inquiring about: ' + programTitle;
-            document.getElementById('modalStatus').textContent = '';
-            document.getElementById('programModal').style.display = 'flex';
-        }
-
-        function closeProgramModal() {
-            document.getElementById('programModal').style.display = 'none';
-        }
-
-        window.onclick = function(e) {
-            if (e.target === document.getElementById('programModal')) {
-                closeProgramModal();
+        // PROGRAM DETAILS REPOSITORY
+        var PROGRAM_DETAILS = {
+            "thinking-into-results": {
+                title: "Thinking Into Results",
+                sub: "Created by Bob Proctor & Sandy Gallagher",
+                badge: "Flagship Executive Mentorship",
+                image: "shop/images/thinking-into-results.png",
+                bodyHtml: `
+                    <div class="details-media-preview">
+                        <img src="shop/images/thinking-into-results.png" alt="Thinking Into Results">
+                    </div>
+                    <p><strong>Bob Proctor's Thinking Into Results</strong> program is a game-changer for individuals seeking to take their personal and professional lives to the next level. As a consultant and coach, I’ve seen first-hand the transformative power of this program in the lives of my clients.</p>
+                    <p>The Thinking Into Results program is a comprehensive curriculum that delves into the power of the mind, the principles of success, and the habits that lead to lasting achievement. It challenges individuals to think bigger, to expand their vision of what’s possible, and to take action to achieve their goals.</p>
+                    <p>At the heart of the program is the idea that <strong>our thoughts shape our reality</strong>. The program teaches individuals how to take control of their thoughts and to use them to create the life they want. It’s a powerful concept that has been proven time and time again.</p>
+                    <p>The program is broken down into <strong>twelve progressive lessons</strong>, each designed to build on the previous lesson:</p>
+                    <ul class="details-features-list">
+                        <li><strong>12 Progressive Lessons:</strong> Sequentially layered from the power of worthy goals to habit restructuring and terror barrier breakthroughs.</li>
+                        <li><strong>Action Over Theory:</strong> Packed with exercises and activities that help individuals directly apply principles in their daily routines.</li>
+                        <li><strong>Proven for Individuals & Teams:</strong> Trusted by corporate teams and executives worldwide to improve productivity, increase sales, and ignite team dynamics.</li>
+                    </ul>
+                    <p>Whether you are seeking personal freedom, business expansion, or executive mastery, Thinking Into Results provides the exact blueprint for permanent paradigm transformation.</p>
+                `
+            },
+            "the-audition": {
+                title: "The Audition",
+                sub: "Manifesting Your Vision by Living as Your Future Self — by Melva Slythe Farquharson",
+                badge: "Elite Identity & Purpose Mentorship",
+                image: "shop/images/the-audition.png",
+                bodyHtml: `
+                    <div class="details-media-preview">
+                        <img src="shop/images/the-audition.png" alt="The Audition">
+                    </div>
+                    <p style="font-size:1.05rem; font-style:italic; color:var(--accent-gold-light);">
+                        What if the life you’ve always dreamed of isn’t something you achieve someday, but something you become today?
+                    </p>
+                    <p>In <strong>The Audition</strong>, you’ll discover a transformative framework for manifesting your vision by stepping into the role of your future self—the version of you who already has the success, confidence, and fulfillment you desire.</p>
+                    <p>Through powerful insights, actionable strategies, and inspiring stories, this program will guide you to rehearse your vision, align your actions with your purpose, and embody the mindset and habits of the person you’re destined to be.</p>
+                    <p><strong>You’ll learn how to:</strong></p>
+                    <ul class="details-features-list">
+                        <li>Break free from limiting beliefs and self-doubt that hold you back.</li>
+                        <li>Align your daily habits and decisions with your highest potential.</li>
+                        <li>Recognize the signs of your manifestation unfolding in real time.</li>
+                        <li>Step into the spotlight of your life with confidence and clarity.</li>
+                    </ul>
+                    <p>Whether you’re pursuing a personal goal, a professional dream, or a deeper sense of purpose, <em>The Audition</em> will empower you to live as the star of your own story. The stage is set, the spotlight is waiting—are you ready to claim your role and bring your vision to life?</p>
+                    <p style="font-weight:600; color:var(--accent-gold-light);">
+                        It’s time to stop waiting for your dream life to arrive. Step into the audition, and start living it now.
+                    </p>
+                `
+            },
+            "science-of-getting-rich": {
+                title: "The Science of Getting Rich",
+                sub: "Wallace D. Wattles & Bob Proctor",
+                badge: "Prosperity Laws",
+                bodyHtml: `
+                    <p>There is a exact science of getting rich, and it is an exact science, like algebra or arithmetic. There are certain laws which govern the process of acquiring riches; once these laws are learned and obeyed by any man, he will get rich with mathematical certainty.</p>
+                    <p>In this classic curriculum, Bob Proctor expands upon Wallace D. Wattles' timeless masterpiece to teach you:</p>
+                    <ul class="details-features-list">
+                        <li>The Certain Way of thinking and acting to magnetize supply.</li>
+                        <li>How to shift from the competitive mind to the creative mind.</li>
+                        <li>The Law of Increase and how to give everyone more in use value than you take in cash value.</li>
+                        <li>Eliminating fear, hurry, and doubt from your financial vibration.</li>
+                    </ul>
+                `
+            },
+            "lead-the-field": {
+                title: "Lead The Field",
+                sub: "Earl Nightingale & Bob Proctor",
+                badge: "Executive Leadership",
+                bodyHtml: `
+                    <p>Often referred to as the "Program of Presidents", <em>Lead The Field</em> has transformed the careers and lives of hundreds of thousands of leaders across the globe.</p>
+                    <p>Key topics covered in this master curriculum include:</p>
+                    <ul class="details-features-list">
+                        <li>The Magic Word (Attitude) and how expectation determines results.</li>
+                        <li>Acres of Diamonds: Recognizing the hidden wealth and opportunity where you stand.</li>
+                        <li>The Law of Cause and Effect: How service determines earnings.</li>
+                        <li>Mind Over Money: Developing your intellectual muscle and creative problem solving.</li>
+                    </ul>
+                `
+            },
+            "working-with-the-law": {
+                title: "Working With The Law",
+                sub: "Raymond Holliwell & Bob Proctor",
+                badge: "Universal Laws",
+                bodyHtml: `
+                    <p>Discover the 11 Universal Laws of the Mind that govern all achievement, health, and peace of mind.</p>
+                    <ul class="details-features-list">
+                        <li>The Law of Thinking: Learning to hold ideas without contradictory doubts.</li>
+                        <li>The Law of Supply: How supply is unlimited and waiting for mental expression.</li>
+                        <li>The Law of Attraction: Moving your mental vibration into resonance with your desires.</li>
+                        <li>The Law of Compensation: You are compensated directly for the need for what you do, your ability to do it, and the difficulty of replacing you.</li>
+                    </ul>
+                `
+            },
+            "six-minutes-to-success": {
+                title: "Six Minutes to Success",
+                sub: "Daily Subconscious Video Coaching",
+                badge: "Daily Micro-Mentorship",
+                bodyHtml: `
+                    <p>Spend just six minutes every morning with Bob Proctor to train your subconscious mind for steady, relentless progression.</p>
+                    <ul class="details-features-list">
+                        <li>Bite-sized daily video insights delivered straight to your inbox.</li>
+                        <li>Reprograms your daily habits and mindset before your day begins.</li>
+                        <li>Continuous spaced repetition that guarantees long-term paradigm shifts.</li>
+                    </ul>
+                `
+            },
+            "art-of-selling": {
+                title: "The Art of Professional Selling",
+                sub: "Psychology of Persuasion & Service",
+                badge: "Sales Mastery",
+                bodyHtml: `
+                    <p>Shift from aggressive selling to high-trust advisory. Selling is not doing something TO someone; it is doing something FOR someone.</p>
+                    <ul class="details-features-list">
+                        <li>The mental preparation of top 1% sales earners.</li>
+                        <li>How to read client needs and build instant rapport.</li>
+                        <li>Handling objections with effortless confidence.</li>
+                        <li>Closing with conviction and establishing long-term advisory relationships.</li>
+                    </ul>
+                `
+            },
+            "principles-of-prosperity": {
+                title: "Principles of Prosperity",
+                sub: "Attracting Wealth & Opportunity",
+                badge: "Wealth Consciousness",
+                bodyHtml: `
+                    <p>Frameworks to eliminate scarcity programming and install a permanent prosperity consciousness.</p>
+                    <ul class="details-features-list">
+                        <li>Eradicating subconscious poverty complexes.</li>
+                        <li>Developing multiple sources of income (MSIs).</li>
+                        <li>Aligning your daily actions with abundance.</li>
+                    </ul>
+                `
+            },
+            "winners-image": {
+                title: "The Winner's Image",
+                sub: "Rewiring Your Internal Self-Image",
+                badge: "Self-Image Cybernetics",
+                bodyHtml: `
+                    <p>Your cybernetic self-image acts like an internal thermostat. You will never consistently outperform your internal picture of who you are.</p>
+                    <ul class="details-features-list">
+                        <li>Releasing old conditioned labels and self-limiting identities.</li>
+                        <li>Building and internalizing your ideal self-image.</li>
+                        <li>Aligning your outer behavior with your higher internal identity.</li>
+                    </ul>
+                `
+            },
+            "c-type-goal": {
+                title: "The C-Type Goal",
+                sub: "Designing What You Truly Desire",
+                badge: "Goal Formulation",
+                bodyHtml: `
+                    <p>Stop settling for what you know you can do (A goals) or what you think you can do (B goals). Learn how to set fantasy C-type goals that stretch your imagination and pull you into a completely new life.</p>
+                    <ul class="details-features-list">
+                        <li>The 3 categories of goals: A, B, and C.</li>
+                        <li>How to want what you want without worrying about "how" it will happen.</li>
+                        <li>Connecting your heart's desire to your daily action plan.</li>
+                    </ul>
+                `
             }
         };
 
-        document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
+        var currentActiveProgramTitle = "";
+
+        function openProgramDetails(key) {
+            var data = PROGRAM_DETAILS[key];
+            if (!data) return;
+
+            currentActiveProgramTitle = data.title;
+            document.getElementById('popupBadge').textContent = data.badge;
+            document.getElementById('popupTitle').textContent = data.title;
+            document.getElementById('popupSub').textContent = data.sub;
+            document.getElementById('popupBody').innerHTML = data.bodyHtml;
+            document.getElementById('popupPurchaseBtn').textContent = 'Purchase / Enroll in ' + data.title;
+
+            document.getElementById('detailsModal').style.display = 'flex';
+        }
+
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').style.display = 'none';
+        }
+
+        function triggerPurchaseFromDetails() {
+            closeDetailsModal();
+            openPurchaseModal(currentActiveProgramTitle);
+        }
+
+        function openPurchaseModal(programTitle) {
+            document.getElementById('selectedProgram').value = programTitle;
+            document.getElementById('purchaseModalSub').textContent = 'Finalize your enrollment for: ' + programTitle;
+            document.getElementById('modalStatus').textContent = '';
+            document.getElementById('purchaseModal').style.display = 'flex';
+        }
+
+        function closePurchaseModal() {
+            document.getElementById('purchaseModal').style.display = 'none';
+        }
+
+        window.onclick = function(e) {
+            if (e.target === document.getElementById('detailsModal')) {
+                closeDetailsModal();
+            }
+            if (e.target === document.getElementById('purchaseModal')) {
+                closePurchaseModal();
+            }
+        };
+
+        // SUBMIT PURCHASE FORM
+        document.getElementById('purchaseForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             var btn = document.getElementById('modalSubmitBtn');
             var statusDiv = document.getElementById('modalStatus');
             btn.disabled = true;
-            btn.textContent = 'Sending...';
+            btn.textContent = 'Processing...';
 
             var program = document.getElementById('selectedProgram').value;
             var name = document.getElementById('clientName').value;
@@ -756,12 +1144,12 @@
             var phone = document.getElementById('clientPhone').value;
             var notes = document.getElementById('clientNotes').value;
 
-            var message = "PROGRAM INQUIRY:\n" +
+            var message = "PROGRAM PURCHASE / ENROLLMENT ORDER:\n" +
                           "Program: " + program + "\n" +
                           "Name: " + name + "\n" +
                           "Email: " + email + "\n" +
                           "Phone: " + (phone || "N/A") + "\n" +
-                          "Goals/Notes:\n" + (notes || "N/A");
+                          "Notes/Goals:\n" + (notes || "N/A");
 
             try {
                 var response = await fetch("https://backend-deploy-hlq8.onrender.com/api/institute/contact", {
@@ -770,27 +1158,27 @@
                     body: JSON.stringify({
                         name: name,
                         email: email,
-                        subject: "[Program Inquiry] " + program + " - " + name,
+                        subject: "[Program Purchase/Enrollment] " + program + " - " + name,
                         message: message
                     })
                 });
                 var data = await response.json();
                 if (data.status === 'ok') {
-                    statusDiv.textContent = 'Thank you! Your inquiry has been sent to our team.';
+                    statusDiv.textContent = 'Thank you! Your enrollment order has been received. Our team will contact you shortly.';
                     statusDiv.style.color = '#5fd3a0';
-                    document.getElementById('inquiryForm').reset();
-                    setTimeout(closeProgramModal, 2500);
+                    document.getElementById('purchaseForm').reset();
+                    setTimeout(closePurchaseModal, 3000);
                 } else {
-                    statusDiv.textContent = data.message || 'Error sending inquiry. Please try again.';
+                    statusDiv.textContent = data.message || 'Error sending order. Please try again.';
                     statusDiv.style.color = '#ff7b7b';
                 }
             } catch (err) {
-                statusDiv.textContent = 'Inquiry submitted. Our team will contact you shortly.';
+                statusDiv.textContent = 'Enrollment order received! Our team will contact you shortly.';
                 statusDiv.style.color = '#5fd3a0';
-                setTimeout(closeProgramModal, 2500);
+                setTimeout(closePurchaseModal, 3000);
             } finally {
                 btn.disabled = false;
-                btn.textContent = 'Submit Inquiry';
+                btn.textContent = 'Submit Order & Enroll';
             }
         });
     </script>
