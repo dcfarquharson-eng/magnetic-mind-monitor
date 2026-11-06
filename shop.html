@@ -43,7 +43,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 0.9rem 2rem;
+            padding: 0.8rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -73,7 +73,7 @@
         .nav-link {
             color: var(--text-white);
             text-decoration: none;
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: color 0.3s ease;
@@ -86,159 +86,122 @@
             opacity: 1;
         }
 
-        /* COMPACT HERO HEADER */
-        .hero-section {
-            margin-top: 85px;
-            padding: 1.5rem 1.5rem 0.8rem;
-            max-width: 1100px;
+        /* COMPACT SHOP HEADER BAR (Immediate visibility without scrolling) */
+        .shop-header-bar {
+            margin-top: 65px;
+            padding: 0.8rem 1.5rem 0.6rem;
+            max-width: 1140px;
             width: 100%;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
         }
 
-        .pill-badge {
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border: 1px solid var(--card-border);
-            border-radius: 999px;
-            color: var(--accent-gold-light);
-            font-size: 0.78rem;
-            letter-spacing: 1.8px;
-            text-transform: uppercase;
-            background: rgba(197, 160, 89, 0.08);
-            margin-bottom: 0.6rem;
-        }
-
-        h1 {
-            font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+        .shop-title-wrap h1 {
+            font-size: 1.35rem;
             color: var(--accent-gold);
-            margin: 0 0 0.5rem;
+            margin: 0 0 0.15rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            font-weight: 300;
-            line-height: 1.25;
+            font-weight: 400;
+            line-height: 1.2;
         }
 
-        .hero-lead {
-            font-size: 0.98rem;
-            line-height: 1.6;
+        .shop-tagline {
+            font-size: 0.82rem;
             color: var(--muted-text);
-            max-width: 780px;
-            margin: 0 auto 1.2rem;
+            letter-spacing: 0.5px;
         }
 
-        /* CATEGORY TABS */
         .category-nav {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 0;
         }
 
         .cat-btn {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--card-border);
             color: var(--text-white);
-            padding: 0.6rem 1.6rem;
-            border-radius: 25px;
+            padding: 0.45rem 1.1rem;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
-            letter-spacing: 1px;
-            font-size: 0.88rem;
-            transition: all 0.3s ease;
+            letter-spacing: 0.8px;
+            font-size: 0.8rem;
+            transition: all 0.25s ease;
         }
 
         .cat-btn:hover, .cat-btn.active {
             background: var(--accent-gold);
             color: var(--primary-navy);
             border-color: var(--accent-gold);
-            box-shadow: 0 0 15px rgba(197, 160, 89, 0.35);
+            box-shadow: 0 0 12px rgba(197, 160, 89, 0.35);
         }
 
         /* SECTION STYLING */
         .shop-container {
             max-width: 1140px;
             width: 100%;
-            padding: 0 1.5rem 4rem;
+            padding: 1rem 1.5rem 3.5rem;
         }
 
-        .section-title-wrap {
-            margin-bottom: 1.6rem;
-            border-bottom: 1px solid var(--card-border);
-            padding-bottom: 0.6rem;
-        }
-
-        .section-title {
-            font-size: 1.6rem;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            letter-spacing: 1.8px;
-            margin: 0 0 0.3rem;
-            font-weight: 400;
-        }
-
-        .section-sub {
-            color: var(--muted-text);
-            margin: 0;
-            font-size: 0.94rem;
-            line-height: 1.5;
-        }
-
-        /* 1. ELITE PROGRAMS - SIDE BY SIDE GRID */
+        /* 1. ELITE PROGRAMS - SIDE BY SIDE 2-COLUMN GRID (COMPACT & SLEEK) */
         .elite-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-bottom: 4rem;
+            gap: 1.4rem;
+            margin-bottom: 2.8rem;
         }
 
         .elite-card {
             background: linear-gradient(180deg, rgba(17, 34, 64, 0.9), rgba(17, 34, 64, 0.6));
             border: 1px solid var(--card-border);
-            border-radius: 14px;
+            border-radius: 12px;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            display: grid;
+            grid-template-columns: 145px 1fr;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .elite-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             border-color: var(--accent-gold);
-            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
         }
 
         .elite-media-wrap {
             background: #06101e;
-            height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.2rem;
-            border-bottom: 1px solid var(--card-border);
+            padding: 0.8rem;
+            border-right: 1px solid var(--card-border);
             overflow: hidden;
         }
 
         .elite-media-wrap img {
             max-width: 100%;
-            max-height: 225px;
+            max-height: 190px;
             object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-            transition: transform 0.35s ease;
+            border-radius: 6px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+            transition: transform 0.3s ease;
         }
 
         .elite-card:hover .elite-media-wrap img {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
 
         .elite-body {
-            padding: 1.6rem 1.6rem 1.4rem;
+            padding: 1.1rem 1.3rem;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
             justify-content: space-between;
         }
 
@@ -246,44 +209,48 @@
             display: inline-block;
             align-self: flex-start;
             color: var(--accent-gold-light);
-            font-size: 0.74rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.2px;
             font-weight: bold;
             background: rgba(197, 160, 89, 0.12);
             border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 4px;
-            padding: 0.25rem 0.6rem;
-            margin-bottom: 0.6rem;
+            padding: 0.15rem 0.5rem;
+            margin-bottom: 0.35rem;
         }
 
         .elite-title {
-            font-size: 1.45rem;
+            font-size: 1.22rem;
             color: #fff;
-            margin: 0 0 0.35rem;
+            margin: 0 0 0.15rem;
             font-weight: 500;
             letter-spacing: 0.5px;
-            line-height: 1.3;
+            line-height: 1.25;
         }
 
         .elite-author {
             color: var(--accent-gold-light);
-            font-size: 0.9rem;
+            font-size: 0.82rem;
             font-weight: 500;
-            margin-bottom: 0.9rem;
+            margin-bottom: 0.45rem;
         }
 
         .elite-snippet {
             color: #cbd5e1;
-            line-height: 1.65;
-            font-size: 0.94rem;
-            margin: 0 0 1.4rem;
+            line-height: 1.45;
+            font-size: 0.84rem;
+            margin: 0 0 0.85rem;
             flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .elite-card-actions {
             display: flex;
-            gap: 0.8rem;
+            gap: 0.6rem;
             margin-top: auto;
         }
 
@@ -293,35 +260,36 @@
             text-align: center;
             background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
             color: var(--primary-navy);
-            padding: 0.75rem 1.2rem;
+            padding: 0.58rem 0.9rem;
             border-radius: 6px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
+            letter-spacing: 1px;
             transition: all 0.25s ease;
             cursor: pointer;
             border: none;
         }
 
         .btn-view-details:hover {
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.45);
-            transform: translateY(-2px);
+            box-shadow: 0 0 16px rgba(197, 160, 89, 0.45);
+            transform: translateY(-1px);
         }
 
         .btn-quick-inquire {
             background: transparent;
-            border: 1.5px solid var(--accent-gold);
+            border: 1px solid var(--accent-gold);
             color: var(--accent-gold);
-            padding: 0.75rem 1rem;
+            padding: 0.58rem 0.85rem;
             border-radius: 6px;
             font-weight: 600;
-            font-size: 0.84rem;
+            font-size: 0.78rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             cursor: pointer;
             transition: all 0.25s ease;
+            white-space: nowrap;
         }
 
         .btn-quick-inquire:hover {
@@ -330,17 +298,43 @@
         }
 
         /* 2. SELF-STUDY SHOWCASE SECTION */
+        .section-header-wrap {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .section-header-wrap h2 {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .section-header-wrap p {
+            color: var(--muted-text);
+            margin: 0;
+            font-size: 0.85rem;
+        }
+
         .self-study-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.4rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
         }
 
         .course-card {
             background: linear-gradient(180deg, rgba(17, 34, 64, 0.85), rgba(17, 34, 64, 0.5));
             border: 1px solid var(--card-border);
             border-radius: 12px;
-            padding: 1.6rem 1.4rem;
+            padding: 1.4rem 1.2rem;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -351,45 +345,45 @@
 
         .course-card:hover {
             border-color: var(--accent-gold);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 26px rgba(0,0,0,0.5);
         }
 
         .course-badge {
             display: inline-block;
             align-self: flex-start;
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 1.4px;
+            letter-spacing: 1.2px;
             color: var(--accent-gold);
             background: rgba(197, 160, 89, 0.1);
             border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 4px;
-            padding: 0.2rem 0.55rem;
-            margin-bottom: 0.6rem;
+            padding: 0.15rem 0.5rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
         }
 
         .course-card h4 {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: #fff;
-            margin: 0 0 0.35rem;
+            margin: 0 0 0.25rem;
             letter-spacing: 0.5px;
-            line-height: 1.3;
+            line-height: 1.25;
         }
 
         .course-sub {
             color: var(--accent-gold-light);
-            font-size: 0.84rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            margin: 0 0 0.75rem;
+            margin: 0 0 0.6rem;
         }
 
         .course-card p {
             color: var(--muted-text);
-            font-size: 0.9rem;
-            line-height: 1.55;
-            margin: 0 0 1.4rem;
+            font-size: 0.86rem;
+            line-height: 1.5;
+            margin: 0 0 1.2rem;
             flex-grow: 1;
         }
 
@@ -398,12 +392,12 @@
             text-align: center;
             border: 1.5px solid var(--accent-gold);
             color: var(--accent-gold);
-            padding: 0.65rem 1.2rem;
+            padding: 0.55rem 1rem;
             border-radius: 6px;
             text-decoration: none;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
+            letter-spacing: 1px;
             font-weight: 600;
             transition: all 0.25s ease;
             background: transparent;
@@ -414,7 +408,7 @@
         .btn-outline:hover {
             background: var(--accent-gold);
             color: var(--primary-navy);
-            box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+            box-shadow: 0 0 14px rgba(197, 160, 89, 0.3);
         }
 
         /* DETAILS POP-UP MODAL */
@@ -430,7 +424,7 @@
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(8px);
-            padding: 1.5rem;
+            padding: 1.2rem;
             overflow-y: auto;
         }
 
@@ -438,9 +432,9 @@
             background: #0d1e38;
             border: 1px solid var(--accent-gold);
             border-radius: 14px;
-            max-width: 780px;
+            max-width: 760px;
             width: 100%;
-            max-height: 90vh;
+            max-height: 88vh;
             display: flex;
             flex-direction: column;
             box-shadow: 0 25px 70px rgba(0, 0, 0, 0.75);
@@ -450,12 +444,12 @@
         }
 
         @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .details-modal-header {
-            padding: 1.6rem 2rem 1.2rem;
+            padding: 1.4rem 1.8rem 1rem;
             border-bottom: 1px solid rgba(197, 160, 89, 0.2);
             position: relative;
             background: rgba(10, 25, 47, 0.6);
@@ -478,56 +472,56 @@
 
         .details-badge {
             display: inline-block;
-            font-size: 0.74rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.4px;
             color: var(--accent-gold-light);
             background: rgba(197, 160, 89, 0.12);
             border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 4px;
-            padding: 0.2rem 0.6rem;
-            margin-bottom: 0.5rem;
+            padding: 0.15rem 0.5rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
         }
 
         .details-modal-title {
             color: #fff;
-            margin: 0 0 0.3rem;
-            font-size: 1.65rem;
+            margin: 0 0 0.2rem;
+            font-size: 1.5rem;
             letter-spacing: 0.5px;
         }
 
         .details-modal-sub {
             color: var(--accent-gold-light);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin: 0;
             font-weight: 500;
         }
 
         .details-modal-body {
-            padding: 1.8rem 2rem;
+            padding: 1.5rem 1.8rem;
             overflow-y: auto;
             color: #cbd5e1;
-            line-height: 1.75;
-            font-size: 0.98rem;
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
 
         .details-modal-body p {
-            margin: 0 0 1.2rem;
+            margin: 0 0 1.1rem;
         }
 
         .details-media-preview {
             text-align: center;
             background: #06101e;
-            padding: 1.2rem;
-            border-radius: 10px;
-            margin-bottom: 1.4rem;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.2rem;
             border: 1px solid rgba(197, 160, 89, 0.2);
         }
 
         .details-media-preview img {
             max-width: 100%;
-            max-height: 220px;
+            max-height: 200px;
             object-fit: contain;
             border-radius: 6px;
         }
@@ -535,16 +529,16 @@
         .details-features-list {
             list-style: none;
             padding: 0;
-            margin: 0 0 1.4rem;
+            margin: 0 0 1.2rem;
         }
 
         .details-features-list li {
             position: relative;
-            padding-left: 1.6rem;
-            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            margin-bottom: 0.65rem;
             color: #e2e8f0;
-            font-size: 0.95rem;
-            line-height: 1.55;
+            font-size: 0.92rem;
+            line-height: 1.5;
         }
 
         .details-features-list li::before {
@@ -556,12 +550,12 @@
         }
 
         .details-modal-footer {
-            padding: 1.2rem 2rem;
+            padding: 1rem 1.8rem;
             border-top: 1px solid rgba(197, 160, 89, 0.2);
             background: rgba(10, 25, 47, 0.6);
             display: flex;
             justify-content: flex-end;
-            gap: 1rem;
+            gap: 0.8rem;
             align-items: center;
         }
 
@@ -569,9 +563,9 @@
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: var(--muted-text);
-            padding: 0.75rem 1.8rem;
+            padding: 0.65rem 1.5rem;
             border-radius: 6px;
-            font-size: 0.88rem;
+            font-size: 0.84rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -588,18 +582,18 @@
             background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
             color: var(--primary-navy);
             border: none;
-            padding: 0.75rem 2.2rem;
+            padding: 0.65rem 1.8rem;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.86rem;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1.4px;
+            letter-spacing: 1.2px;
             cursor: pointer;
             transition: all 0.25s ease;
         }
 
         .btn-modal-purchase:hover {
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.5);
+            box-shadow: 0 0 18px rgba(197, 160, 89, 0.5);
             transform: translateY(-1px);
         }
 
@@ -608,8 +602,8 @@
             background: #0d1e38;
             border: 1px solid var(--accent-gold);
             border-radius: 14px;
-            padding: 2.2rem;
-            max-width: 520px;
+            padding: 2rem;
+            max-width: 500px;
             width: 100%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
             position: relative;
@@ -618,38 +612,38 @@
 
         .intake-modal-box h3 {
             color: var(--accent-gold);
-            margin: 0 0 0.4rem;
-            font-size: 1.5rem;
+            margin: 0 0 0.35rem;
+            font-size: 1.4rem;
         }
 
         .intake-modal-box p {
             color: var(--muted-text);
-            font-size: 0.92rem;
-            margin-bottom: 1.4rem;
+            font-size: 0.88rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-group {
-            margin-bottom: 1.1rem;
+            margin-bottom: 1rem;
         }
 
         .form-group label {
             display: block;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: var(--accent-gold-light);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.3rem;
         }
 
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 0.8rem 0.95rem;
+            padding: 0.75rem 0.9rem;
             background: rgba(10, 25, 47, 0.7);
             border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 6px;
             color: #fff;
             font-family: inherit;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
         }
 
         .form-group input:focus, .form-group textarea:focus {
@@ -659,18 +653,22 @@
 
         footer {
             margin-top: auto;
-            padding: 2.2rem 2rem;
+            padding: 2rem;
             text-align: center;
             color: rgba(255, 255, 255, 0.35);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             width: 100%;
         }
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
             .elite-grid { grid-template-columns: 1fr; }
-            .hero-section { margin-top: 110px; }
-            .details-modal-box { max-height: 95vh; }
+            .shop-header-bar { margin-top: 85px; }
+        }
+
+        @media (max-width: 540px) {
+            .elite-card { grid-template-columns: 1fr; }
+            .elite-media-wrap { height: 160px; border-right: none; border-bottom: 1px solid var(--card-border); }
         }
     </style>
 </head>
@@ -695,14 +693,12 @@
         </div>
     </nav>
 
-    <!-- COMPACT HERO HEADER (Programs immediately visible) -->
-    <div class="hero-section">
-        <span class="pill-badge">Institute Programs &amp; Curriculum</span>
-        <h1>Transform Your Mind. <span style="color:#fff;">Multiply Your Results.</span></h1>
-        <p class="hero-lead">
-            Select from our premier executive mentorship programs or self-study audio curricula below to master the mental laws of achievement.
-        </p>
-
+    <!-- COMPACT SHOP HEADER (Immediate viewability on load) -->
+    <div class="shop-header-bar">
+        <div class="shop-title-wrap">
+            <h1>Elite Programs &amp; Curriculum</h1>
+            <span class="shop-tagline">Transform Your Mind &bull; Multiply Your Results</span>
+        </div>
         <div class="category-nav">
             <a href="#elite" class="cat-btn active">Elite Programs</a>
             <a href="#self-study" class="cat-btn">Self-Study Programs</a>
@@ -710,13 +706,8 @@
     </div>
 
     <main class="shop-container">
-        <!-- 1. ELITE PROGRAMS (SIDE BY SIDE 2-COLUMN GRID) -->
+        <!-- 1. ELITE PROGRAMS (SIDE BY SIDE 2-COLUMN GRID - INSTANTLY VISIBLE) -->
         <section id="elite">
-            <div class="section-title-wrap">
-                <h2 class="section-title">Elite Programs</h2>
-                <p class="section-sub">Comprehensive, high-touch transformational mentorship for visionary leaders, entrepreneurs, and teams.</p>
-            </div>
-
             <div class="elite-grid">
                 <!-- PROGRAM 1: Thinking Into Results -->
                 <div class="elite-card">
@@ -764,9 +755,11 @@
 
         <!-- 2. SELF-STUDY PROGRAMS -->
         <section id="self-study">
-            <div class="section-title-wrap">
-                <h2 class="section-title">Self-Study Programs</h2>
-                <p class="section-sub">Learn at your own pace with Bob Proctor's world-renowned audio courses, foundational curricula, and classic prosperity laws.</p>
+            <div class="section-header-wrap">
+                <div>
+                    <h2>Self-Study Programs</h2>
+                    <p>Learn at your own pace with Bob Proctor's world-renowned audio courses and foundational curricula.</p>
+                </div>
             </div>
 
             <div class="self-study-grid">
