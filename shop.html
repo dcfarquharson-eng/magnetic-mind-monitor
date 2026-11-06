@@ -357,6 +357,24 @@
             font-weight: 600;
         }
 
+        .course-logo-wrap {
+            margin-bottom: 0.9rem;
+            text-align: center;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .course-card-logo {
+            max-height: 70px;
+            max-width: 100%;
+            width: auto;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+        }
+
         .course-card h4 {
             font-size: 1.2rem;
             color: #fff;
@@ -759,8 +777,8 @@
                 <!-- Course 1 -->
                 <div class="course-card">
                     <div>
-                        <div style="margin-bottom: 0.8rem; text-align: center;">
-                            <img src="shop/images/the-new-lead-the-field.png" alt="The New Lead the Field" style="height: 85px; width: auto; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                        <div class="course-logo-wrap">
+                            <img src="shop/images/new-lead-the-field.png" alt="The New Lead the Field" class="course-card-logo">
                         </div>
                         <h4>The New Lead the Field</h4>
                         <div class="course-sub">Earl Nightingale, Bob Proctor &amp; Sandy Gallagher</div>
@@ -772,7 +790,9 @@
                 <!-- Course 2 -->
                 <div class="course-card">
                     <div>
-                        <span class="course-badge">Prosperity Laws</span>
+                        <div class="course-logo-wrap">
+                            <img src="shop/images/science-of-getting-rich.png" alt="The Science of Getting Rich" class="course-card-logo">
+                        </div>
                         <h4>The Science of Getting Rich</h4>
                         <div class="course-sub">Wallace D. Wattles &amp; Bob Proctor</div>
                         <p>Discover the exact, scientific mental laws that govern financial abundance. Learn how to think and act in the 'Certain Way' to attract perpetual supply.</p>
@@ -783,7 +803,9 @@
                 <!-- Course 3 -->
                 <div class="course-card">
                     <div>
-                        <span class="course-badge">Universal Laws</span>
+                        <div class="course-logo-wrap">
+                            <img src="shop/images/working-with-the-law.png" alt="Working With The Law" class="course-card-logo">
+                        </div>
                         <h4>Working With The Law</h4>
                         <div class="course-sub">Raymond Holliwell &amp; Bob Proctor</div>
                         <p>An in-depth exploration of the 11 Universal Laws of the Mind. Stop struggling against reality and align your vibration with effortless manifestation.</p>
@@ -794,21 +816,25 @@
                 <!-- Course 4 -->
                 <div class="course-card">
                     <div>
-                        <span class="course-badge">Daily Micro-Mentorship</span>
-                        <h4>Six Minutes to Success</h4>
-                        <div class="course-sub">Daily Subconscious Video Coaching</div>
-                        <p>Bite-sized daily video insights delivered every morning to train your subconscious mind for steady, relentless progression every single day.</p>
+                        <div class="course-logo-wrap">
+                            <img src="shop/images/magic-in-your-mind.png" alt="Magic in Your Mind" class="course-card-logo">
+                        </div>
+                        <h4>Magic in Your Mind</h4>
+                        <div class="course-sub">Bob Proctor, Sandy Gallagher &amp; Mary Morrissey</div>
+                        <p>A 6-week mentorship designed to awaken and discipline your 6 higher mental faculties: Perception, Will, Imagination, Memory, Intuition, and Reason.</p>
                     </div>
-                    <button class="btn-outline" onclick="openProgramDetails('six-minutes-to-success')">View Details</button>
+                    <button class="btn-outline" onclick="openProgramDetails('magic-in-your-mind')">View Details</button>
                 </div>
 
                 <!-- Course 5 -->
                 <div class="course-card">
                     <div>
-                        <span class="course-badge">Sales Mastery</span>
+                        <div class="course-logo-wrap">
+                            <img src="shop/images/path-to-agreements.png" alt="The Art of Professional Selling - Path to Agreement" class="course-card-logo">
+                        </div>
                         <h4>The Art of Professional Selling</h4>
-                        <div class="course-sub">Psychology of Persuasion &amp; Service</div>
-                        <p>Shift from high-pressure selling to high-trust advisory. Understand the psychology of the buyer, overcome objections, and close with conviction.</p>
+                        <div class="course-sub">Path to Agreement • Bob Proctor</div>
+                        <p>Shift from high-pressure selling to high-trust advisory. Understand client psychology, overcome hesitation, and close with ethical confidence.</p>
                     </div>
                     <button class="btn-outline" onclick="openProgramDetails('art-of-selling')">View Details</button>
                 </div>
@@ -816,9 +842,11 @@
                 <!-- Course 6 -->
                 <div class="course-card">
                     <div>
-                        <span class="course-badge">Wealth Consciousness</span>
+                        <div class="course-logo-wrap">
+                            <img src="shop/images/principles-of-prosperity.png" alt="Principles of Prosperity" class="course-card-logo">
+                        </div>
                         <h4>Principles of Prosperity</h4>
-                        <div class="course-sub">Attracting Wealth &amp; Opportunity</div>
+                        <div class="course-sub">Attracting Wealth &amp; Opportunity • Bob Proctor</div>
                         <p>Proven frameworks to eliminate scarcity programming and install a permanent prosperity consciousness that magnetizes wealth.</p>
                     </div>
                     <button class="btn-outline" onclick="openProgramDetails('principles-of-prosperity')">View Details</button>
@@ -827,10 +855,12 @@
                 <!-- Course 7 -->
                 <div class="course-card">
                     <div>
-                        <span class="course-badge">Self-Image Cybernetics</span>
+                        <div class="course-logo-wrap">
+                            <img src="shop/images/winners-image.png" alt="The Winner's Image" class="course-card-logo">
+                        </div>
                         <h4>The Winner's Image</h4>
-                        <div class="course-sub">Rewiring Your Internal Self-Image</div>
-                        <p>You can never consistently outperform your internal picture of who you are. Upgrade your self-image mechanism to match your highest ambitions.</p>
+                        <div class="course-sub">Rewiring Your Internal Self-Image • Bob Proctor</div>
+                        <p>You can never consistently outperform your internal picture of who you are. Upgrade your cybernetic self-image to match your highest ambitions.</p>
                     </div>
                     <button class="btn-outline" onclick="openProgramDetails('winners-image')">View Details</button>
                 </div>
@@ -838,12 +868,14 @@
                 <!-- Course 8 -->
                 <div class="course-card">
                     <div>
-                        <span class="course-badge">Goal Formulation</span>
-                        <h4>The C-Type Goal</h4>
-                        <div class="course-sub">Designing What You Truly Desire</div>
-                        <p>Stop settling for what you know you can achieve (A goals) or think you can achieve (B goals). Learn how to set fantasy C-type goals that pull you forward.</p>
+                        <div class="course-logo-wrap">
+                            <img src="shop/images/mission-in-commission.png" alt="Mission in Commission" class="course-card-logo">
+                        </div>
+                        <h4>Mission in Commission</h4>
+                        <div class="course-sub">Multiplying Sales &amp; Commission Income • Bob Proctor</div>
+                        <p>The premier system for salespeople, consultants, and entrepreneurs to shatter income plateaus and build permanent multi-source wealth.</p>
                     </div>
-                    <button class="btn-outline" onclick="openProgramDetails('c-type-goal')">View Details</button>
+                    <button class="btn-outline" onclick="openProgramDetails('mission-in-commission')">View Details</button>
                 </div>
             </div>
         </section>
@@ -970,13 +1002,20 @@
                 title: "The Science of Getting Rich",
                 sub: "Wallace D. Wattles & Bob Proctor",
                 badge: "Prosperity Laws",
+                image: "shop/images/science-of-getting-rich.png",
                 bodyHtml: `
-                    <p>There is a exact science of getting rich, and it is an exact science, like algebra or arithmetic. There are certain laws which govern the process of acquiring riches; once these laws are learned and obeyed by any man, he will get rich with mathematical certainty.</p>
+                    <div class="details-media-preview">
+                        <img src="shop/images/science-of-getting-rich.png" alt="The Science of Getting Rich">
+                    </div>
+                    <p style="font-size:1.05rem; font-style:italic; color:var(--accent-gold-light);">
+                        There is an exact science of getting rich, governed by universal mathematical laws.
+                    </p>
+                    <p>There is an exact science of getting rich, and it is an exact science, like algebra or arithmetic. There are certain laws which govern the process of acquiring riches; once these laws are learned and obeyed by any person, they will get rich with mathematical certainty.</p>
                     <p>In this classic curriculum, Bob Proctor expands upon Wallace D. Wattles' timeless masterpiece to teach you:</p>
                     <ul class="details-features-list">
-                        <li>The Certain Way of thinking and acting to magnetize supply.</li>
-                        <li>How to shift from the competitive mind to the creative mind.</li>
-                        <li>The Law of Increase and how to give everyone more in use value than you take in cash value.</li>
+                        <li>The Certain Way of thinking and acting to magnetize perpetual supply.</li>
+                        <li>How to shift from the competitive mind to the creative plane of abundance.</li>
+                        <li>The Law of Increase: Giving everyone more in use value than you take in cash value.</li>
                         <li>Eliminating fear, hurry, and doubt from your financial vibration.</li>
                     </ul>
                 `
@@ -1030,79 +1069,127 @@
                 title: "Working With The Law",
                 sub: "Raymond Holliwell & Bob Proctor",
                 badge: "Universal Laws",
+                image: "shop/images/working-with-the-law.png",
                 bodyHtml: `
-                    <p>Discover the 11 Universal Laws of the Mind that govern all achievement, health, and peace of mind.</p>
+                    <div class="details-media-preview">
+                        <img src="shop/images/working-with-the-law.png" alt="Working With The Law">
+                    </div>
+                    <p style="font-size:1.05rem; font-style:italic; color:var(--accent-gold-light);">
+                        Align your vibration with the 11 Universal Laws of the Mind for effortless manifestation.
+                    </p>
+                    <p>Discover the 11 Universal Laws of the Mind that govern all achievement, health, and peace of mind. Stop fighting against circumstances and work in harmony with the universal laws that govern the universe:</p>
                     <ul class="details-features-list">
-                        <li>The Law of Thinking: Learning to hold ideas without contradictory doubts.</li>
-                        <li>The Law of Supply: How supply is unlimited and waiting for mental expression.</li>
-                        <li>The Law of Attraction: Moving your mental vibration into resonance with your desires.</li>
-                        <li>The Law of Compensation: You are compensated directly for the need for what you do, your ability to do it, and the difficulty of replacing you.</li>
+                        <li><strong>The Law of Thinking:</strong> Learning to hold ideas with absolute conviction without contradictory doubts.</li>
+                        <li><strong>The Law of Supply:</strong> How infinite supply awaits disciplined mental expression.</li>
+                        <li><strong>The Law of Attraction:</strong> Moving your emotional vibration into harmonic resonance with your desired good.</li>
+                        <li><strong>The Law of Compensation:</strong> You are rewarded in direct proportion to the need for what you do, your ability to do it, and the difficulty of replacing you.</li>
                     </ul>
                 `
             },
-            "six-minutes-to-success": {
-                title: "Six Minutes to Success",
-                sub: "Daily Subconscious Video Coaching",
-                badge: "Daily Micro-Mentorship",
+            "magic-in-your-mind": {
+                title: "Magic in Your Mind",
+                sub: "6-Week Higher Faculties Mental Training • Bob Proctor, Sandy Gallagher & Mary Morrissey",
+                badge: "Mental Faculty Mastery",
+                image: "shop/images/magic-in-your-mind.png",
                 bodyHtml: `
-                    <p>Spend just six minutes every morning with Bob Proctor to train your subconscious mind for steady, relentless progression.</p>
+                    <div class="details-media-preview">
+                        <img src="shop/images/magic-in-your-mind.png" alt="Magic in Your Mind">
+                    </div>
+                    <p style="font-size:1.05rem; font-style:italic; color:var(--accent-gold-light);">
+                        Awaken and discipline the 6 higher faculties of your marvelous mind.
+                    </p>
+                    <p>
+                        Most people live from the outside in—relying strictly on their physical senses (seeing, hearing, smelling, tasting, touching) and reacting to whatever circumstances surround them. In <em>Magic in Your Mind</em>, Bob Proctor, Sandy Gallagher, and Mary Morrissey guide you through a step-by-step 6-week mentorship to awaken and master the six creative faculties of the intellect:
+                    </p>
                     <ul class="details-features-list">
-                        <li>Bite-sized daily video insights delivered straight to your inbox.</li>
-                        <li>Reprograms your daily habits and mindset before your day begins.</li>
-                        <li>Continuous spaced repetition that guarantees long-term paradigm shifts.</li>
+                        <li><strong>Perception:</strong> How to shift your perspective instantly to turn any obstacle into an advantage.</li>
+                        <li><strong>The Will:</strong> Developing laser-like mental focus that holds a thought without distraction.</li>
+                        <li><strong>Imagination:</strong> Harnessing creative visualization to originate new ideas and build your future.</li>
+                        <li><strong>Memory:</strong> Activating the subconscious storehouse of infinite memory and retention.</li>
+                        <li><strong>Intuition:</strong> Tuning your internal receiver to pick up subtle vibrations and divine guidance.</li>
+                        <li><strong>Reason:</strong> Analyzing and deductive thinking from the creative plane rather than the competitive plane.</li>
                     </ul>
                 `
             },
             "art-of-selling": {
                 title: "The Art of Professional Selling",
-                sub: "Psychology of Persuasion & Service",
+                sub: "Path to Agreement • Bob Proctor",
                 badge: "Sales Mastery",
+                image: "shop/images/path-to-agreements.png",
                 bodyHtml: `
-                    <p>Shift from aggressive selling to high-trust advisory. Selling is not doing something TO someone; it is doing something FOR someone.</p>
+                    <div class="details-media-preview">
+                        <img src="shop/images/path-to-agreements.png" alt="Path to Agreement - The Art of Professional Selling">
+                    </div>
+                    <p style="font-size:1.05rem; font-style:italic; color:var(--accent-gold-light);">
+                        Selling is not doing something TO someone; it is doing something FOR someone.
+                    </p>
+                    <p>Shift from aggressive, high-pressure selling to high-trust advisory. Understand client psychology, overcome hesitation, and guide clients effortlessly onto the path to agreement:</p>
                     <ul class="details-features-list">
-                        <li>The mental preparation of top 1% sales earners.</li>
-                        <li>How to read client needs and build instant rapport.</li>
-                        <li>Handling objections with effortless confidence.</li>
-                        <li>Closing with conviction and establishing long-term advisory relationships.</li>
+                        <li>The mental preparation and daily rituals of the top 1% sales producers worldwide.</li>
+                        <li>How to read client needs, build instant resonance, and establish unbreakable trust.</li>
+                        <li>Dissolving objections by addressing the root subconscious hesitation.</li>
+                        <li>Closing with conviction and forging lifelong advisory relationships.</li>
                     </ul>
                 `
             },
             "principles-of-prosperity": {
                 title: "Principles of Prosperity",
-                sub: "Attracting Wealth & Opportunity",
+                sub: "Attracting Wealth & Opportunity • Bob Proctor",
                 badge: "Wealth Consciousness",
+                image: "shop/images/principles-of-prosperity.png",
                 bodyHtml: `
-                    <p>Frameworks to eliminate scarcity programming and install a permanent prosperity consciousness.</p>
+                    <div class="details-media-preview">
+                        <img src="shop/images/principles-of-prosperity.png" alt="Principles of Prosperity">
+                    </div>
+                    <p style="font-size:1.05rem; font-style:italic; color:var(--accent-gold-light);">
+                        Eliminate scarcity programming and establish a permanent prosperity consciousness.
+                    </p>
+                    <p>Proven mental frameworks to break the cycle of financial anxiety and align your thoughts and actions with perpetual abundance:</p>
                     <ul class="details-features-list">
-                        <li>Eradicating subconscious poverty complexes.</li>
-                        <li>Developing multiple sources of income (MSIs).</li>
-                        <li>Aligning your daily actions with abundance.</li>
+                        <li>Eradicating generational subconscious poverty complexes and lack paradigms.</li>
+                        <li>Developing multiple sources of income (MSIs) to ensure ongoing prosperity.</li>
+                        <li>Aligning your mental vibration with circulation, giving, and continuous wealth attraction.</li>
                     </ul>
                 `
             },
             "winners-image": {
                 title: "The Winner's Image",
-                sub: "Rewiring Your Internal Self-Image",
+                sub: "Rewiring Your Internal Self-Image • Bob Proctor",
                 badge: "Self-Image Cybernetics",
+                image: "shop/images/winners-image.png",
                 bodyHtml: `
-                    <p>Your cybernetic self-image acts like an internal thermostat. You will never consistently outperform your internal picture of who you are.</p>
+                    <div class="details-media-preview">
+                        <img src="shop/images/winners-image.png" alt="The Winner's Image">
+                    </div>
+                    <p style="font-size:1.05rem; font-style:italic; color:var(--accent-gold-light);">
+                        You can never consistently outperform your internal picture of who you are.
+                    </p>
+                    <p>Your cybernetic self-image acts like an internal thermostat, controlling your income, relationships, and success. In <em>The Winner's Image</em>, Bob Proctor teaches you how to upgrade that thermostat permanently:</p>
                     <ul class="details-features-list">
-                        <li>Releasing old conditioned labels and self-limiting identities.</li>
-                        <li>Building and internalizing your ideal self-image.</li>
-                        <li>Aligning your outer behavior with your higher internal identity.</li>
+                        <li>Releasing old conditioned labels, childhood programming, and self-limiting identities.</li>
+                        <li>Designing and internalizing your ideal self-image through disciplined repetition.</li>
+                        <li>Aligning your outward behavior and confidence with your newly established identity.</li>
                     </ul>
                 `
             },
-            "c-type-goal": {
-                title: "The C-Type Goal",
-                sub: "Designing What You Truly Desire",
-                badge: "Goal Formulation",
+            "mission-in-commission": {
+                title: "Mission in Commission",
+                sub: "Multiplying Sales & Commission Income • Bob Proctor",
+                badge: "Executive Sales Abundance",
+                image: "shop/images/mission-in-commission.png",
                 bodyHtml: `
-                    <p>Stop settling for what you know you can do (A goals) or what you think you can do (B goals). Learn how to set fantasy C-type goals that stretch your imagination and pull you into a completely new life.</p>
+                    <div class="details-media-preview">
+                        <img src="shop/images/mission-in-commission.png" alt="Mission in Commission">
+                    </div>
+                    <p style="font-size:1.05rem; font-style:italic; color:var(--accent-gold-light);">
+                        The definitive system for commission sales earners to build unlimited financial wealth.
+                    </p>
+                    <p>Commission selling offers the highest earning freedom of any profession in the world—when you master the universal laws of exchange, service, and expectation. Bob Proctor shares the exact blueprint he used to scale his own sales earnings by orders of magnitude:</p>
                     <ul class="details-features-list">
-                        <li>The 3 categories of goals: A, B, and C.</li>
-                        <li>How to want what you want without worrying about "how" it will happen.</li>
-                        <li>Connecting your heart's desire to your daily action plan.</li>
+                        <li><strong>The Commission Mindset:</strong> Shattering the artificial income ceilings that keep 95% of sales professionals plateaued.</li>
+                        <li><strong>Client Value Alignment:</strong> Giving each prospect greater value in use than you receive in cash compensation.</li>
+                        <li><strong>Subconscious Selling:</strong> Understanding buyer hesitation and closing effortlessly on the creative plane.</li>
+                        <li><strong>Multiplying Income Streams:</strong> Structuring your client base to produce recurring commissions and lifelong wealth.</li>
                     </ul>
                 `
             }
