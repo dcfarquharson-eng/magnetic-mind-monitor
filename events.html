@@ -212,6 +212,229 @@
             color: var(--primary-navy);
         }
 
+        /* Event Details Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 12, 24, 0.88);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            box-sizing: border-box;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: #0b172a;
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            max-width: 820px;
+            width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            box-sizing: border-box;
+            text-align: left;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(197, 160, 89, 0.25);
+            position: relative;
+            color: var(--text-white);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--accent-gold);
+            font-size: 2rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .modal-close:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .modal-header-tag {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-weight: 600;
+        }
+
+        .modal-title {
+            color: #ffffff;
+            font-size: 2rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 400;
+            line-height: 1.25;
+        }
+
+        .modal-subtitle {
+            color: var(--accent-gold);
+            font-size: 1.05rem;
+            margin: 0 0 1.5rem 0;
+            font-style: italic;
+        }
+
+        .modal-facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .modal-fact-item h4 {
+            margin: 0 0 0.25rem 0;
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .modal-fact-item p {
+            margin: 0;
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+            padding-bottom: 1.5rem;
+        }
+
+        .modal-section:last-of-type {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .modal-section h3 {
+            color: var(--accent-gold);
+            font-size: 1.15rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 0 0 0.8rem 0;
+            font-weight: 500;
+        }
+
+        .modal-quote {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #e6f1ff;
+            background: rgba(197, 160, 89, 0.08);
+            border-left: 3px solid var(--accent-gold);
+            padding: 1rem 1.25rem;
+            margin: 0 0 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .modal-pillar-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        .modal-pillar-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-radius: 6px;
+            padding: 0.85rem 1.1rem;
+            line-height: 1.5;
+        }
+
+        .modal-pillar-letter {
+            color: var(--accent-gold);
+            font-weight: bold;
+            font-size: 1.05rem;
+            display: inline-block;
+            margin-right: 0.4rem;
+        }
+
+        .modal-schedule-item {
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .modal-schedule-time {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-schedule-list {
+            margin: 0.35rem 0 0 1.2rem;
+            padding: 0;
+            color: #bdc6db;
+        }
+
+        .modal-schedule-list li {
+            margin-bottom: 0.35rem;
+        }
+
+        .modal-takeaway-list {
+            margin: 0 0 0 1.2rem;
+            padding: 0;
+            color: #bdc6db;
+            line-height: 1.6;
+        }
+
+        .modal-takeaway-list li {
+            margin-bottom: 0.4rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 600px) {
+            .modal-box {
+                padding: 1.5rem;
+            }
+            .modal-title {
+                font-size: 1.5rem;
+            }
+            .modal-facts-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-actions {
+                flex-direction: column-reverse;
+            }
+            .modal-actions a,
+            .modal-actions button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         footer {
             margin-top: auto;
             padding: 2rem;
@@ -250,6 +473,29 @@
 
     <div class="page-content">
         <h1>Upcoming Events</h1>
+
+        <div class="event-card" style="border: 1px solid var(--accent-gold); box-shadow: 0 0 25px rgba(197, 160, 89, 0.15);">
+            <div class="event-date">
+                <span class="date-month">Nov</span>
+                <span class="date-day">14</span>
+            </div>
+            <div class="event-info">
+                <span class="event-type" style="color: var(--accent-gold);">Featured Masterclass &bull; Live &amp; Virtual with Melva</span>
+                <h3 class="event-title">The R.I.C.H.E.S.T. Year-End Review</h3>
+                <p style="color: var(--accent-gold); font-size: 0.95rem; margin-top: -0.5rem; margin-bottom: 0.8rem; font-style: italic;">
+                    A Whole-Life Reset for High-Achieving Women
+                </p>
+                <p class="event-description">
+                    Saturday, November 14 &bull; 10:00 AM – 2:00 PM [EST]<br>
+                    Format: Live &amp; Virtual &bull; Investment: $97 (Includes Become 360° Book &amp; Workbook)<br><br>
+                    You built the success. Now build the identity that can hold it. In one focused morning, audit your whole life across all 7 R.I.C.H.E.S.T. pillars, release the roles you've outgrown, and walk forward into the new year as the woman you chose to become.
+                </p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+                    <a href="https://checkout.square.site/merchant/BJP0YXKGM78KH/checkout/ED774OVYFAMA5G7FNYAY6HY3" target="_blank" rel="noopener noreferrer" class="rsvp-btn" style="background-color: var(--accent-gold); color: var(--primary-navy); font-weight: bold; border-color: var(--accent-gold);">Get Tickets — $97</a>
+                    <button type="button" class="rsvp-btn" onclick="openEventDetails()">More Information</button>
+                </div>
+            </div>
+        </div>
 
         <div class="event-card">
             <div class="event-date">
@@ -298,6 +544,135 @@
     <footer>
         &copy; 2026 The Magnetic Mind Institute. All Rights Reserved.
     </footer>
+
+    <!-- Modal: The R.I.C.H.E.S.T. Year-End Review Details -->
+    <div id="eventDetailsModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-box">
+            <button type="button" class="modal-close" onclick="closeEventDetails()" aria-label="Close modal">&times;</button>
+            <span class="modal-header-tag">Live &amp; Virtual Masterclass</span>
+            <h2 id="modalTitle" class="modal-title">The R.I.C.H.E.S.T. Year-End Review</h2>
+            <p class="modal-subtitle">A Whole-Life Reset for High-Achieving Women &bull; With Melva</p>
+
+            <div class="modal-facts-grid">
+                <div class="modal-fact-item">
+                    <h4>Date</h4>
+                    <p>Saturday, November 14</p>
+                </div>
+                <div class="modal-fact-item">
+                    <h4>Time</h4>
+                    <p>10:00 AM – 2:00 PM [EST]</p>
+                </div>
+                <div class="modal-fact-item">
+                    <h4>Format</h4>
+                    <p>Live &amp; Virtual (Anywhere)</p>
+                </div>
+                <div class="modal-fact-item">
+                    <h4>Investment</h4>
+                    <p>$97 USD</p>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>Core Premise</h3>
+                <div class="modal-quote">
+                    <strong>&ldquo;You built the success. Now build the identity that can hold it.&rdquo;</strong><br><br>
+                    In one focused morning, you will audit your whole life, release the roles you've outgrown, and walk into 2027 as the woman you chose to become.
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>The 7 R.I.C.H.E.S.T. Pillars</h3>
+                <div class="modal-pillar-grid">
+                    <div class="modal-pillar-item"><span class="modal-pillar-letter">R &mdash; Relationship:</span> Deep, authentic connection built from wholeness, not the need to be needed.</div>
+                    <div class="modal-pillar-item"><span class="modal-pillar-letter">I &mdash; Income:</span> Financial capacity that expands from a secure identity, not desperation.</div>
+                    <div class="modal-pillar-item"><span class="modal-pillar-letter">C &mdash; Career:</span> Elevated leadership standards with your worth untied from KPIs or titles.</div>
+                    <div class="modal-pillar-item"><span class="modal-pillar-letter">H &mdash; Health:</span> Physical vitality as your baseline standard, never your afterthought.</div>
+                    <div class="modal-pillar-item"><span class="modal-pillar-letter">E &mdash; Emotional Well-Being:</span> Mastery of your inner narrative, so setbacks cannot touch your core worth.</div>
+                    <div class="modal-pillar-item"><span class="modal-pillar-letter">S &mdash; Spiritual Success:</span> Daily execution aligned with your higher purpose and internal authority.</div>
+                    <div class="modal-pillar-item"><span class="modal-pillar-letter">T &mdash; Transformation:</span> Permanent identity shifts that carry you into your next season.</div>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>Masterclass Schedule: Two Movements</h3>
+                
+                <div class="modal-schedule-item">
+                    <span class="modal-schedule-time">Part 1 (10:00 AM – 12:00 PM EST) &bull; Audit &amp; Release</span>
+                    <ul class="modal-schedule-list">
+                        <li><strong>The Result Audit:</strong> Take inventory across all 7 pillars of your life with the 360° Scorecard.</li>
+                        <li><strong>The Costume Inventory:</strong> Identify every role you perform that is no longer true to who you are.</li>
+                        <li><strong>The Retirement Ceremony:</strong> Officially release the expectations and identities that kept you small.</li>
+                        <li><strong>Mind Reset:</strong> Create clean space for your Future Self before setting a single goal.</li>
+                    </ul>
+                </div>
+
+                <div class="modal-schedule-item" style="background: rgba(197, 160, 89, 0.05); padding: 0.75rem 1rem; border-radius: 6px; border: 1px dashed rgba(197, 160, 89, 0.3);">
+                    <span class="modal-schedule-time" style="margin-bottom: 0;">12:00 PM – 12:30 PM EST &bull; The Hinge (Integration Pause)</span>
+                    <span style="color: #bdc6db; font-size: 0.9rem;">An intentional pause. Step away, breathe, and let the audit settle before you rebuild.</span>
+                </div>
+
+                <div class="modal-schedule-item" style="margin-top: 1rem;">
+                    <span class="modal-schedule-time">Part 2 (12:30 PM – 2:00 PM EST) &bull; Recalibrate &amp; Rebuild</span>
+                    <ul class="modal-schedule-list">
+                        <li><strong>Close the Identity Gap:</strong> Move from who you were to who you must become to hold what's next.</li>
+                        <li><strong>Recode Subconscious Standards:</strong> Rewire the deep programming that drives daily decisions (drawing from the Proctor Gallagher Institute lineage).</li>
+                        <li><strong>Cast Your Starring Role:</strong> Define the non-negotiables for your next chapter.</li>
+                        <li><strong>Acting As If:</strong> The Future Self method that shifts behavior before the circumstances catch up.</li>
+                        <li><strong>Whole-Life 2027 Blueprint:</strong> Complete your one-page alignment map across all 7 pillars.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>What You Leave With</h3>
+                <ul class="modal-takeaway-list">
+                    <li>A 360° picture of your life &mdash; clear, quantified, and without excuses</li>
+                    <li>Freedom from the roles you outgrew years ago</li>
+                    <li>A personal Future Self script and daily practice</li>
+                    <li>Your Whole-Life 2027 Blueprint on one page</li>
+                    <li><strong>Become 360° Book</strong> + branded workbook included with registration</li>
+                </ul>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="rsvp-btn" onclick="closeEventDetails()">Close</button>
+                <a href="https://checkout.square.site/merchant/BJP0YXKGM78KH/checkout/ED774OVYFAMA5G7FNYAY6HY3" target="_blank" rel="noopener noreferrer" class="rsvp-btn" style="background-color: var(--accent-gold); color: var(--primary-navy); font-weight: bold; border-color: var(--accent-gold);">Get Tickets — $97</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openEventDetails() {
+            var modal = document.getElementById('eventDetailsModal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeEventDetails() {
+            var modal = document.getElementById('eventDetailsModal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close on backdrop click
+        document.addEventListener('click', function(e) {
+            var modal = document.getElementById('eventDetailsModal');
+            if (modal && e.target === modal) {
+                closeEventDetails();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeEventDetails();
+            }
+        });
+    </script>
 
 </body>
 
