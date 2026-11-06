@@ -25,6 +25,45 @@
             min-height: 100vh;
             overflow-x: hidden;
             text-align: center;
+            position: relative;
+        }
+
+        /* Logo Area - Circular White Container in Top Left */
+        .logo-area {
+            width: 180px;
+            height: 180px;
+            margin: 0;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(197, 160, 89, 0.4);
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: absolute;
+            top: 80px;
+            left: 2rem;
+            z-index: 20;
+        }
+
+        .logo-img {
+            width: 115%;
+            height: auto;
+            object-fit: cover;
+            transform: translateY(-5px) scale(0.9);
+        }
+
+        @media (max-width: 900px) {
+            .logo-area {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin: 0 auto 1.5rem;
+                width: 140px;
+                height: 140px;
+            }
         }
 
         /* NAVIGATION BAR */
@@ -203,6 +242,11 @@
             <a href="index.html#login" class="nav-link" style="color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 5px 15px; border-radius: 4px;">Log In</a>
         </div>
     </nav>
+
+    <!-- White Circular Medallion for Logo -->
+    <a href="index.html" class="logo-area">
+        <img src="logo.png" alt="The Magnetic Mind Institute" class="logo-img">
+    </a>
 
     <div class="page-content">
         <h1>Upcoming Events</h1>
