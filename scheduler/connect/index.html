@@ -85,6 +85,7 @@
         <nav>
             <a class="brand" href="/scheduler/" id="nav-home">Magnetic Mind <span>Social Scheduler</span></a>
             <div class="links">
+                <a href="/scheduler/signup/" id="nav-signup">Sign Up</a>
                 <a href="https://win22-lab.tail2e2060.ts.net/" id="nav-studio">Studio</a>
                 <a href="/scheduler/connect/" class="active" id="nav-connect">Accounts</a>
                 <a href="/scheduler/privacy/" id="nav-privacy">Privacy</a>
@@ -275,10 +276,14 @@
         // Entry: ?invite=CODE (first visit), ?login=TOKEN (emailed link), ?done=provider / ?err=text (back from callback)
         var q = new URLSearchParams(location.search);
         var invite = q.get("invite"), login = q.get("login"), done = q.get("done"), err = q.get("err");
+        var clientEmail = q.get("email") || localStorage.getItem("sched_client_email");
+        var clientBrand = q.get("brand") || localStorage.getItem("sched_client_brand");
+        if (clientEmail && $("input-email")) { $("input-email").value = clientEmail; }
         if (invite || login || done || err) history.replaceState(null, "", location.pathname);
         if (done === "google") msg("YouTube connected.", "ok");
         if (done === "meta") msg("Facebook connected. If you manage more than one Page, choose one below.", "ok");
         if (err) msg(err, "bad");
+        if (!done && !err && clientBrand) msg("Welcome, " + clientBrand + "! Connect your social accounts below to finish your setup.", "ok");
 
         if (invite || login) {
             api(invite ? "/redeem" : "/login", { method: "POST", body: { code: invite || login } })

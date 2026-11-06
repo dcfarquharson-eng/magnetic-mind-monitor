@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - Magnetic Mind Social Scheduler</title>
+    <meta name="description" content="Personalize your brand colors, choose your content services and platforms, and set up your automated social posting schedule.">
+    <link rel="canonical" href="https://themagneticmind.institute/scheduler/signup/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a192f;
+            --navy-2: #112240;
+            --navy-3: #1d3557;
+            --ink: #e6f1ff;
+            --muted: #a8b2d1;
+            --gold: #c5a059;
+            --gold-2: #e3c77f;
+            --line: rgba(230,241,255,0.12);
+            --ok: #5fd3a0;
+            --warn: #f2b45a;
+            --bad: #ff7b7b;
+            --card-bg: rgba(17,34,64,0.75);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            background: radial-gradient(1200px 600px at 80% -10%, rgba(197,160,89,0.18), transparent 60%),
+                        radial-gradient(900px 500px at -10% 30%, rgba(100,140,255,0.10), transparent 60%),
+                        var(--navy);
+            min-height: 100vh;
+        }
+        a { color: var(--gold); }
+        header, main, footer { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 0; }
+        nav .brand { font-weight: 700; color: var(--ink); text-decoration: none; font-size: 1.05rem; }
+        nav .brand span { color: var(--gold); }
+        nav .links a { margin-left: 1.2rem; color: var(--muted); text-decoration: none; font-size: .95rem; transition: color .2s; }
+        nav .links a:hover, nav .links a.active { color: var(--gold-2); }
+        
+        .hero { padding: 2.5rem 0 1.8rem; text-align: center; animation: rise .7s ease both; }
+        .pill { display: inline-block; padding: .35rem 1rem; border: 1px solid rgba(197,160,89,.45); border-radius: 999px; color: var(--gold-2); font-size: .85rem; background: rgba(197,160,89,.08); letter-spacing: 0.5px; }
+        h1 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.15; margin: 1rem 0 .6rem; }
+        h1 em { font-style: normal; background: linear-gradient(90deg, var(--gold), var(--gold-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .lead { color: var(--muted); font-size: 1.08rem; max-width: 680px; margin: 0 auto; }
+
+        .form-container { display: flex; flex-direction: column; gap: 2rem; margin-top: 1.5rem; animation: rise .8s ease both; }
+        .section-card {
+            background: linear-gradient(180deg, rgba(17,34,64,.88), rgba(17,34,64,.6));
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 1.8rem;
+            backdrop-filter: blur(8px);
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: .9rem;
+            margin-bottom: 1.4rem;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 0.9rem;
+        }
+        .step-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-2));
+            color: var(--navy);
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        .section-header h2 { margin: 0; font-size: 1.28rem; color: var(--ink); }
+        .section-header p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+        .fields-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
+        .form-group label { font-size: 0.9rem; color: var(--gold-2); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="url"],
+        .form-group select,
+        .form-group textarea {
+            padding: 0.85rem 1.1rem;
+            background: rgba(10,25,47,0.7);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            color: var(--ink);
+            font-family: inherit;
+            font-size: 0.98rem;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 12px rgba(197,160,89,0.25);
+        }
+
+        /* Color customizer styling */
+        .color-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; align-items: start; }
+        .color-picker-box {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--line);
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+        }
+        input[type="color"] {
+            -webkit-appearance: none;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        input[type="color"]::-webkit-color-swatch { border: 2px solid rgba(255,255,255,0.2); border-radius: 8px; }
+        .color-swatches { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+        .swatch {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.25);
+            transition: transform .15s;
+        }
+        .swatch:hover { transform: scale(1.15); }
+
+        /* Image Sourcing Choice (Mary Kay / Product Photos) */
+        .option-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 0.8rem; }
+        .opt-card {
+            background: rgba(255,255,255,0.02);
+            border: 1.5px solid var(--line);
+            border-radius: 14px;
+            padding: 1.2rem;
+            cursor: pointer;
+            transition: border-color .2s, background-color .2s, transform .2s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .opt-card:hover { border-color: rgba(197,160,89,0.5); transform: translateY(-2px); }
+        .opt-card.selected {
+            border-color: var(--gold);
+            background: rgba(197,160,89,0.08);
+            box-shadow: 0 0 16px rgba(197,160,89,0.15);
+        }
+        .opt-card input[type="radio"],
+        .opt-card input[type="checkbox"] {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            accent-color: var(--gold);
+            width: 18px;
+            height: 18px;
+        }
+        .opt-title { font-weight: 600; font-size: 1.05rem; color: var(--ink); display: flex; align-items: center; gap: 0.5rem; }
+        .opt-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.45; }
+        .tag-badge {
+            display: inline-block;
+            align-self: flex-start;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.55rem;
+            border-radius: 6px;
+            background: rgba(95,211,160,0.15);
+            color: var(--ok);
+            font-weight: 600;
+            margin-top: 0.3rem;
+        }
+
+        /* Live Visual Preview Card */
+        .preview-wrapper {
+            margin-top: 1.5rem;
+            background: rgba(10,25,47,0.85);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .preview-title { font-size: 0.85rem; color: var(--gold-2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.8rem; }
+        .mockup-post {
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            border-width: 4px;
+            border-style: solid;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.2rem;
+            position: relative;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            background-color: var(--navy);
+            border-color: var(--gold);
+        }
+        .mockup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+        .mockup-content {
+            text-align: center;
+            padding: 0.5rem;
+        }
+        .mockup-quote {
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.35;
+            color: var(--ink);
+            margin: 0;
+        }
+        .mockup-tag {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 0.4rem;
+        }
+        .mockup-footer {
+            font-size: 0.78rem;
+            color: var(--gold-2);
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Buttons & CTA */
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.95rem 1.8rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-family: inherit;
+            font-size: 1.05rem;
+            cursor: pointer;
+            border: 0;
+            color: var(--navy);
+            background: linear-gradient(135deg, var(--gold), var(--gold-2));
+            box-shadow: 0 8px 24px rgba(197,160,89,0.22);
+            transition: transform .2s, box-shadow .2s;
+            text-decoration: none;
+            width: 100%;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(197,160,89,.35); }
+        .btn:disabled { opacity: .6; cursor: wait; transform: none; }
+        
+        .msg-box {
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            margin-top: 1rem;
+            display: none;
+            font-size: 0.95rem;
+            animation: rise .4s ease both;
+        }
+        .msg-box.ok { display: block; border-color: rgba(95,211,160,.4); background: rgba(95,211,160,.08); color: var(--ok); }
+        .msg-box.bad { display: block; border-color: rgba(255,123,123,.4); background: rgba(255,123,123,.08); color: var(--bad); }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 2.5rem 1.5rem;
+            margin-top: 3.5rem;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: .9rem;
+        }
+        footer a { color: var(--muted); margin-left: 1rem; text-decoration: none; }
+        footer a:hover { color: var(--gold-2); }
+        @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="brand" href="/scheduler/">Magnetic Mind <span>Social Scheduler</span></a>
+            <div class="links">
+                <a href="/scheduler/">Overview</a>
+                <a href="/scheduler/signup/" class="active">Get Started</a>
+                <a href="/scheduler/connect/">Connect Accounts</a>
+                <a href="/scheduler/privacy/">Privacy</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <span class="pill">Client Onboarding</span>
+            <h1>Personalize Your Brand.<br><em>Automate Your Reach.</em></h1>
+            <p class="lead">Select your custom colors, content services, target platforms, and daily posting schedule. Complete this quick setup, then connect your social accounts in one click.</p>
+        </section>
+
+        <form id="signup-form" class="form-container">
+            <!-- SECTION 1: Client & Brand Information -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="step-badge">1</div>
+                    <div>
+                        <h2>Brand &amp; Contact Details</h2>
+                        <p>Where your private shared folder and studio invites will be set up.</p>
+                    </div>
+                </div>
+                <div class="fields-grid">
+                    <div class="form-group">
+                        <label for="contact-name">Full Name *</label>
+                        <input type="text" id="contact-name" name="name" required placeholder="e.g. Devon Farquharson" autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="brand-name">Brand / Business Name *</label>
+                        <input type="text" id="brand-name" name="brand" required placeholder="e.g. Mary Kay by Sarah / Cool &amp; Deadly" autocomplete="organization">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email Address *</label>
+                        <input type="email" id="contact-email" name="email" required placeholder="you@yourbusiness.com" autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="brand-url">Call-To-Action Link / Website</label>
+                        <input type="url" id="brand-url" name="url" placeholder="https://linktr.ee/yourbrand or website">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2: Brand Colors & Image Customization -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="step-badge">2</div>
+                    <div>
+                        <h2>Brand Colors &amp; Visual Identity</h2>
+                        <p>Customize the frame, borders, and color tone for your daily posts.</p>
+                    </div>
+                </div>
+
+                <div class="color-row">
+                    <div class="form-group">
+                        <label for="primary-color">Primary Brand Color (Background)</label>
+                        <div class="color-picker-box">
+                            <input type="color" id="primary-color" name="primary_color" value="#0a192f">
+                            <div>
+                                <strong id="primary-hex">#0A192F</strong>
+                                <div class="color-swatches">
+                                    <span class="swatch" style="background:#0a192f" data-target="primary" data-hex="#0a192f" title="Deep Navy"></span>
+                                    <span class="swatch" style="background:#111111" data-target="primary" data-hex="#111111" title="Luxe Black"></span>
+                                    <span class="swatch" style="background:#4a1525" data-target="primary" data-hex="#4a1525" title="Burgundy"></span>
+                                    <span class="swatch" style="background:#0d3b2e" data-target="primary" data-hex="#0d3b2e" title="Forest Green"></span>
+                                    <span class="swatch" style="background:#1a2a44" data-target="primary" data-hex="#1a2a44" title="Royal Slate"></span>
+                                    <span class="swatch" style="background:#f4f1ea" data-target="primary" data-hex="#f4f1ea" title="Warm Cream"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accent-color">Accent &amp; Border Color (Highlight)</label>
+                        <div class="color-picker-box">
+                            <input type="color" id="accent-color" name="accent_color" value="#c5a059">
+                            <div>
+                                <strong id="accent-hex">#C5A059</strong>
+                                <div class="color-swatches">
+                                    <span class="swatch" style="background:#c5a059" data-target="accent" data-hex="#c5a059" title="Warm Gold"></span>
+                                    <span class="swatch" style="background:#e3c77f" data-target="accent" data-hex="#e3c77f" title="Soft Champagne"></span>
+                                    <span class="swatch" style="background:#d4af37" data-target="accent" data-hex="#d4af37" title="Metallic Gold"></span>
+                                    <span class="swatch" style="background:#b76e79" data-target="accent" data-hex="#b76e79" title="Rose Gold"></span>
+                                    <span class="swatch" style="background:#00d2ff" data-target="accent" data-hex="#00d2ff" title="Electric Blue"></span>
+                                    <span class="swatch" style="background:#ffffff" data-target="accent" data-hex="#ffffff" title="Pure White"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Photography vs AI Sourcing Choice -->
+                <div style="margin-top:1.6rem;">
+                    <label style="font-size:0.9rem; color:var(--gold-2); font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">
+                        Image Sourcing Method
+                    </label>
+                    <p style="color:var(--muted); font-size:0.88rem; margin:0.2rem 0 0.8rem;">
+                        Choose how your visuals are produced. Brands with real physical products (like Mary Kay cosmetics or boutique inventory) can use their own photography.
+                    </p>
+                    <div class="option-cards" id="image-source-group">
+                        <label class="opt-card selected" id="card-src-product">
+                            <input type="radio" name="image_sourcing" value="product_photos" checked>
+                            <div class="opt-title">📸 My Own Product Photos</div>
+                            <div class="opt-desc">
+                                Perfect for <strong>Mary Kay</strong>, beauty lines, and physical merchandise. You drop your product photos in your private Drive folder; our system adds your custom brand borders, logo, hooks, and promotional footer. No AI hallucinations.
+                            </div>
+                            <span class="tag-badge">Recommended for Products</span>
+                        </label>
+
+                        <label class="opt-card" id="card-src-ai">
+                            <input type="radio" name="image_sourcing" value="ai_generated">
+                            <div class="opt-title">🎨 AI-Generated Visuals</div>
+                            <div class="opt-desc">
+                                High-end cinematic or illustrated scenes generated from scripts, quotes, and themes aligned with your primary &amp; accent colors. Ideal for coaches, speakers, and digital creators.
+                            </div>
+                        </label>
+
+                        <label class="opt-card" id="card-src-hybrid">
+                            <input type="radio" name="image_sourcing" value="hybrid">
+                            <div class="opt-title">🔀 Hybrid (Products + AI)</div>
+                            <div class="opt-desc">
+                                Your authentic product photos serve as the hero, blended into styled background atmospheres and branded social templates.
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Interactive Post Mockup Preview -->
+                <div class="preview-wrapper">
+                    <div class="preview-title">Live Post Frame Preview</div>
+                    <div class="mockup-post" id="mockup-post">
+                        <div class="mockup-header" id="mockup-header">
+                            <span id="preview-brand-tag">@YOURBRAND</span>
+                            <span style="opacity:0.7">Daily Drop</span>
+                        </div>
+                        <div class="mockup-content">
+                            <p class="mockup-quote" id="mockup-text">"Confidence begins with the daily rituals that elevate your natural glow."</p>
+                            <p class="mockup-tag" id="mockup-src-tag">📸 Official Product Spotlight</p>
+                        </div>
+                        <div class="mockup-footer" id="mockup-footer">
+                            <span id="preview-cta">Get Yours: linktr.ee/yourbrand</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: Content Services Selection -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="step-badge">3</div>
+                    <div>
+                        <h2>Content Services &amp; Formats</h2>
+                        <p>Select which types of content you want prepared and published.</p>
+                    </div>
+                </div>
+                <div class="option-cards" id="services-group">
+                    <label class="opt-card selected">
+                        <input type="checkbox" name="services" value="daily_images" checked>
+                        <div class="opt-title">🖼️ Daily Image Posts &amp; Product Spotlights</div>
+                        <div class="opt-desc">High-impact daily visuals, product showcases, and quote cards published to your feeds and stories.</div>
+                    </label>
+
+                    <label class="opt-card selected">
+                        <input type="checkbox" name="services" value="short_videos" checked>
+                        <div class="opt-title">📱 Short-Form Videos (Shorts / Reels / TikToks)</div>
+                        <div class="opt-desc">Vertical 9:16 videos with Whisper-aligned karaoke subtitles, dynamic opening hooks, and royalty-free music.</div>
+                    </label>
+
+                    <label class="opt-card selected">
+                        <input type="checkbox" name="services" value="mini_loops" checked>
+                        <div class="opt-title">🔁 Mini Loops (5–7s Viral Hooks)</div>
+                        <div class="opt-desc">High-retention looping video micro-clips with spoken audio that seamlessly loop for maximum algorithm watch-time.</div>
+                    </label>
+
+                    <label class="opt-card">
+                        <input type="checkbox" name="services" value="long_videos">
+                        <div class="opt-title">🎬 Long-Form YouTube Videos (10–15 Min)</div>
+                        <div class="opt-desc">Complete deep-dive educational or narrative videos with full AI or recorded voiceover, slide deck, and chaptering.</div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- SECTION 4: Platforms & Frequency -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="step-badge">4</div>
+                    <div>
+                        <h2>Platforms &amp; Posting Frequency</h2>
+                        <p>Where your content goes and how frequently it is published.</p>
+                    </div>
+                </div>
+
+                <label style="font-size:0.9rem; color:var(--gold-2); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:0.6rem;">
+                    Target Platforms to Build
+                </label>
+                <div class="option-cards" id="platforms-group" style="margin-bottom:1.6rem;">
+                    <label class="opt-card selected">
+                        <input type="checkbox" name="platforms" value="facebook" checked>
+                        <div class="opt-title">🔵 Facebook Page</div>
+                        <div class="opt-desc">Posts to your business Page with native captions and link sharing.</div>
+                    </label>
+
+                    <label class="opt-card selected">
+                        <input type="checkbox" name="platforms" value="instagram" checked>
+                        <div class="opt-title">🟣 Instagram Account</div>
+                        <div class="opt-desc">Reels and image posts to your professional Instagram business account.</div>
+                    </label>
+
+                    <label class="opt-card selected">
+                        <input type="checkbox" name="platforms" value="youtube" checked>
+                        <div class="opt-title">🔴 YouTube Channel</div>
+                        <div class="opt-desc">Uploads Shorts and videos to your channel with SEO titles &amp; tags.</div>
+                    </label>
+
+                    <label class="opt-card selected">
+                        <input type="checkbox" name="platforms" value="tiktok" checked>
+                        <div class="opt-title">⚫ TikTok Profile</div>
+                        <div class="opt-desc">Short-form videos and viral loops formatted for TikTok feeds.</div>
+                    </label>
+                </div>
+
+                <div class="fields-grid">
+                    <div class="form-group">
+                        <label for="posting-freq">Posting Frequency</label>
+                        <select id="posting-freq" name="frequency">
+                            <option value="1x_daily">1x Daily (Flagship morning post)</option>
+                            <option value="2x_daily" selected>2x Daily (5:00 AM Morning + 2:00 PM Afternoon)</option>
+                            <option value="3x_daily">3x Daily (Morning Image, 10:30 AM Short/Loop, 2:00 PM Image)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="client-timezone">Your Timezone</label>
+                        <select id="client-timezone" name="timezone">
+                            <option value="America/New_York" selected>Eastern Time (US / Canada / Jamaica)</option>
+                            <option value="America/Chicago">Central Time (US / Canada)</option>
+                            <option value="America/Denver">Mountain Time (US / Canada)</option>
+                            <option value="America/Los_Angeles">Pacific Time (US / Canada)</option>
+                            <option value="Europe/London">London (GMT / BST)</option>
+                            <option value="UTC">UTC Universal</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button & Feedback -->
+            <div>
+                <button type="submit" class="btn" id="btn-submit">
+                    <span>Complete Sign-Up &amp; Connect Accounts</span>
+                    <span aria-hidden="true">&rarr;</span>
+                </button>
+                <div class="msg-box" id="form-msg"></div>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <div>&copy; 2026 The Magnetic Mind Institute</div>
+        <div>
+            <a href="/scheduler/">Overview</a>
+            <a href="/scheduler/connect/">Connect Accounts</a>
+            <a href="/scheduler/privacy/">Privacy Policy</a>
+            <a href="/scheduler/terms/">Terms of Service</a>
+            <a href="/scheduler/data-deletion/">Data Deletion</a>
+        </div>
+    </footer>
+
+    <script>
+    (function () {
+        var $ = function (id) { return document.getElementById(id); };
+        var form = $("signup-form");
+        var btn = $("btn-submit");
+        var msg = $("form-msg");
+
+        // Color & Preview sync
+        var primaryColor = $("primary-color");
+        var accentColor = $("accent-color");
+        var primaryHex = $("primary-hex");
+        var accentHex = $("accent-hex");
+        var brandInput = $("brand-name");
+        var urlInput = $("brand-url");
+        var mockup = $("mockup-post");
+        var mockupHeader = $("mockup-header");
+        var previewBrandTag = $("preview-brand-tag");
+        var previewCta = $("preview-cta");
+        var mockupSrcTag = $("mockup-src-tag");
+
+        function updatePreview() {
+            var pVal = primaryColor.value;
+            var aVal = accentColor.value;
+            primaryHex.textContent = pVal.toUpperCase();
+            accentHex.textContent = aVal.toUpperCase();
+
+            mockup.style.backgroundColor = pVal;
+            mockup.style.borderColor = aVal;
+            mockupHeader.style.color = aVal;
+
+            var brandText = brandInput.value.trim() || "YOUR BRAND";
+            previewBrandTag.textContent = "@" + brandText.toUpperCase().replace(/\s+/g, "");
+
+            var urlText = urlInput.value.trim() || "linktr.ee/yourbrand";
+            previewCta.textContent = "Shop & Discover: " + urlText.replace(/^https?:\/\//, "");
+
+            // Update text color contrast if primary background is light
+            var rgb = hexToRgb(pVal);
+            var isLight = rgb && ((rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000 > 140);
+            mockup.querySelector(".mockup-quote").style.color = isLight ? "#112240" : "#e6f1ff";
+            mockup.querySelector(".mockup-tag").style.color = isLight ? "#4a5568" : "#a8b2d1";
+        }
+
+        function hexToRgb(hex) {
+            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        primaryColor.addEventListener("input", updatePreview);
+        accentColor.addEventListener("input", updatePreview);
+        brandInput.addEventListener("input", updatePreview);
+        urlInput.addEventListener("input", updatePreview);
+
+        // Clickable swatches
+        document.querySelectorAll(".swatch").forEach(function (swatch) {
+            swatch.addEventListener("click", function () {
+                var target = swatch.getAttribute("data-target");
+                var hex = swatch.getAttribute("data-hex");
+                if (target === "primary") {
+                    primaryColor.value = hex;
+                } else {
+                    accentColor.value = hex;
+                }
+                updatePreview();
+            });
+        });
+
+        // Toggle card selected state on radio / checkbox change
+        document.querySelectorAll(".opt-card input").forEach(function (inp) {
+            inp.addEventListener("change", function () {
+                if (inp.type === "radio") {
+                    var group = inp.closest(".option-cards");
+                    group.querySelectorAll(".opt-card").forEach(function (c) { c.classList.remove("selected"); });
+                    inp.closest(".opt-card").classList.add("selected");
+
+                    if (inp.name === "image_sourcing") {
+                        if (inp.value === "product_photos") {
+                            mockupSrcTag.textContent = "📸 Official Product Spotlight";
+                        } else if (inp.value === "ai_generated") {
+                            mockupSrcTag.textContent = "🎨 AI Art & Thought Leadership";
+                        } else {
+                            mockupSrcTag.textContent = "🔀 Hybrid Product & Concept";
+                        }
+                    }
+                } else if (inp.type === "checkbox") {
+                    inp.closest(".opt-card").classList.toggle("selected", inp.checked);
+                }
+            });
+        });
+
+        // Pre-detect user timezone
+        try {
+            var detectedTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            var tzSelect = $("client-timezone");
+            for (var i = 0; i < tzSelect.options.length; i++) {
+                if (tzSelect.options[i].value === detectedTz) {
+                    tzSelect.selectedIndex = i;
+                    break;
+                }
+            }
+        } catch (e) {}
+
+        // Initial preview render
+        updatePreview();
+
+        // Form submission
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.querySelector("span:first-child").textContent = "Setting Up Your Profile...";
+            msg.className = "msg-box";
+            msg.textContent = "";
+
+            var selectedServices = [];
+            document.querySelectorAll('input[name="services"]:checked').forEach(function (c) { selectedServices.push(c.value); });
+
+            var selectedPlatforms = [];
+            document.querySelectorAll('input[name="platforms"]:checked').forEach(function (c) { selectedPlatforms.push(c.value); });
+
+            var imageSourcing = (document.querySelector('input[name="image_sourcing"]:checked') || {}).value || "product_photos";
+
+            var payload = {
+                name: $("contact-name").value.trim(),
+                brand: $("brand-name").value.trim(),
+                email: $("contact-email").value.trim().toLowerCase(),
+                url: $("brand-url").value.trim(),
+                primary_color: primaryColor.value,
+                accent_color: accentColor.value,
+                image_sourcing: imageSourcing,
+                services: selectedServices,
+                platforms: selectedPlatforms,
+                frequency: $("posting-freq").value,
+                timezone: $("client-timezone").value,
+                created_at: new Date().toISOString()
+            };
+
+            // Save to localStorage for instant pre-fill on /scheduler/connect/
+            try {
+                localStorage.setItem("sched_client_email", payload.email);
+                localStorage.setItem("sched_client_brand", payload.brand);
+                localStorage.setItem("sched_client_profile", JSON.stringify(payload));
+            } catch (err) {}
+
+            var emailContent = [
+                "NEW CLIENT SIGN-UP & ONBOARDING DETAILS:",
+                "--------------------------------------------------",
+                "Name: " + payload.name,
+                "Brand: " + payload.brand,
+                "Email: " + payload.email,
+                "Website / CTA: " + (payload.url || "(None specified)"),
+                "",
+                "BRAND VISUALS & SOURCE:",
+                "- Primary Color: " + payload.primary_color,
+                "- Accent Color: " + payload.accent_color,
+                "- Image Sourcing Method: " + payload.image_sourcing + (payload.image_sourcing === "product_photos" ? " [REAL PRODUCT PHOTOS - Mary Kay / eCommerce]" : ""),
+                "",
+                "CONTENT SERVICES SELECTED:",
+                "- " + (payload.services.length ? payload.services.join(", ") : "None"),
+                "",
+                "TARGET PLATFORMS:",
+                "- " + (payload.platforms.length ? payload.platforms.join(", ") : "None"),
+                "",
+                "POSTING SCHEDULE:",
+                "- Frequency: " + payload.frequency,
+                "- Timezone: " + payload.timezone,
+                "--------------------------------------------------"
+            ].join("\n");
+
+            try {
+                // 1. Dispatch email notification to dcfarquharson@gmail.com via Render Resend endpoint
+                await fetch("https://backend-deploy-hlq8.onrender.com/api/institute/contact", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: payload.name,
+                        email: payload.email,
+                        subject: "[Client Sign-Up] " + payload.brand + " (" + payload.image_sourcing + ")",
+                        message: emailContent
+                    })
+                }).catch(function (err) {
+                    console.warn("Email notify fallback handled:", err);
+                });
+
+                // 2. Also register client profile on WIN22-LAB connect portal if reachable
+                try {
+                    await fetch("https://win22-lab.tail2e2060.ts.net/api/sched/signup", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    }).catch(function () {});
+                } catch (e) {}
+
+                msg.className = "msg-box ok";
+                msg.textContent = "Profile configured! Redirecting to connect your social accounts...";
+
+                setTimeout(function () {
+                    window.location.href = "/scheduler/connect/?email=" + encodeURIComponent(payload.email) + "&brand=" + encodeURIComponent(payload.brand);
+                }, 1200);
+
+            } catch (err) {
+                console.error("Submission error:", err);
+                msg.className = "msg-box bad";
+                msg.textContent = "Profile saved locally! Proceeding to connect your accounts...";
+                setTimeout(function () {
+                    window.location.href = "/scheduler/connect/?email=" + encodeURIComponent(payload.email);
+                }, 1500);
+            }
+        });
+    })();
+    </script>
+</body>
+</html>
+
