@@ -224,6 +224,36 @@
             display: inline-block;
         }
 
+        .hero-cta-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 1.2rem;
+            flex-wrap: nowrap;
+        }
+
+        .hero-cta-group .cta-button {
+            margin-top: 0;
+            padding: 0.95rem 1.8rem;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 600px) {
+            .hero-cta-group {
+                gap: 10px;
+            }
+            .hero-cta-group .cta-button {
+                padding: 0.8rem 1rem;
+                font-size: 0.78rem;
+                letter-spacing: 1px;
+            }
+        }
+
         .cta-button:hover {
             background-color: var(--accent-gold);
             color: var(--primary-navy);
@@ -314,7 +344,7 @@
             potential.<br>
             "Change your paradigm, change your life."</p>
 
-        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <div class="hero-cta-group">
             <button class="cta-button" onclick="openModal()">Enter the Institute</button>
             <a href="creator-studio.html" class="cta-button" style="border-color: #25F4EE; color: #25F4EE;">Creator Studio (TikTok)</a>
         </div>
