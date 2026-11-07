@@ -114,7 +114,7 @@
             opacity: 1;
         }
 
-        /* MAIN CONTENT - WIDE VIEWPORT MATCHING POPUP MODAL (92vw / 1380px) */
+        /* MAIN CONTENT - FULL WIDE SPAN ACROSS THE ENTIRE PAGE (92vw / 1380px) */
         .page-content {
             margin-top: 100px;
             padding: 4rem 0;
@@ -133,6 +133,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 300;
+            width: 100%;
         }
 
         h2 {
@@ -143,120 +144,83 @@
             letter-spacing: 1.5px;
             font-size: 2rem;
             text-transform: uppercase;
+            width: 100%;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+            padding-bottom: 0.5rem;
         }
 
         h3 {
             color: #ffffff;
-            font-size: 1.45rem;
+            font-size: 1.5rem;
             font-weight: 500;
-            margin-top: 0;
+            margin-top: 2rem;
             margin-bottom: 1rem;
             letter-spacing: 0.5px;
+            width: 100%;
         }
 
+        /* FULL WIDTH ACROSS THE ENTIRE PAGE */
         p {
-            line-height: 1.85;
-            font-size: 1.1rem;
+            line-height: 2;
+            font-size: 1.2rem;
             color: #bdc6db;
-            margin-bottom: 1.4rem;
-        }
-
-        /* 2-COLUMN BALANCED EXECUTIVE LAYOUTS */
-        .wide-hero-grid {
-            display: grid;
-            grid-template-columns: 1.25fr 1fr;
-            gap: 2.5rem;
-            margin-bottom: 3.5rem;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            border-radius: 12px;
-            padding: 2.5rem;
+            margin-bottom: 1.8rem;
+            width: 100%;
             box-sizing: border-box;
         }
 
-        .story-section-grid {
-            display: grid;
-            grid-template-columns: 1.15fr 1fr;
-            gap: 2.5rem;
+        .lead-statement {
+            font-size: 1.35rem;
+            line-height: 2.1;
+            color: #ffffff;
             margin-bottom: 3rem;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(197, 160, 89, 0.15);
-            border-radius: 12px;
-            padding: 2.5rem;
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.8rem 2.2rem;
+            background: rgba(197, 160, 89, 0.05);
+            border-radius: 0 8px 8px 0;
+            width: 100%;
             box-sizing: border-box;
-        }
-
-        .story-sidebar-card {
-            background: rgba(10, 25, 47, 0.6);
-            border: 1px solid rgba(197, 160, 89, 0.25);
-            border-radius: 10px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-sizing: border-box;
-        }
-
-        .pillar-card {
-            background: rgba(10, 25, 47, 0.6);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            border-radius: 8px;
-            padding: 1.2rem 1.4rem;
-            margin-bottom: 1rem;
-        }
-
-        .pillar-title {
-            color: var(--accent-gold);
-            font-size: 1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.35rem;
-        }
-
-        .pillar-desc {
-            color: #bdc6db;
-            font-size: 0.95rem;
-            margin: 0;
-            line-height: 1.5;
         }
 
         .highlight-quote {
             border-left: 4px solid var(--accent-gold);
             background: rgba(197, 160, 89, 0.08);
-            padding: 1.5rem 1.75rem;
-            margin: 1.5rem 0;
+            padding: 1.8rem 2.2rem;
+            margin: 2.5rem 0;
             border-radius: 0 8px 8px 0;
             font-style: italic;
             color: #ffffff;
-            font-size: 1.2rem;
-            line-height: 1.75;
+            font-size: 1.3rem;
+            line-height: 1.9;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .highlight-quote span {
             display: block;
             margin-top: 0.75rem;
             font-style: normal;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--accent-gold);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             font-weight: bold;
         }
 
-        /* OUR MENTORS SECTION (PRESERVED FULL WIDTH GRID) */
+        /* OUR MENTORS SECTION (PRESERVED) */
         .team-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2.5rem;
             margin-top: 2rem;
+            width: 100%;
             box-sizing: border-box;
         }
 
         .team-member {
             background: rgba(255, 255, 255, 0.025);
             border: 1px solid rgba(197, 160, 89, 0.2);
-            padding: 2.5rem;
+            padding: 2.5rem 2rem;
             border-radius: 12px;
             text-align: center;
             box-sizing: border-box;
@@ -284,16 +248,6 @@
             color: #bdc6db;
             line-height: 1.8;
             text-align: left;
-        }
-
-        @media (max-width: 1024px) {
-            .wide-hero-grid,
-            .story-section-grid,
-            .team-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 1.75rem;
-            }
         }
 
         footer {
@@ -335,127 +289,83 @@
     <div class="page-content">
         <h1>About The Institute</h1>
 
-        <!-- WIDE HERO GRID (Utilizing Full 1380px Canvas) -->
-        <div class="wide-hero-grid">
-            <div>
-                <h3>Bridging Consciousness, Ancient Truth & Human Potential</h3>
-                <p>
-                    The Magnetic Mind Institute is a center for conscious leadership, mindset transformation, and human empowerment. We exist to help individuals dismantle inherited mental limitations, understand the immutable laws of mind, and step into their God-given authority as the conscious directors of their lives.
-                </p>
-                <p>
-                    Our work was not conceived in a boardroom or borrowed from academic theory. It was forged through a forty-year journey of inquiry—beginning at the pulpit of a Methodist church in Jamaica and culminating in an awakening inside a seminar hall in Scottsdale, Arizona.
-                </p>
-            </div>
-            <div class="story-sidebar-card">
-                <div class="pillar-card">
-                    <div class="pillar-title">Consciousness Over Circumstance</div>
-                    <p class="pillar-desc">Life does not happen to you; your physical reality is the direct mathematical harvest of your subconscious vibration.</p>
-                </div>
-                <div class="pillar-card">
-                    <div class="pillar-title">The Power of Paradigms</div>
-                    <p class="pillar-desc">A paradigm is a multitude of inherited habits and unexamined beliefs that run your life until you find the courage to question them.</p>
-                </div>
-                <div class="pillar-card">
-                    <div class="pillar-title">The Director Principle</div>
-                    <p class="pillar-desc">Stop showing up as an extra in your own movie. Claim the Director's chair and write your own script.</p>
-                </div>
-            </div>
+        <div class="lead-statement">
+            The Magnetic Mind Institute is a center for conscious leadership, human potential, and mindset transformation. We exist to help individuals dismantle inherited mental limitations, master the immutable laws of consciousness, and step into their God-given authority as the conscious directors of their lives.
         </div>
 
         <h2>Our Story</h2>
 
-        <!-- SECTION 1: THE PULPIT & THE TRIAL (WIDE 2-COLUMN) -->
-        <div class="story-section-grid">
-            <div>
-                <h3>The Pulpit and The Stand in Jamaica</h3>
-                <p>
-                    At nineteen, Devon Farquharson answered the call to preach at Mount Edmondson Methodist Church in Jamaica, following the footsteps of his father, a respected local preacher. Mentored by church elders, his ministry expanded rapidly across St. James, Westmoreland, Hanover, St. Elizabeth, and Trelawny, leading the Men's Fellowship across the county of Cornwall and speaking at historic pulpits including Coke Methodist Church in Kingston.
-                </p>
-                <p>
-                    Yet deep within, an unyielding quest for truth collided with religious dogma. When a local schoolteacher requested baptism by immersion, Devon discovered in the writings of founder Charles Wesley that immersion was recognized for adult converts. Her baptism became a historic event, sparking an immediate theological backlash from the church hierarchy.
-                </p>
-                <p>
-                    Summoned before a disciplinary council of twelve senior church leaders at St. John's Methodist Church in Montego Bay, Devon was pressured to recant. Instead, anchored in Joshua 24:15 and Acts 5:29, he reached into his bag, placed his clerical collar and preaching certificate upon the table, looked the council in the eyes, and declared:
-                </p>
-                <div class="highlight-quote">
-                    "Today I choose to obey God rather than men."
-                    <span>– Devon Farquharson, St. John's Methodist Church</span>
-                </div>
-                <p>
-                    Leaving his credentials behind, he walked out of that room. He entered as a licensed lay preacher; he walked out as an authentic seeker of truth.
-                </p>
-            </div>
-            <div class="story-sidebar-card">
-                <div class="pillar-title" style="font-size: 1.15rem; margin-bottom: 0.8rem;">The Freedom of Truth</div>
-                <p style="font-size: 1rem; line-height: 1.8; color: #e6f1ff; margin-bottom: 1.5rem;">
-                    "I walked into St. John's Methodist Church a lay preacher, and I walked out a man in search of the truth. My journey was not straight, and it was certainly not smooth. There were sharp curves, dangerous bends, and deep potholes every step of the way. But I decided then that if ever I preached again, it would not be because of credentials given to me by man."
-                </p>
-                <div style="border-top: 1px solid rgba(197, 160, 89, 0.2); padding-top: 1rem; color: var(--accent-gold); font-size: 0.9rem; font-weight: bold; text-transform: uppercase;">
-                    Conviction • Integrity • Spiritual Freedom
-                </div>
-            </div>
+        <p>
+            The foundation of The Magnetic Mind Institute was not conceived in a boardroom or borrowed from academic theory. It was forged through a forty-year personal journey of inquiry—beginning at the pulpit of a Methodist church in Jamaica and culminating in an awakening inside a seminar hall in Scottsdale, Arizona.
+        </p>
+
+        <p>
+            At nineteen, Devon Farquharson answered the call to preach on Missionary Sunday at Mount Edmondson Methodist Church in Jamaica, following in the footsteps of his father, a respected local preacher. Mentored by church elders, his ministry expanded rapidly across St. James, Westmoreland, Hanover, St. Elizabeth, and Trelawny. He was appointed head of the Men's Fellowship across the entire county of Cornwall and invited to speak at historic pulpits such as Coke Methodist Church in Kingston.
+        </p>
+
+        <p>
+            Yet deep within, an unyielding quest for truth collided with religious dogma. When a local primary school teacher requested baptism by immersion, Devon discovered in the historical writings of founder Charles Wesley that immersion was indeed recognized for adult converts. When her baptism took place, it marked a historic first in Jamaica—and sparked an immediate, aggressive theological backlash from the church hierarchy.
+        </p>
+
+        <p>
+            Summoned before a disciplinary council of twelve senior church leaders at St. John's Methodist Church in Montego Bay, Devon was pressured to conform to ecclesiastical authority. Instead, standing firmly upon Joshua 24:15 and Acts 5:29, he reached into his bag, placed his white clerical collar and preaching certificate upon the table, looked the council in the eyes, and declared:
+        </p>
+
+        <div class="highlight-quote">
+            "Today I choose to obey God rather than men."
+            <span>– Devon Farquharson, St. John's Methodist Church, Montego Bay</span>
         </div>
 
-        <!-- SECTION 2: THE DISCOVERY OF PARADIGMS (WIDE 2-COLUMN) -->
-        <div class="story-section-grid">
-            <div>
-                <h3>Beyond Dogma: The Discovery of Paradigms</h3>
-                <p>
-                    Outside the pulpit, Devon observed human nature closely. He took a position as an airline ticket agent with Express Air in Montego Bay, where he struck up a transformative friendship with Sydney from rival carrier Trans Jamaica. Rooming together in Reading, the two spent their evenings in intensive biblical and historical study—free from pulpits, collection plates, or religious politics.
-                </p>
-                <p>
-                    Through these years of inquiry, it became unmistakable that sincere people everywhere were held captive not by a lack of devotion, but by <strong>unexamined subconscious paradigms</strong>. Millions were living under inherited mental programs—ancient calendar traditions, cultural conditioning, and uninspected rules—that they had never once paused to examine.
-                </p>
-                <p>
-                    Devon recognized the foundational mental law of attraction and assumption: <em>the thoughts we hold with feeling act as a magnet, drawing into our lives the circumstances, relationships, and 'bridge of incidents' that correspond to our inner state.</em>
-                </p>
-            </div>
-            <div class="story-sidebar-card">
-                <div class="pillar-title" style="font-size: 1.15rem; margin-bottom: 0.8rem;">What is a Paradigm?</div>
-                <p style="font-size: 1rem; line-height: 1.8; color: #e6f1ff; margin-bottom: 1rem;">
-                    A paradigm is a mental program that has almost exclusive control over our habitual behavior—and almost all of our behavior is habitual.
-                </p>
-                <p style="font-size: 0.95rem; line-height: 1.7; color: #bdc6db; margin-bottom: 0;">
-                    As children, we had no conscious filter. What was repeated went straight into the subconscious mind, hardening into paradigms that dictate our adult income, relationships, and health. To change results, we must change the paradigm at the root.
-                </p>
-            </div>
+        <p>
+            Leaving his credentials behind on that table, he walked out of that room. He had entered as a licensed lay preacher; he walked out as an authentic seeker of truth, determined that if he ever preached again, it would not be because of credentials given by man.
+        </p>
+
+        <h2>The Discovery of Paradigms</h2>
+
+        <p>
+            Outside the pulpit, Devon observed human nature closely. He took a position as an airline ticket agent with Express Air in Montego Bay, where he struck up a lifelong friendship with Sydney, an agent from rival carrier Trans Jamaica. Rooming together in Reading, the two spent their evenings in intensive biblical and historical study—free from pulpits, collection plates, or religious politics.
+        </p>
+
+        <p>
+            Through these years of inquiry, it became unmistakable that sincere people everywhere were held captive not by a lack of devotion, but by <strong>unexamined subconscious paradigms</strong>. Millions were living under inherited mental programs—ancient calendar traditions, cultural conditioning, and uninspected rules—that they had never once paused to examine.
+        </p>
+
+        <p>
+            Devon recognized the foundational mental law of attraction and assumption: <em>the thoughts we hold with feeling act as a magnet, drawing into our lives the circumstances, relationships, and 'bridge of incidents' that correspond to our inner state.</em>
+        </p>
+
+        <h2>The Scottsdale Awakening</h2>
+
+        <p>
+            Over the decades that followed, external success arrived: a thriving corporate career, financial security, and material comfort. Yet an internal void remained. Life was still being experienced from the passenger seat—playing the role of an extra waiting for someone else's cue.
+        </p>
+
+        <p>
+            The definitive shift occurred in March 2025 at a Proctor Gallagher seminar in Scottsdale, Arizona. Sitting among hundreds of attendees at the Scottsdale Hilton, speaker Sandy Gallagher pointed directly in his direction and asked the question that dismantled decades of conditioning:
+        </p>
+
+        <div class="highlight-quote">
+            "Are you the director of your life, or are you just a part of the supporting cast?"
+            <span>– Sandy Gallagher, Scottsdale, Arizona</span>
         </div>
 
-        <!-- SECTION 3: THE SCOTTSDALE AWAKENING (WIDE 2-COLUMN) -->
-        <div class="story-section-grid">
-            <div>
-                <h3>The Scottsdale Awakening: Becoming The Director</h3>
-                <p>
-                    Over the decades that followed, external success arrived: a thriving corporate career, financial security, and material comfort. Yet an internal void remained. Life was still being experienced from the passenger seat—playing the role of an extra waiting for someone else's cue.
-                </p>
-                <p>
-                    The definitive shift occurred in March 2025 at a Proctor Gallagher seminar in Scottsdale, Arizona. Sitting among hundreds of attendees at the Scottsdale Hilton, speaker Sandy Gallagher pointed directly in his direction and asked the question that dismantled decades of conditioning:
-                </p>
-                <div class="highlight-quote">
-                    "Are you the director of your life, or are you just a part of the supporting cast?"
-                    <span>– Sandy Gallagher, Scottsdale, Arizona</span>
-                </div>
-                <p>
-                    In an instant, forty years of searching crystallized into absolute clarity. He had been an extra in his own movie, allowing subconscious paradigms to hold the camera. Devon committed entirely to Bob Proctor's signature curriculum, <em>Thinking into Results</em>, and the foundational Stick Person model originated by Dr. Thurman Fleet in 1934.
-                </p>
-                <p>
-                    He understood the complete science of mind: <strong>the conscious mind chooses the thought, but the subconscious mind governs emotional vibration and dictates physical results.</strong> He stepped out of the audience, claimed the Director's chair, and rewrote the script of his life.
-                </p>
-            </div>
-            <div class="story-sidebar-card">
-                <div class="pillar-title" style="font-size: 1.15rem; margin-bottom: 0.8rem;">The Stick Person Framework</div>
-                <p style="font-size: 1rem; line-height: 1.8; color: #e6f1ff; margin-bottom: 1rem;">
-                    In 1934, Dr. Thurman Fleet created the Stick Person diagram because humanity lacked an image of the mind.
-                </p>
-                <p style="font-size: 0.95rem; line-height: 1.7; color: #bdc6db; margin-bottom: 0;">
-                    When you understand that the conscious mind chooses ideas, the subconscious mind generates emotional vibration, and the physical body is merely an instrument expressing that vibration, you hold the master key to personal transformation.
-                </p>
-            </div>
-        </div>
+        <p>
+            In an instant, forty years of searching crystallized into absolute clarity. He had been an extra in his own movie, allowing subconscious paradigms to hold the camera. Devon committed entirely to Bob Proctor's signature curriculum, <em>Thinking into Results</em>, and the foundational Stick Person model originated by Dr. Thurman Fleet in 1934.
+        </p>
 
-        <!-- OUR MENTORS SECTION (PRESERVED FULL WIDTH GRID) -->
+        <p>
+            He understood the complete science of mind: <strong>the conscious mind chooses the thought, but the subconscious mind governs emotional vibration and dictates physical results.</strong> He stepped out of the audience, claimed the Director's chair, and rewrote the script of his life.
+        </p>
+
+        <h2>Our Mission Today</h2>
+
+        <p>
+            The Magnetic Mind Institute was established to bring this liberating knowledge to seekers, executives, and leaders worldwide. We teach individuals how to bridge the gap between knowing and doing, dismantle inherited paradigms, and consciously direct their health, relationships, and financial reality.
+        </p>
+
+        <!-- OUR MENTORS SECTION (PRESERVED INTACT) -->
         <h2>Our Mentors</h2>
-        <p style="font-size: 1.15rem; color: #bdc6db; margin-bottom: 2rem;">Expert coaches trained in the Proctor lineage.</p>
+        <p style="font-size: 1.2rem; color: #bdc6db; margin-bottom: 2rem;">Expert coaches trained in the Proctor lineage.</p>
 
         <div class="team-grid">
             <div class="team-member">
