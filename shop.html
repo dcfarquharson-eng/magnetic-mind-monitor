@@ -460,6 +460,172 @@
             box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
         }
 
+        /* 3. BOOKS SECTION GRID */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .books-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .book-card {
+            background: linear-gradient(180deg, rgba(17, 34, 64, 0.9), rgba(17, 34, 64, 0.6));
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+        }
+
+        .book-media-wrap {
+            background: #06101e;
+            height: 290px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem 1rem;
+            border-bottom: 1px solid var(--card-border);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .book-media-wrap img {
+            max-height: 260px;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+            transition: transform 0.35s ease;
+        }
+
+        .book-card:hover .book-media-wrap img {
+            transform: scale(1.04);
+        }
+
+        .book-body {
+            padding: 1.2rem 1.2rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .book-badge {
+            display: inline-block;
+            align-self: flex-start;
+            color: var(--accent-gold-light);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            font-weight: bold;
+            background: rgba(197, 160, 89, 0.12);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 4px;
+            padding: 0.2rem 0.5rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .book-title {
+            font-size: 1.15rem;
+            color: #fff;
+            margin: 0 0 0.3rem;
+            font-weight: 500;
+            letter-spacing: 0.4px;
+            line-height: 1.3;
+        }
+
+        .book-author {
+            color: var(--accent-gold-light);
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin-bottom: 0.65rem;
+        }
+
+        .book-snippet {
+            color: #cbd5e1;
+            line-height: 1.5;
+            font-size: 0.85rem;
+            margin: 0 0 1.2rem;
+            flex-grow: 1;
+        }
+
+        .book-card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            margin-top: auto;
+        }
+
+        .btn-book-details {
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+            color: var(--primary-navy);
+            padding: 0.65rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 1.1px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: none;
+            box-sizing: border-box;
+            display: block;
+        }
+
+        .btn-book-details:hover {
+            box-shadow: 0 0 16px rgba(197, 160, 89, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .btn-book-order {
+            width: 100%;
+            text-align: center;
+            background: transparent;
+            border: 1.5px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-sizing: border-box;
+            display: block;
+        }
+
+        .btn-book-order:hover {
+            background: rgba(197, 160, 89, 0.15);
+            color: #fff;
+            border-color: #fff;
+        }
+
         /* DETAILS POP-UP MODAL */
         .modal {
             display: none;
@@ -925,15 +1091,97 @@
             </div>
         </section>
 
-        <!-- 3. BOOKS (Ready for upcoming releases) -->
+        <!-- 3. BOOKS -->
         <section id="books" style="margin-top: 4rem;">
             <div class="section-title-wrap">
                 <h2 class="section-title">Books</h2>
-                <p class="section-sub">Transformational literature, study guides, and workbooks to elevate your consciousness and mindset.</p>
+                <p class="section-sub">Transformational literature, blueprints, and anthologies to elevate your consciousness, identity, and personal resilience.</p>
             </div>
-            <div style="background: rgba(255, 255, 255, 0.02); border: 1px dashed rgba(197, 160, 89, 0.3); border-radius: 12px; padding: 3rem 2rem; text-align: center; color: #a8b2d1;">
-                <p style="margin: 0; font-size: 1.15rem; color: #e6f1ff; font-weight: 500;">Featured Publications &amp; Workbooks</p>
-                <p style="margin: 0.6rem 0 0 0; font-size: 0.95rem; color: var(--accent-gold);">Catalog updating shortly. Details releasing soon.</p>
+
+            <div class="books-grid">
+                <!-- BOOK 1: The Audition -->
+                <div class="book-card">
+                    <div class="book-media-wrap">
+                        <img src="shop/images/book-the-audition.png" alt="The Audition - Melva Slythe Farquharson">
+                    </div>
+                    <div class="book-body">
+                        <div>
+                            <span class="book-badge">Featured Publication</span>
+                            <h3 class="book-title">The Audition</h3>
+                            <div class="book-author">Melva Slythe Farquharson</div>
+                            <p class="book-snippet">
+                                Manifesting Your Vision by Living as Your Future Self. Discover a transformative framework to step into the role of who you are destined to be.
+                            </p>
+                        </div>
+                        <div class="book-card-actions">
+                            <button class="btn-book-details" onclick="openProgramDetails('book-the-audition')">View Details</button>
+                            <button class="btn-book-order" onclick="openPurchaseModal('The Audition (Book)')">Order / Inquire</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOOK 2: Bounce Back Stronger -->
+                <div class="book-card">
+                    <div class="book-media-wrap">
+                        <img src="shop/images/book-bounce-back-stronger.png" alt="Bounce Back Stronger, Move Forward Faster - Melva Slythe Farquharson">
+                    </div>
+                    <div class="book-body">
+                        <div>
+                            <span class="book-badge">Paperback • Bestseller</span>
+                            <h3 class="book-title">Bounce Back Stronger</h3>
+                            <div class="book-author">Melva Slythe Farquharson</div>
+                            <p class="book-snippet">
+                                Move Forward Faster. Master the proprietary Bounce-Back Formula and 7-Day Quantum Leap to turn every setback into extraordinary success.
+                            </p>
+                        </div>
+                        <div class="book-card-actions">
+                            <button class="btn-book-details" onclick="openProgramDetails('book-bounce-back-stronger')">View Details</button>
+                            <a href="https://www.amazon.com/Melva-Slythe-Farquharson/e/B0GGM69S59/ref=dp_byline_cont_book_1" target="_blank" rel="noopener noreferrer" class="btn-book-order">Order on Amazon</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOOK 3: BECOME360° -->
+                <div class="book-card">
+                    <div class="book-media-wrap">
+                        <img src="shop/images/book-become-360.png" alt="BECOME360° - Melva Farquharson">
+                    </div>
+                    <div class="book-body">
+                        <div>
+                            <span class="book-badge">Paperback • Identity Recode</span>
+                            <h3 class="book-title">BECOME360°</h3>
+                            <div class="book-author">Melva Farquharson</div>
+                            <p class="book-snippet">
+                                The 360° Recode for the Woman Who Has Already Won. Shatter your Neurological Ceiling and close the Identity Gap with the R.I.C.H.E.S.T. Framework.
+                            </p>
+                        </div>
+                        <div class="book-card-actions">
+                            <button class="btn-book-details" onclick="openProgramDetails('book-become-360')">View Details</button>
+                            <a href="https://www.amazon.com/BECOME360%C2%B0-360%C2%B0-RECODE-WOMAN-ALREADY/dp/B0H87JXGKX/ref=sr_1_1?crid=23PIWLS2O1OP2&dib=eyJ2IjoiMSJ9.T--79EGMk5-8dtBGd73wlg.jlAhzRwni97rN2yjFvRgHgK0r95D9XjNnRoiMmY2nIg&dib_tag=se&keywords=melva+farquharson+360&qid=1794058805&sprefix=melva+360%2Caps%2C218&sr=8-1#" target="_blank" rel="noopener noreferrer" class="btn-book-order">Order on Amazon</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOOK 4: The Tapestry Within -->
+                <div class="book-card">
+                    <div class="book-media-wrap">
+                        <img src="shop/images/book-the-tapestry-within.png" alt="The Tapestry Within - Melva Slythe Farquharson">
+                    </div>
+                    <div class="book-body">
+                        <div>
+                            <span class="book-badge">Paperback • 5.0 ★ Anthology</span>
+                            <h3 class="book-title">The Tapestry Within</h3>
+                            <div class="book-author">Melva Slythe Farquharson &amp; Co-Authors</div>
+                            <p class="book-snippet">
+                                Healing, Purpose, and Manifestation. A profound anthology of real-life stories from resilient women turning wounds into triumphant beacons of hope.
+                            </p>
+                        </div>
+                        <div class="book-card-actions">
+                            <button class="btn-book-details" onclick="openProgramDetails('book-the-tapestry-within')">View Details</button>
+                            <a href="https://www.amazon.com/Tapestry-Within-Healing-Purpose-Manifestation/dp/B0G65QNBG5/ref=sr_1_4?crid=Z3V20Q9ZGMFP&dib=eyJ2IjoiMSJ9.DbG1fpJNJHxoMyxwbZpNyMgkrSZ3S-USfysTXE07QAILwGv9mmnGjPiLVkvju4ZZ.BUADaEdG2qsyHgv7V0HQ8tKCi5zcORY--KJLTeqQWPc&dib_tag=se&keywords=melva+farquharson&qid=1794058859&sprefix=melva+farquharson%2Caps%2C129&sr=8-4#" target="_blank" rel="noopener noreferrer" class="btn-book-order">Order on Amazon</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1261,21 +1509,149 @@
                         <li><strong>Multiplying Income Streams:</strong> Structuring your client base to produce recurring commissions and lifelong wealth.</li>
                     </ul>
                 `
+            },
+            "book-the-audition": {
+                title: "The Audition",
+                sub: "Manifesting Your Vision by Living as Your Future Self — by Melva Slythe Farquharson",
+                badge: "Featured Publication",
+                image: "shop/images/book-the-audition.png",
+                buttonText: "Order / Inquire About Book",
+                bodyHtml: `
+                    <div class="details-media-preview">
+                        <img src="shop/images/book-the-audition.png" alt="The Audition: Manifesting Your Vision by Living as Your Future Self">
+                    </div>
+                    <p style="font-size:1.05rem; font-style:italic; color:var(--accent-gold-light);">
+                        What if the life you’ve always dreamed of isn’t something you achieve someday, but something you become today?
+                    </p>
+                    <p>In <strong>The Audition</strong>, you’ll discover a transformative framework for manifesting your vision by stepping into the role of your future self—the version of you who already has the success, confidence, and fulfillment you desire.</p>
+                    <p>Through powerful insights, actionable strategies, and inspiring stories, this book will guide you to rehearse your vision, align your actions with your purpose, and embody the mindset and habits of the person you’re destined to be.</p>
+                    <p><strong>You’ll learn how to:</strong></p>
+                    <ul class="details-features-list">
+                        <li>Break free from limiting beliefs and self-doubt that hold you back.</li>
+                        <li>Align your daily habits and decisions with your highest potential.</li>
+                        <li>Recognize the signs of your manifestation unfolding in real time.</li>
+                        <li>Step into the spotlight of your life with confidence and clarity.</li>
+                    </ul>
+                    <p>Whether you’re pursuing a personal goal, a professional dream, or a deeper sense of purpose, <em>The Audition</em> will empower you to live as the star of your own story. The stage is set, the spotlight is waiting—are you ready to claim your role and bring your vision to life?</p>
+                    <p style="font-weight:600; color:var(--accent-gold-light);">
+                        It’s time to stop waiting for your dream life to arrive. Step into the audition, and start living it now.
+                    </p>
+                `
+            },
+            "book-bounce-back-stronger": {
+                title: "Bounce Back Stronger, Move Forward Faster",
+                sub: "by Melva Slythe Farquharson (Author) • Format: Paperback",
+                badge: "Paperback • Bestseller",
+                image: "shop/images/book-bounce-back-stronger.png",
+                amazonUrl: "https://www.amazon.com/Melva-Slythe-Farquharson/e/B0GGM69S59/ref=dp_byline_cont_book_1",
+                buttonText: "Order on Amazon",
+                bodyHtml: `
+                    <div class="details-media-preview">
+                        <img src="shop/images/book-bounce-back-stronger.png" alt="Bounce Back Stronger, Move Forward Faster">
+                    </div>
+                    <p style="font-size:1.05rem; font-style:italic; color:var(--accent-gold-light);">
+                        Are you merely surviving the storms of life, or are you ready to command them?
+                    </p>
+                    <p>True resilience isn't just about bouncing back—it is about rising higher, tapping into your highest self, and turning every setback into a setup for extraordinary success.</p>
+                    <p>In <strong>Bounce Back Stronger</strong>, Melva Slythe Farquharson offers more than hope; she delivers the unparalleled clarity you need to navigate chaos and reclaim your purpose. This is your transformative blueprint to break through the barriers of fear and doubt.</p>
+                    <p>Through the proprietary <strong>Bounce-Back Formula</strong>, you will learn to transmute failure into fuel, mastering your emotions to create a life of profound peace and order.</p>
+                    <p><strong>Core Breakthroughs:</strong></p>
+                    <ul class="details-features-list">
+                        <li><strong>The Bounce-Back Formula:</strong> Transmute failure into fuel and master emotional equilibrium under pressure.</li>
+                        <li><strong>7-Day Quantum Leap:</strong> A high-impact strategy engineered to shift your paradigm and manifest rapid, tangible results.</li>
+                        <li><strong>Breaking Fear &amp; Doubt:</strong> Practical mental disciplines to eliminate internal barriers and command your reality.</li>
+                        <li><strong>Rewrite Your Narrative:</strong> Unlock dormant potential and step boldly into the remarkable life you were created to lead.</li>
+                    </ul>
+                    <p>You are not meant to stay stuck. You will accelerate your growth with the 7-Day Quantum Leap, a powerful strategy designed to shift your paradigm and manifest results rapidly. Stop letting circumstances dictate your reality. It is time to rewrite your story, unlock your dormant potential, and boldly step into the remarkable life you were meant to live.</p>
+                    <p style="font-weight:600; color:var(--accent-gold-light);">
+                        Your breakthrough is waiting. Grab your copy and start your transformation today.
+                    </p>
+                `
+            },
+            "book-become-360": {
+                title: "BECOME360°: THE 360° RECODE FOR THE WOMAN WHO HAS ALREADY WON",
+                sub: "by Melva Farquharson (Author) • Format: Paperback",
+                badge: "Paperback • Identity Recode",
+                image: "shop/images/book-become-360.png",
+                amazonUrl: "https://www.amazon.com/BECOME360%C2%B0-360%C2%B0-RECODE-WOMAN-ALREADY/dp/B0H87JXGKX/ref=sr_1_1?crid=23PIWLS2O1OP2&dib=eyJ2IjoiMSJ9.T--79EGMk5-8dtBGd73wlg.jlAhzRwni97rN2yjFvRgHgK0r95D9XjNnRoiMmY2nIg&dib_tag=se&keywords=melva+farquharson+360&qid=1794058805&sprefix=melva+360%2Caps%2C218&sr=8-1#",
+                buttonText: "Order on Amazon",
+                bodyHtml: `
+                    <div class="details-media-preview">
+                        <img src="shop/images/book-become-360.png" alt="BECOME360° - Melva Farquharson">
+                    </div>
+                    <p style="font-size:1.05rem; font-style:italic; color:var(--accent-gold-light);">
+                        You Did Everything Right. So Why Does the Next Level Still Feel Out of Reach?
+                    </p>
+                    <p>You've earned the title. Built the income. Mastered the room. Yet something quiet keeps pulling you back—right at the edge of your breakthrough.</p>
+                    <p>That something has a name. It's your <strong>Neurological Ceiling</strong>, and no amount of effort will break it. <em>Become360°</em> reveals the truth high-achieving women rarely hear: your results are not a strategy problem. They are an identity problem. The gap between who you are and who you're becoming—the <strong>Identity Gap</strong>—is the only thing standing between your current life and the one you were built for.</p>
+                    <p><strong>Mapping the Journey of Transformation:</strong></p>
+                    <p>Drawing on decades of decoding the patterns of top producers and elite performers, Melva Farquharson introduces the <strong>R.I.C.H.E.S.T. Framework</strong>—a precise, premium system designed to recode the subconscious patterns silently writing your results. This is not motivation. It's architecture.</p>
+                    <p>At its core lives the <strong>Melva 360° Method</strong>, the three-part discipline that turns insight into embodiment:</p>
+                    <ul class="details-features-list">
+                        <li><strong>Result Audit:</strong> Face the data of your patterns without the interference of emotion.</li>
+                        <li><strong>Recode:</strong> Rewrite the subconscious scripts enforcing your ceiling.</li>
+                        <li><strong>Mind Reset:</strong> Train your nervous system until your next level feels like your name, not a costume.</li>
+                    </ul>
+                    <p><strong>Who This Book Is For:</strong></p>
+                    <p>This is for the woman who looks successful on paper but feels the private stall behind the polish. The leader exhausted by managing herself instead of leading herself. The one ready to stop negotiating with her own potential.</p>
+                    <p style="font-weight:600; color:var(--accent-gold-light);">
+                        The question was never your potential. It's your willingness to close the Identity Gap. Step fully into your 360° Transformation.
+                    </p>
+                `
+            },
+            "book-the-tapestry-within": {
+                title: "The Tapestry Within: Healing, Purpose, and Manifestation",
+                sub: "by Melva Slythe Farquharson, Elaine Williams, Mechal Roberts, Adolphine Branch, & 6 more • Format: Paperback (5.0 ★)",
+                badge: "Paperback • 5.0 ★ Anthology",
+                image: "shop/images/book-the-tapestry-within.png",
+                amazonUrl: "https://www.amazon.com/Tapestry-Within-Healing-Purpose-Manifestation/dp/B0G65QNBG5/ref=sr_1_4?crid=Z3V20Q9ZGMFP&dib=eyJ2IjoiMSJ9.DbG1fpJNJHxoMyxwbZpNyMgkrSZ3S-USfysTXE07QAILwGv9mmnGjPiLVkvju4ZZ.BUADaEdG2qsyHgv7V0HQ8tKCi5zcORY--KJLTeqQWPc&dib_tag=se&keywords=melva+farquharson&qid=1794058859&sprefix=melva+farquharson%2Caps%2C129&sr=8-4#",
+                buttonText: "Order on Amazon",
+                bodyHtml: `
+                    <div class="details-media-preview">
+                        <img src="shop/images/book-the-tapestry-within.png" alt="The Tapestry Within - Healing, Purpose, and Manifestation">
+                    </div>
+                    <p style="font-size:1.05rem; font-style:italic; color:var(--accent-gold-light);">
+                        In the hidden depths of the human soul, where wounds whisper tales of despair, lies an untapped power waiting to be woven into triumph.
+                    </p>
+                    <p><strong>The Tapestry Within</strong> is a profound anthology of real-life stories from resilient women who have transformed rape, loss, grief, self-doubt, and shattering setbacks into beacons of hope and empowerment.</p>
+                    <p><strong>Real-Life Stories of Transformation:</strong></p>
+                    <ul class="details-features-list">
+                        <li>Journey with <strong>Cecilie</strong> as she breaks free from the chains of silence and shame through forgiveness and purposeful volunteering.</li>
+                        <li>Witness <strong>Mechal Roberts</strong> confront her reflection in the mirror, turning grief into self-love.</li>
+                        <li>Follow <strong>Naomi Mitchem's</strong> quiet purpose in her case study of Dianne who builds a nonprofit empowering over 15,000 caregivers.</li>
+                        <li>Discover <strong>Denise Farrell's</strong> surrender to the gut-brain wisdom that sparked her entrepreneurial rebirth.</li>
+                        <li>From <strong>Elaine Williams</strong> conquering 72 professional deficiencies to <strong>Cecelia Gayee</strong> leaping from humiliated cassava seller to innovative leader.</li>
+                    </ul>
+                    <p>Blending ancient insights, like Hippocrates' wisdom, with modern tools such as forgiveness letters, mirror affirmations, journaling fears, and visualization exercises, this book isn't just inspiration, it's a practical guide to intentional healing, mindset shifts, mentorship, and dream mobilization.</p>
+                    <p style="font-weight:600; color:var(--accent-gold-light);">
+                        What if your deepest scars hold the keys to your greatest freedom? The Tapestry Within invites you to reclaim your voice, embrace change, and weave a life of abundance, gratitude, and impact.
+                    </p>
+                `
             }
         };
 
+        var currentActiveProgram = null;
         var currentActiveProgramTitle = "";
 
         function openProgramDetails(key) {
             var data = PROGRAM_DETAILS[key];
             if (!data) return;
 
+            currentActiveProgram = data;
             currentActiveProgramTitle = data.title;
             document.getElementById('popupBadge').textContent = data.badge;
             document.getElementById('popupTitle').textContent = data.title;
             document.getElementById('popupSub').textContent = data.sub;
             document.getElementById('popupBody').innerHTML = data.bodyHtml;
-            document.getElementById('popupPurchaseBtn').textContent = 'Purchase / Enroll in ' + data.title;
+
+            var purchaseBtn = document.getElementById('popupPurchaseBtn');
+            if (data.buttonText) {
+                purchaseBtn.textContent = data.buttonText;
+            } else if (data.amazonUrl) {
+                purchaseBtn.textContent = 'Order on Amazon';
+            } else {
+                purchaseBtn.textContent = 'Purchase / Enroll in ' + data.title;
+            }
 
             document.getElementById('detailsModal').style.display = 'flex';
         }
@@ -1285,6 +1661,10 @@
         }
 
         function triggerPurchaseFromDetails() {
+            if (currentActiveProgram && currentActiveProgram.amazonUrl) {
+                window.open(currentActiveProgram.amazonUrl, '_blank');
+                return;
+            }
             closeDetailsModal();
             openPurchaseModal(currentActiveProgramTitle);
         }
