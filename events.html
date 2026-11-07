@@ -145,6 +145,21 @@
             width: 100%;
         }
 
+        .featured-card-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 2.5rem;
+            width: 100%;
+            align-items: start;
+        }
+
+        @media (max-width: 1024px) {
+            .featured-card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
         .event-date {
             display: flex;
             flex-direction: column;
@@ -496,25 +511,66 @@
     <div class="page-content">
         <h1>Upcoming Events</h1>
 
-        <div class="event-card" style="border: 1px solid var(--accent-gold); box-shadow: 0 0 25px rgba(197, 160, 89, 0.15);">
-            <div class="event-date">
-                <span class="date-month">Nov</span>
-                <span class="date-day">14</span>
-            </div>
-            <div class="event-info">
-                <span class="event-type" style="color: var(--accent-gold);">Featured Masterclass &bull; Live &amp; Virtual with Melva</span>
-                <h3 class="event-title">The R.I.C.H.E.S.T. Year-End Review</h3>
-                <p style="color: var(--accent-gold); font-size: 0.95rem; margin-top: -0.5rem; margin-bottom: 0.8rem; font-style: italic;">
-                    A Whole-Life Reset for High-Achieving Women
-                </p>
-                <p class="event-description">
-                    Saturday, November 14 &bull; 10:00 AM – 2:00 PM [EST]<br>
-                    Format: Live &amp; Virtual &bull; Investment: $97 (Includes Become 360° Book &amp; Workbook)<br><br>
-                    You built the success. Now build the identity that can hold it. In one focused morning, audit your whole life across all 7 R.I.C.H.E.S.T. pillars, release the roles you've outgrown, and walk forward into the new year as the woman you chose to become.
-                </p>
-                <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
-                    <a href="https://checkout.square.site/merchant/BJP0YXKGM78KH/checkout/ED774OVYFAMA5G7FNYAY6HY3" target="_blank" rel="noopener noreferrer" class="rsvp-btn" style="background-color: var(--accent-gold); color: var(--primary-navy); font-weight: bold; border-color: var(--accent-gold);">Get Tickets — $97</a>
-                    <button type="button" class="rsvp-btn" onclick="openEventDetails()">More Information</button>
+        <div class="event-card featured-event-card" style="border: 1px solid var(--accent-gold); box-shadow: 0 0 30px rgba(197, 160, 89, 0.2); padding: 2.5rem; border-radius: 12px; margin-bottom: 2.5rem; text-align: left; width: 100%; box-sizing: border-box; background: #0b172a; display: block;">
+            <div class="featured-card-grid">
+                <!-- Left Column: Date & Core Details -->
+                <div class="featured-card-col-left">
+                    <div style="display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.2rem;">
+                        <div class="event-date" style="border-right: 1px solid rgba(197, 160, 89, 0.3); padding-right: 1.2rem; min-width: 80px;">
+                            <span class="date-month">Nov</span>
+                            <span class="date-day" style="font-size: 2.2rem;">14</span>
+                        </div>
+                        <div>
+                            <span class="event-type" style="color: var(--accent-gold); margin-bottom: 0.2rem;">Live &amp; Virtual Masterclass &bull; With Melva</span>
+                            <h2 style="font-size: 1.85rem; color: #ffffff; margin: 0; font-weight: 400; line-height: 1.25;">The R.I.C.H.E.S.T. Year-End Review</h2>
+                            <p style="color: var(--accent-gold); font-size: 0.95rem; margin: 0.25rem 0 0 0; font-style: italic;">
+                                A Whole-Life Reset for High-Achieving Women
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="modal-facts-grid" style="margin-bottom: 1.2rem; padding: 1rem;">
+                        <div class="modal-fact-item">
+                            <h4>Date</h4>
+                            <p>Saturday, Nov 14</p>
+                        </div>
+                        <div class="modal-fact-item">
+                            <h4>Time</h4>
+                            <p>10:00 AM – 2:00 PM [EST]</p>
+                        </div>
+                        <div class="modal-fact-item">
+                            <h4>Format</h4>
+                            <p>Live &amp; Virtual</p>
+                        </div>
+                        <div class="modal-fact-item">
+                            <h4>Investment</h4>
+                            <p>$97 USD (Book &amp; Workbook)</p>
+                        </div>
+                    </div>
+
+                    <div class="modal-quote" style="margin-bottom: 1.5rem; font-size: 0.95rem;">
+                        <strong>&ldquo;You built the success. Now build the identity that can hold it.&rdquo;</strong><br>
+                        Audit your whole life across all 7 pillars, release outgrown roles, and walk forward into 2027 as the woman you chose to become.
+                    </div>
+
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+                        <a href="https://checkout.square.site/merchant/BJP0YXKGM78KH/checkout/ED774OVYFAMA5G7FNYAY6HY3" target="_blank" rel="noopener noreferrer" class="rsvp-btn" style="background-color: var(--accent-gold); color: var(--primary-navy); font-weight: bold; border-color: var(--accent-gold);">Get Tickets — $97</a>
+                        <button type="button" class="rsvp-btn" onclick="openEventDetails()">More Information</button>
+                    </div>
+                </div>
+
+                <!-- Right Column: The 7 Pillars Overview -->
+                <div class="featured-card-col-right">
+                    <h3 style="color: var(--accent-gold); font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 0.8rem 0; font-weight: 600;">The 7 R.I.C.H.E.S.T. Pillars</h3>
+                    <div class="modal-pillar-grid" style="gap: 0.6rem;">
+                        <div class="modal-pillar-item"><span class="modal-pillar-letter">R &mdash; Relationship:</span> Deep, authentic connection built from wholeness.</div>
+                        <div class="modal-pillar-item"><span class="modal-pillar-letter">I &mdash; Income:</span> Financial capacity expanding from a secure identity.</div>
+                        <div class="modal-pillar-item"><span class="modal-pillar-letter">C &mdash; Career:</span> Elevated leadership standards untied from KPIs.</div>
+                        <div class="modal-pillar-item"><span class="modal-pillar-letter">H &mdash; Health:</span> Physical vitality as your baseline standard.</div>
+                        <div class="modal-pillar-item"><span class="modal-pillar-letter">E &mdash; Emotional Well-Being:</span> Mastery of your inner narrative and core worth.</div>
+                        <div class="modal-pillar-item"><span class="modal-pillar-letter">S &mdash; Spiritual Success:</span> Daily execution aligned with higher purpose.</div>
+                        <div class="modal-pillar-item"><span class="modal-pillar-letter">T &mdash; Transformation:</span> Permanent identity shifts carrying you forward.</div>
+                    </div>
                 </div>
             </div>
         </div>
