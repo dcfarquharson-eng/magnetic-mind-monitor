@@ -93,7 +93,9 @@
 
         .nav-links {
             display: flex;
-            gap: 18px; align-items: center; flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-link {
@@ -116,15 +118,15 @@
         .page-content {
             margin-top: 100px;
             padding: 4rem 2rem;
-            max-width: 900px;
+            max-width: 1000px;
             width: 100%;
             box-sizing: border-box;
             text-align: left;
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin-bottom: 1.5rem;
             color: var(--accent-gold);
             border-bottom: 2px solid rgba(197, 160, 89, 0.3);
             padding-bottom: 1rem;
@@ -142,82 +144,116 @@
         }
 
         p {
-            line-height: 1.8;
+            line-height: 1.85;
             font-size: 1.1rem;
             color: #bdc6db;
             margin-bottom: 1.5rem;
         }
 
+        .lead-text {
+            font-size: 1.25rem;
+            line-height: 1.9;
+            color: #e6f1ff;
+            margin-bottom: 2.5rem;
+        }
+
+        /* NARRATIVE CHAPTERS */
+        .narrative-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .narrative-card {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+        }
+
+        .chapter-tag {
+            display: inline-block;
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .chapter-title {
+            color: #ffffff;
+            font-size: 1.65rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin: 0 0 1.25rem;
+        }
+
+        .quote-box {
+            border-left: 3px solid var(--accent-gold);
+            background: rgba(197, 160, 89, 0.08);
+            padding: 1.25rem 1.6rem;
+            margin: 1.75rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #ffffff;
+            line-height: 1.75;
+            font-size: 1.1rem;
+        }
+
+        .quote-box .quote-author {
+            display: block;
+            margin-top: 0.6rem;
+            font-style: normal;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+        }
+
+        /* OUR MENTORS SECTION */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .team-member {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(197, 160, 89, 0.1);
-            padding: 1.5rem;
-            border-radius: 5px;
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            padding: 2rem 1.75rem;
+            border-radius: 8px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .member-role {
             color: var(--accent-gold);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             margin-bottom: 0.5rem;
             display: block;
+            font-weight: 600;
         }
 
         .member-name {
             color: #fff;
-            font-size: 1.2rem;
-            margin: 0 0 0.5rem 0;
+            font-size: 1.35rem;
+            margin: 0 0 1rem 0;
             font-weight: bold;
         }
 
         .member-bio {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #a8b2d1;
-            line-height: 1.6;
-        }
-
-        .history-section {
-            display: flex;
-            gap: 3rem;
-            align-items: center;
-            margin-top: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .history-text {
-            flex: 2;
-        }
-
-        .history-stat {
-            flex: 1;
-            background: rgba(197, 160, 89, 0.1);
-            border: 2px solid var(--accent-gold);
-            padding: 2rem;
-            text-align: center;
-            border-radius: 10px;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            color: #fff;
-            font-weight: bold;
-            display: block;
-        }
-
-        .stat-label {
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
+            line-height: 1.7;
+            text-align: left;
         }
 
         footer {
@@ -234,7 +270,7 @@
 
 <body>
 
-        <nav class="navbar">
+    <nav class="navbar">
         <a href="index.html" class="nav-brand">The Magnetic Mind Institute</a>
         <div class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
@@ -257,35 +293,96 @@
     </a>
 
     <div class="page-content">
-        <h1 style="white-space: nowrap; font-size: clamp(2rem, 5vw, 3rem);">About The Institute</h1>
+        <h1>About The Institute</h1>
 
-        <p>
-            The Magnetic Mind Institute is a premier organization dedicated to the study of consciousness, paradigms,
-            and human potential. Situated at the intersection of science and spirituality, we provide the tools for
-            quantum leaps in personal achievement.
+        <p class="lead-text">
+            The Magnetic Mind Institute is dedicated to the study of consciousness, paradigms, and human potential. Situated at the intersection of spiritual truth, mental science, and practical execution, our work was not born in an academic hall—it was forged through a forty-year journey from the pulpit in rural Jamaica to the world stage of mindset transformation.
         </p>
 
-        <div class="history-section">
-            <div class="history-stat"
-                style="font-family: 'Times New Roman', serif; font-style: italic; font-size: 1.2rem; line-height: 1.6;">
-                "Education is the most powerful weapon which you can use to change the world."
-                <div
-                    style="font-size: 0.9rem; margin-top: 1rem; color: var(--accent-gold); font-style: normal; text-transform: uppercase;">
-                    – Nelson Mandela</div>
-            </div>
-            <div class="history-text">
-                <h2 style="color: var(--accent-gold);">Our Story</h2>
+        <h2 style="color: var(--accent-gold); margin-top: 1rem;">Our Origin Story</h2>
+
+        <div class="narrative-container">
+
+            <!-- CHAPTER I -->
+            <div class="narrative-card">
+                <span class="chapter-tag">Part One • Jamaica (1980s)</span>
+                <h3 class="chapter-title">The Pulpit, The Trial, and The Price of Truth</h3>
                 <p>
-                    The Magnetic Mind Institute was founded to carry forward the torch of Bob Proctor's life work. We
-                    believe that everyone is born with infinite potential, but most are programmed to live small.
+                    The journey began on Missionary Sunday at Mount Edmondson Methodist Church in Jamaica, inspired by the ancient words of Matthew 9:37: <em>"The harvest is plentiful, but the laborers are few."</em> At nineteen, Devon Farquharson answered that call, delivering his first sermon under the guidance of his father, a respected Local Preacher.
                 </p>
                 <p>
-                    We provide the environment, the tools, and the coaching to help you break through your terror
-                    barrier and achieve results you never thought possible.
+                    Mentored by church elders, success came with astonishing speed. Soon he was preaching across St. James, Westmoreland, Hanover, St. Elizabeth, and Trelawny, invited to speak at historic pulpits such as Coke Methodist Church in Kingston, and appointed head of the Men’s Fellowship for his circuit and the entire county of Cornwall.
+                </p>
+                <p>
+                    Yet beneath the public acclaim, a profound crisis of conscience began to brew. Sincere questions about identity, existence, and biblical scripture would not rest. When a devoted local teacher, Mrs. Thompson, asked to be baptized by immersion, Devon discovered in the church’s historical archives that founder Charles Wesley had indeed allowed for immersion. When her baptism became a historic event, church leadership reacted with fierce institutional backlash.
+                </p>
+                <p>
+                    Reverend Fitzjohn was recalled to England without notice, leaving Devon to stand alone before a disciplinary tribunal of twelve senior Methodist leaders at St. John's Methodist Church in Montego Bay. Pressed to conform to human tradition over biblical conviction, Devon closed his defense with Joshua 24:15 and Acts 5:29. He reached into his bag, pulled out his white clerical collar and certificate to preach, laid them quietly upon the table, and looked the council in the eye:
+                </p>
+                <div class="quote-box">
+                    "Today I choose to obey God rather than men."
+                    <span class="quote-author">– Devon Farquharson, St. John's Methodist Church</span>
+                </div>
+                <p>
+                    Leaving his credentials behind on that table, he walked out into the world. He entered as a licensed lay preacher; he walked out as an unyielding seeker of absolute truth.
                 </p>
             </div>
+
+            <!-- CHAPTER II -->
+            <div class="narrative-card">
+                <span class="chapter-tag">Part Two • The Realization</span>
+                <h3 class="chapter-title">Leaving Religion to Find God: The Nature of Paradigms</h3>
+                <p>
+                    Outside the protected walls of the pulpit, Devon began observing the stark contrast between Sunday appearances and everyday realities. At home, his father—honored on Sunday mornings—battled the silent, agonizing traumas of World War II during the week. In the community, wealthy transgressors were pardoned with a financial pledge, while a penniless pregnant teenager was condemned and expelled by the very same church board.
+                </p>
+                <p>
+                    He watched sincere believers memorize dogmas and celebrate calendar holidays dictated by Roman councils and seasonal solstices without ever questioning their origin. It became unmistakably clear: <strong>people were not trapped by a lack of devotion or divine favor—they were held captive by unexamined paradigms.</strong>
+                </p>
+                <p>
+                    Taking a role as a ticket agent with Express Air at the Montego Bay airport, he befriended Sydney, an agent from rival airline Trans Jamaica. In a small rented room in Reading, the two young men turned their evenings into a nightly classroom. Free from collections, pulpits, or ecclesiastical politics, they pored over open scriptures and historical texts late into the night.
+                </p>
+                <p>
+                    Through Sydney, Devon learned to question inherited cultural images and realized the universal law of mental magnetism: <em>the thoughts we hold with deep feeling act as a magnet, drawing to us the exact teachers, books, and circumstances needed for our next expansion.</em>
+                </p>
+                <div class="quote-box">
+                    "A paradigm is an image or belief accepted into the subconscious mind without question. It directs our behavior, our fears, and our results until we find the courage to examine it."
+                </div>
+            </div>
+
+            <!-- CHAPTER III -->
+            <div class="narrative-card">
+                <span class="chapter-tag">Part Three • Scottsdale, Arizona (March 2025)</span>
+                <h3 class="chapter-title">The Awakening: From Supporting Cast to Director</h3>
+                <p>
+                    Over the decades that followed, external success arrived: a thriving career, a comfortable home, financial security, and annual vacations. Yet despite the material milestones, an undeniable void remained. Outwardly established, he was still an actor awaiting someone else's cue—believing life was happening <em>to</em> him rather than <em>by</em> him.
+                </p>
+                <p>
+                    The turning point arrived in March 2025 inside a seminar hall at the Hilton in Scottsdale, Arizona. Sitting among hundreds of attendees at a Proctor Gallagher event, speaker Sandy Gallagher paused, looked directly toward his section, pointed her finger, and asked the question that dismantled decades of conditioning:
+                </p>
+                <div class="quote-box">
+                    "Are you the director of your life, or are you just a part of the supporting cast?"
+                    <span class="quote-author">– Sandy Gallagher, Scottsdale, Arizona</span>
+                </div>
+                <p>
+                    In that electric moment, an overwhelming sense of clarity and peace settled in. Forty years of seeking crystallized into truth. He had been playing an extra in his own movie, allowing subconscious paradigms to hold the camera. That afternoon, he enrolled in Bob Proctor's signature curriculum, <em>Thinking into Results</em>.
+                </p>
+                <p>
+                    Studying the foundational Stick Person diagram developed by Dr. Thurman Fleet in 1934, the puzzle resolved completely: <strong>the conscious mind chooses the thought, but the subconscious mind governs emotional vibration and dictates the physical actions of the body.</strong>
+                </p>
+                <p>
+                    Every excuse dissolved. Devon stepped out of the passive audience, claimed the Director's chair, and committed his life to teaching others how to rewrite their scripts with authority and purpose.
+                </p>
+            </div>
+
         </div>
 
+        <div class="quote-box" style="margin: 3rem 0; border-left: 3px solid var(--accent-gold); background: rgba(197, 160, 89, 0.05); padding: 2rem;">
+            <p style="margin: 0; color: #fff; font-size: 1.2rem; font-style: italic;">
+                "The Magnetic Mind Institute was established to bridge the gap between knowing and doing. We teach you how to dismantle inherited paradigms, understand the universal laws of consciousness, and step into the fullness of your God-given creative power."
+            </p>
+        </div>
+
+        <!-- OUR MENTORS (PRESERVED INTACT) -->
         <h2 style="color: var(--accent-gold);">Our Mentors</h2>
         <p>Expert coaches trained in the Proctor lineage.</p>
 
